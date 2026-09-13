@@ -123,7 +123,7 @@ function Frame22() {
   return (
     <div className="content-stretch flex flex-[1_0_0] items-center min-w-px relative">
       <Container />
-      <a className="mr-[12px] flex h-[36px] items-center justify-center rounded-[24px] border border-white/70 border-solid px-[14px] font-['Poppins:Medium',sans-serif] text-[13px] text-white" href="/register">
+      <a className="mr-[12px] flex h-[36px] items-center justify-center rounded-[24px] border border-white/70 border-solid px-[14px] font-['Poppins:Medium',sans-serif] text-[13px] text-white" href="/apostolic-shift/checkin">
         Checkin
       </a>
       <a href="#about" className="block cursor-pointer overflow-clip relative shrink-0 size-[24px]" data-name="akar-icons:text-align-right">

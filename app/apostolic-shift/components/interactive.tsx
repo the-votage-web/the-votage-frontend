@@ -117,18 +117,19 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
     setState("busy");
     setMessage("");
     try {
-      const response = await fetch("/api/submit", {
+      const formData = new FormData();
+      formData.append("access_key", "97fc30f1-cae4-45e2-8325-764faf112caf");
+      formData.append("full_name", fullName.trim());
+      formData.append("phone_number", phone.trim());
+      formData.append("serve_roles", roles.join(", "));
+      formData.append("form_type", "Apostolic Shift Volunteer");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          formType: "APOSTOLIC_SHIFT_VOLUNTEER",
-          fullName: fullName.trim(),
-          phone: phone.trim(),
-          roles,
-        }),
+        body: formData,
       });
-      const data = (await response.json().catch(() => null)) as { status?: string; message?: string } | null;
-      if (response.ok && data?.status === "success") {
+      const data = (await response.json().catch(() => null)) as { success?: boolean; message?: string } | null;
+      if (response.ok && data?.success) {
         setState("success");
         setMessage("You have been signed up — a team lead will reach out to confirm your role.");
         setFullName("");

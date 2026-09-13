@@ -155,7 +155,7 @@ function AkarIconsArrowRight() {
 
 function Frame24() {
   return (
-    <a href="#register" className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch cursor-pointer flex gap-[4px] items-center justify-center left-1/2 p-[10px] top-1/2 hover:opacity-80 transition-opacity">
+    <a href="#volunteer" className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch cursor-pointer flex gap-[4px] items-center justify-center left-1/2 p-[10px] top-1/2 hover:opacity-80 transition-opacity">
       <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-left text-white whitespace-nowrap">{`Join us for a time of intense Prayer and Worship `}</p>
       <AkarIconsArrowRight />
     </a>
@@ -208,7 +208,7 @@ function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
     <div className="content-stretch flex gap-[16px] items-center relative shrink-0 -ml-[200px]">
       <Container />
-      <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/register">
+      <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/apostolic-shift/checkin">
         Checkin
       </a>
       <button className="bg-[#f80] cursor-pointer h-[48px] relative rounded-[36px] shrink-0 w-[160px]" data-name="CTA" onClick={onRegisterClick} type="button">
@@ -221,6 +221,7 @@ function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
           </div>
         </div>
       </button>
+
     </div>
   );
 }
@@ -742,9 +743,7 @@ function Frame51() {
       </div>
       <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-[min-content]">Benin Fire conference 2022, here’s a look at some of our favourite moments from the road.</p>
       <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-[min-content]">{`Can’t decide on day yet? Register for both `}</p>
-      <a className="flex h-[45px] w-[190px] items-center justify-center rounded-[36px] bg-[#f80] font-['Poppins:Medium',sans-serif] text-[16px] text-white" href="/register">
-        Register now
-      </a>
+
     </div>
   );
 }
