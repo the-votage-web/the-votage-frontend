@@ -1,0 +1,60 @@
+/* ---------------------------------------------------------------------
+   Font faces.
+   The Figma export references fonts through colon-suffixed family names
+   (e.g. "Poppins:Regular", "Copperplate:Bold"). Each name below maps to a
+   self-hosted file so the design renders exactly as intended.
+--------------------------------------------------------------------- */
+@font-face {
+  font-family: "Poppins:Regular";
+  src: url("/fonts/poppins-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins:Medium";
+  src: url("/fonts/poppins-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins:SemiBold";
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arial:Regular";
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica Neue");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Copperplate:Bold";
+  src: url("/font/fonnts.com-Copperplate-Bol-.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate_Gothic_Light:Regular";
+  src: url("/font/fonnts.com-Copperplate-Lig-.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}

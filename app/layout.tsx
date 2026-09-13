@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Poppins } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 import { ChatWidget } from "@/components/ChatWidget";
 
-// Poppins font
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+// Poppins font (self-hosted - avoids build-time fetch from Google Fonts)
+const poppins = localFont({
+  src: [
+    { path: "../public/fonts/poppins-400.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/poppins-500.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/poppins-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-poppins",
+  display: "swap",
 });
 
 
