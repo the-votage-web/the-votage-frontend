@@ -12,7 +12,7 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ hero }: HeroSectionProps) => {
   return (
-    <div className="relative w-full h-screen min-h-200 flex items-center justify-center overflow-hidden">
+    <div className="relative w-full min-h-screen lg:h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
         src={hero.backgroundImage}

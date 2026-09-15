@@ -164,7 +164,7 @@ function Frame24() {
 
 function Banner() {
   return (
-    <div className="bg-[#f80] h-[60px] overflow-clip relative shrink-0 w-[1440px]" data-name="Banner">
+    <div className="bg-[#f80] h-[60px] overflow-clip relative shrink-0 w-full max-w-[1440px]" data-name="Banner">
       <Frame24 />
     </div>
   );
@@ -172,7 +172,7 @@ function Banner() {
 
 function Container() {
   return (
-    <div className="content-stretch flex gap-[24px] items-end justify-center mr-[-1px] relative shrink-0 w-[909px]" data-name="Container">
+    <div className="flex gap-[24px] items-center relative shrink-0" data-name="Container">
       <a href="#about" className="relative rounded-[16px] shrink-0 hover:opacity-80 transition-opacity">
         <div className="flex flex-row items-center justify-center size-full">
           <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
@@ -206,22 +206,23 @@ function Container() {
 
 function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="content-stretch flex gap-[16px] items-center relative shrink-0 -ml-[200px]">
+    <div className="flex-1 flex items-center justify-between relative">
       <Container />
-      <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/apostolic-shift/checkin">
-        Checkin
-      </a>
-      <button className="bg-[#f80] cursor-pointer h-[48px] relative rounded-[36px] shrink-0 w-[160px]" data-name="CTA" onClick={onRegisterClick} type="button">
-        <div aria-hidden className="absolute border border-[#9c9b9b] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[18px] text-left text-white whitespace-nowrap">
-              <p className="leading-[24px]">Register Now</p>
+      <div className="flex items-center gap-[16px]">
+        <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/apostolic-shift/checkin">
+          Checkin
+        </a>
+        <button className="bg-[#f80] cursor-pointer h-[48px] relative rounded-[36px] shrink-0 w-[160px]" data-name="CTA" onClick={onRegisterClick} type="button">
+          <div aria-hidden className="absolute border border-[#9c9b9b] border-solid inset-0 pointer-events-none rounded-[36px]" />
+          <div className="flex flex-row items-center justify-center size-full">
+            <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
+              <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[18px] text-left text-white whitespace-nowrap">
+                <p className="leading-[24px]">Register Now</p>
+              </div>
             </div>
           </div>
-        </div>
-      </button>
-
+        </button>
+      </div>
     </div>
   );
 }
@@ -229,7 +230,7 @@ function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
 function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none w-full">
-      <div className="bg-[rgba(255,255,255,0.05)] backdrop-blur-md content-stretch flex gap-[143px] h-[90px] items-center overflow-clip pointer-events-auto px-[80px] py-[12px] w-full max-w-[1440px] mx-auto" data-name="Navigation bar">
+      <div className="bg-[rgba(255,255,255,0.05)] backdrop-blur-md flex h-[90px] items-center overflow-clip pointer-events-auto px-[80px] py-[12px] w-full max-w-[1440px] mx-auto" data-name="Navigation bar">
         <div className="relative shrink-0 size-[57px]" data-name="ChatGPT Image Jan 19, 2026, 06_52_55 PM 1">
           <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageJan192026065255Pm1} />
         </div>
@@ -299,7 +300,7 @@ function Frame19() {
 
 function Margin() {
   return (
-    <div className="absolute h-[798px] left-0 overflow-clip top-[2px] w-[1440px]" data-name="Margin">
+    <div className="absolute h-[798px] left-0 overflow-clip top-[2px] w-full max-w-[1440px]" data-name="Margin">
       <Frame19 />
     </div>
   );
@@ -307,7 +308,7 @@ function Margin() {
 
 function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="h-[800px] overflow-clip relative shrink-0 w-[1440px]" data-name="Hero section">
+    <div className="h-[800px] overflow-clip relative shrink-0 w-full max-w-[1440px]" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-cover size-full" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
@@ -518,7 +519,7 @@ function Frame55() {
 
 function Frame42() {
   return (
-    <div className="content-stretch flex items-center justify-between p-[80px] relative shrink-0 w-[1440px]">
+    <div className="content-stretch flex items-center justify-between p-[80px] relative shrink-0 w-full max-w-[1440px]">
       <Frame29 />
       <Frame55 />
     </div>
@@ -527,7 +528,7 @@ function Frame42() {
 
 function About() {
   return (
-    <div id="about" className="bg-white content-stretch flex flex-col h-[802px] items-start overflow-clip relative shrink-0 w-[1440px] scroll-mt-[90px]" data-name="About">
+    <div id="about" className="bg-white content-stretch flex flex-col h-[802px] items-start overflow-clip relative shrink-0 w-full max-w-[1440px] scroll-mt-[90px]" data-name="About">
       <Frame42 />
     </div>
   );
@@ -1859,7 +1860,7 @@ function Frame102() {
 
 function Footer() {
   return (
-    <div className="bg-[#010101] content-stretch flex flex-col gap-[48px] items-start overflow-clip pb-[20px] pt-[80px] px-[80px] relative shrink-0 w-[1440px]" data-name="Footer">
+    <div className="bg-[#010101] content-stretch flex flex-col gap-[48px] items-start overflow-clip pb-[20px] pt-[80px] px-[80px] relative shrink-0 w-full max-w-[1440px]" data-name="Footer">
       <Frame15 />
       <Frame102 />
     </div>
