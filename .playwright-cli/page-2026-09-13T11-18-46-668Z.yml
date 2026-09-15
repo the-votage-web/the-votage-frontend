@@ -1,0 +1,198 @@
+- main [ref=e2]:
+  - generic [ref=e6]:
+    - link [ref=e8] [cursor=pointer]:
+      - /url: "#volunteer"
+      - paragraph [ref=e9]: Join us for a time of intense Prayer and Worship
+    - generic [ref=e14]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link [ref=e19] [cursor=pointer]:
+            - /url: "#about"
+            - paragraph [ref=e23]: The Experience
+          - link [ref=e24] [cursor=pointer]:
+            - /url: "#volunteer"
+            - paragraph [ref=e28]: Volunteer
+          - link [ref=e29] [cursor=pointer]:
+            - /url: "#give"
+            - paragraph [ref=e33]: Give
+        - generic [ref=e34]:
+          - link "Checkin" [ref=e35] [cursor=pointer]:
+            - /url: /apostolic-shift/checkin
+          - button "Register Now" [ref=e36] [cursor=pointer]
+      - generic [ref=e38]:
+        - paragraph [ref=e42]: tHE VOTAGE CHURCH
+        - generic [ref=e43]:
+          - paragraph [ref=e46]: APOSTOLIC SHIFT
+          - paragraph [ref=e48]: A conference like never before seen
+          - paragraph [ref=e51]: 22ND-23RD SEPTEMBER
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - paragraph [ref=e58]: The experience
+        - generic [ref=e60]:
+          - paragraph [ref=e61]: There are moments in the spirit when everything changes; not gradually, but suddenly. Apostolic Shift is one of those moments.
+          - paragraph [ref=e62]: "A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change."
+          - paragraph [ref=e63]: Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.
+          - paragraph [ref=e64]: Your breakthrough has a date. Come and encounter the shift.
+        - generic [ref=e65]:
+          - generic [ref=e71]:
+            - paragraph [ref=e72]: Impartation
+            - paragraph [ref=e73]: Receiving a fresh measure of grace and authority for kingdom assignments .
+            - paragraph [ref=e74]
+          - generic [ref=e83]:
+            - paragraph [ref=e84]: Prophetic Direction
+            - paragraph [ref=e85]: Navigating personal and generational destinies under the guidance of the Spirit.
+            - paragraph [ref=e86]
+          - generic [ref=e92]:
+            - paragraph [ref=e93]: Action
+            - paragraph [ref=e94]: We want you to experience real changes all around your life.
+          - paragraph [ref=e96]: Join us and if you are interested in volunteering let us know by clicking the button below
+          - link [ref=e97] [cursor=pointer]:
+            - /url: "#volunteer"
+            - paragraph [ref=e101]: Volunteer
+      - generic [ref=e110]:
+        - paragraph [ref=e111]: Apostle Arome Osayi
+        - paragraph [ref=e112]: Mininstering
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - paragraph [ref=e117]: Registration
+        - generic [ref=e118]:
+          - paragraph [ref=e119]: Save your seat for Apostolic Shift
+          - paragraph [ref=e120]: Registration is free and will only take a minute. It helps in planning seat arrangements, prayer teams and follow-up for everyone attending
+          - paragraph [ref=e121]: Can’t decide on a day yet? Register for both
+      - img "Apostolic Shift conference worship" [ref=e123]
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - paragraph [ref=e128]: BFC
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - paragraph [ref=e131]: A look back
+            - paragraph [ref=e132]: at past confrences
+          - paragraph [ref=e133]: Benin Fire conference 2022, here’s a look at some of our favourite moments from the road.
+          - paragraph [ref=e134]: Can’t decide on day yet? Register for both
+      - generic [ref=e165]:
+        - link [ref=e166] [cursor=pointer]:
+          - /url: https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City
+          - paragraph [ref=e170]: Visit
+        - link [ref=e171] [cursor=pointer]:
+          - /url: https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City
+          - paragraph [ref=e175]: The Winlow Center By Ascend School, Airport Road Extension, Benin City
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - generic [ref=e178]:
+          - paragraph [ref=e181]: Serve
+          - generic [ref=e182]:
+            - paragraph [ref=e183]: Be A WORKER FOR APOSTOLIC SHIFT
+            - paragraph [ref=e184]: "Someone has to hold the atmosphere while people encounter God. Every volunteer's assignment is the same: create room for God to move, and clear what would hinder it."
+        - generic [ref=e186]:
+          - generic [ref=e189]:
+            - paragraph [ref=e190]: Ushering & protocol
+            - paragraph [ref=e191]: Both days
+          - generic [ref=e196]:
+            - paragraph [ref=e197]: Media & live stream
+            - paragraph [ref=e198]: Both days
+          - generic [ref=e203]:
+            - paragraph [ref=e204]: Care team
+            - paragraph [ref=e205]: Both days
+          - generic [ref=e210]:
+            - paragraph [ref=e211]: Choir
+            - paragraph [ref=e212]: Both days
+          - generic [ref=e217]:
+            - paragraph [ref=e218]: Follow-up and registration desk
+            - paragraph [ref=e219]: Both days
+      - generic [ref=e222]:
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e225]: Full name
+            - textbox "Full name" [ref=e226]:
+              - /placeholder: Enter your full name
+          - generic [ref=e227]:
+            - generic [ref=e228]: Phone number
+            - textbox "Phone number" [ref=e229]:
+              - /placeholder: e.g. 0801 234 5678
+        - generic [ref=e230]:
+          - generic [ref=e231]: Where would you like to serve?
+          - button "Ushering & protocol" [ref=e232] [cursor=pointer]
+          - button "Media & live stream" [ref=e236] [cursor=pointer]
+          - button "Hospitality" [ref=e240] [cursor=pointer]
+          - button "Prayer team" [ref=e244] [cursor=pointer]
+          - button "Choir" [ref=e248] [cursor=pointer]
+          - button "Follow-up team" [ref=e252] [cursor=pointer]
+          - button "Anywhere needed" [ref=e256] [cursor=pointer]
+        - generic [ref=e260]:
+          - paragraph [ref=e261]: A team lead will reach out to confirm your role
+          - button "Sign up to serve" [ref=e262] [cursor=pointer]
+    - generic [ref=e268]:
+      - generic [ref=e269]:
+        - paragraph [ref=e272]: Give
+        - generic [ref=e273]:
+          - paragraph [ref=e274]: SUPPORT Apostolic Shift
+          - generic [ref=e275]:
+            - paragraph [ref=e276]: The Apostolic Shift is a gathering where God is set to break out and shift situations that seem permanent. As we contend for this shift, we are stepping out in faith, believing God for what He is set to do in our midst.
+            - paragraph [ref=e277]: We want to create room for heaven to move, and you can be part of making that happen.
+            - paragraph [ref=e278]: Join us./Plant/Sow
+      - generic [ref=e281]:
+        - paragraph [ref=e287]: Bank Transfer
+        - generic [ref=e297]:
+          - paragraph [ref=e299]: Local Payment(Nigerian)
+          - paragraph [ref=e301]: Direct bank transfer
+        - generic [ref=e302]:
+          - button [ref=e303] [cursor=pointer]:
+            - generic [ref=e307]:
+              - paragraph [ref=e309]: Bank Name
+              - paragraph [ref=e311]: ACCESS BANK PLC
+          - button [ref=e317] [cursor=pointer]:
+            - generic [ref=e321]:
+              - paragraph [ref=e323]: Account Name
+              - paragraph [ref=e325]: THE VOTAGE CHURCH
+          - button [ref=e331] [cursor=pointer]:
+            - generic [ref=e335]:
+              - paragraph [ref=e337]: Account Number
+              - paragraph [ref=e339]: "0796105815"
+        - button [ref=e345] [cursor=pointer]:
+          - generic [ref=e348]:
+            - paragraph [ref=e350]: Currency
+            - paragraph [ref=e352]: NGN (Nigerian Naira)
+    - generic [ref=e353]:
+      - generic [ref=e354]:
+        - generic [ref=e355]:
+          - generic [ref=e356]:
+            - paragraph [ref=e360]: Follow us
+            - paragraph [ref=e362]: On all our social media
+            - generic [ref=e363]:
+              - link [ref=e364] [cursor=pointer]:
+                - /url: https://www.instagram.com/wearethevotage
+              - link [ref=e368] [cursor=pointer]:
+                - /url: https://youtube.com/@thevotage
+              - link [ref=e372] [cursor=pointer]:
+                - /url: https://www.facebook.com/share/17qGmvUop7/
+          - generic [ref=e376]:
+            - paragraph [ref=e378]: Quick links
+            - generic [ref=e380]:
+              - link "About" [ref=e381] [cursor=pointer]:
+                - /url: "#about"
+              - link "Schedule" [ref=e382] [cursor=pointer]:
+                - /url: "#register"
+              - link "Register" [ref=e383] [cursor=pointer]:
+                - /url: "#register"
+              - link "Volunteer" [ref=e384] [cursor=pointer]:
+                - /url: "#volunteer"
+              - link "Give" [ref=e385] [cursor=pointer]:
+                - /url: "#give"
+        - generic [ref=e386]:
+          - generic [ref=e387]:
+            - paragraph [ref=e389]: Visit
+            - generic [ref=e390]:
+              - paragraph [ref=e391]: The Winlow Center By Ascend School, Airport Road Extension, Benin City
+              - link "0706 970 1744" [ref=e392] [cursor=pointer]:
+                - /url: tel:+2347069701744
+          - generic [ref=e393]:
+            - generic [ref=e394]:
+              - paragraph [ref=e396]: Stay connected
+              - paragraph [ref=e398]: Subscribe for updates, devotionals and event announcements
+            - generic [ref=e399]:
+              - paragraph [ref=e401]: Email
+              - generic [ref=e403]:
+                - textbox "Enter your email" [ref=e407]
+                - button [ref=e408] [cursor=pointer]:
+                  - paragraph [ref=e412]: Subscribe
+      - paragraph [ref=e415]: "@ 2026 The VOTAGE. All rights reserved"

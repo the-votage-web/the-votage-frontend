@@ -212,15 +212,8 @@ function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
         <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/apostolic-shift/checkin">
           Checkin
         </a>
-        <button className="bg-[#f80] cursor-pointer h-[48px] relative rounded-[36px] shrink-0 w-[160px]" data-name="CTA" onClick={onRegisterClick} type="button">
-          <div aria-hidden className="absolute border border-[#9c9b9b] border-solid inset-0 pointer-events-none rounded-[36px]" />
-          <div className="flex flex-row items-center justify-center size-full">
-            <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-              <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[18px] text-left text-white whitespace-nowrap">
-                <p className="leading-[24px]">Register Now</p>
-              </div>
-            </div>
-          </div>
+        <button className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white cursor-pointer hover:bg-white/10 transition-colors" data-name="CTA" onClick={onRegisterClick} type="button">
+          Register Now
         </button>
       </div>
     </div>
