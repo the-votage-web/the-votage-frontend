@@ -378,7 +378,7 @@ export default function ChatWidget({
           {/* Header */}
           <div
             style={{
-              padding: "12px 12px",
+              padding: "14px 20px",
               borderBottom: "1px solid #eee",
               display: "flex",
               alignItems: "center",
@@ -395,7 +395,7 @@ export default function ChatWidget({
                   border: "1px solid #d1d5db",
                   background: busy ? "#f3f4f6" : "#fff",
                   borderRadius: 10,
-                  padding: "6px 10px",
+                  padding: "6px 12px",
                   cursor: busy ? "not-allowed" : "pointer",
                   fontSize: 12,
                 }}
@@ -406,24 +406,25 @@ export default function ChatWidget({
           </div>
 
           {/* Messages */}
-          <div style={{ padding: 12, overflowY: "auto", flex: 1 }}>
+          <div style={{ padding: 20, overflowY: "auto", flex: 1 }}>
             {msgs.map((m, i) => (
               <div key={i}>
                 <div
                   style={{
-                    margin: "10px 0",
+                    margin: "14px 0",
                     display: "flex",
                     justifyContent: m.role === "user" ? "flex-end" : "flex-start",
                   }}
                 >
                   <div
                     style={{
-                      padding: "10px 12px",
-                      borderRadius: 12,
+                      padding: "14px 18px",
+                      borderRadius: 16,
                       background: m.role === "user" ? "#E9F5FF" : "#F4F4F4",
-                      maxWidth: "85%",
+                      maxWidth: "88%",
                       whiteSpace: "pre-wrap",
-                      lineHeight: 1.35,
+                      lineHeight: 1.5,
+                      fontSize: 14,
                     }}
                   >
                     {linkifyText(m.text, handleInternalNavigate)}
@@ -463,7 +464,7 @@ export default function ChatWidget({
             {busy && (
               <div
                 style={{
-                  margin: "10px 0",
+                  margin: "14px 0",
                   display: "flex",
                   justifyContent: "flex-start",
                 }}
@@ -471,8 +472,8 @@ export default function ChatWidget({
               >
                 <div
                   style={{
-                    padding: "10px 12px",
-                    borderRadius: 12,
+                    padding: "14px 18px",
+                    borderRadius: 16,
                     background: "#F4F4F4",
                     display: "flex",
                     gap: 6,
@@ -500,7 +501,7 @@ export default function ChatWidget({
           </div>
 
           {/* Input */}
-          <div style={{ padding: 12, borderTop: "1px solid #eee" }}>
+          <div style={{ padding: "14px 20px", borderTop: "1px solid #eee" }}>
             <div style={{ display: "flex", gap: 8 }}>
               <input
                 value={input}
@@ -510,7 +511,7 @@ export default function ChatWidget({
                 placeholder={busy ? "Thinking…" : "Type a message…"}
                 style={{
                   flex: 1,
-                  padding: "10px 12px",
+                  padding: "10px 14px",
                   borderRadius: 12,
                   border: "1px solid #ddd",
                   background: busy ? "#f3f4f6" : "#fff",
@@ -521,7 +522,7 @@ export default function ChatWidget({
                 onClick={onSend}
                 disabled={busy}
                 style={{
-                  padding: "10px 14px",
+                  padding: "10px 16px",
                   borderRadius: 12,
                   border: "1px solid #111827",
                   background: busy ? "#374151" : "#1f2937",
