@@ -244,23 +244,23 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
       <div className="flex w-full flex-col items-start gap-4">
         <p className={`w-full font-['Poppins:Regular',sans-serif] text-[12px] ${statusClass}`}>{statusText}</p>
         <button
-          className="flex cursor-pointer items-center disabled:cursor-not-allowed disabled:opacity-60"
+          className="group flex cursor-pointer items-center disabled:cursor-not-allowed disabled:opacity-60 transition-transform active:scale-[0.98]"
           disabled={state === "busy"}
           type="submit"
         >
           {!compact && (
-            <span className="flex h-11.25 w-12.25 flex-col items-center justify-center rounded-[27px] bg-[#f80] py-4.5 pl-3.5 pr-3.75">
-              <svg className="block size-full" fill="none" height="18" viewBox="0 0 25 18" width="25">
-                <path d="M3.5 9.25H22.5M17.25 14.5L22.5 9.25L17.25 4" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+            <span className="flex size-13 items-center justify-center rounded-full bg-[#f80] group-hover:bg-[#ff9500] shadow-md transition-all shrink-0 mr-3">
+              <svg className="size-6 text-white transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
           )}
           <span
-            className={`flex h-11.25 items-center justify-center rounded-[36px] border border-[#f70] border-solid bg-[#f80] px-2.5 ${
-              compact ? "w-41.5" : "w-44"
+            className={`flex h-13 items-center justify-center rounded-full bg-[#f80] group-hover:bg-[#ff9500] px-9 shadow-md transition-all ${
+              compact ? "w-full" : ""
             }`}
           >
-            <span className="whitespace-nowrap font-['Poppins:Medium',sans-serif] text-[16px] leading-6 text-white">
+            <span className="whitespace-nowrap font-['Poppins:Medium',sans-serif] text-[17px] text-white">
               {state === "busy" ? "Submitting…" : "Sign up to serve"}
             </span>
           </span>
@@ -530,23 +530,23 @@ export function RegistrationForm({ compact = false }: { compact?: boolean }) {
       {/* Submit Button */}
       <div className="pt-2.5">
         <button
-          className="flex cursor-pointer items-center disabled:cursor-not-allowed disabled:opacity-60 hover:opacity-90 transition-opacity"
+          className="group flex cursor-pointer items-center disabled:cursor-not-allowed disabled:opacity-60 transition-transform active:scale-[0.98]"
           disabled={state === "busy"}
           type="submit"
         >
           {!compact && (
-            <span className="flex h-11.25 w-12.25 flex-col items-center justify-center rounded-[27px] bg-[#f80] py-4.5 pl-3.5 pr-3.75">
-              <svg className="block size-full" fill="none" height="18" viewBox="0 0 25 18" width="25">
-                <path d="M3.5 9.25H22.5M17.25 14.5L22.5 9.25L17.25 4" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+            <span className="flex size-13 items-center justify-center rounded-full bg-[#f80] group-hover:bg-[#ff9500] shadow-md transition-all shrink-0 mr-3">
+              <svg className="size-6 text-white transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
           )}
           <span
-            className={`flex h-11.25 items-center justify-center rounded-[36px] border border-[#f70] border-solid bg-[#f80] px-6 ${
-              compact ? "w-40" : "w-37"
+            className={`flex h-13 items-center justify-center rounded-full bg-[#f80] group-hover:bg-[#ff9500] px-9 shadow-md transition-all ${
+              compact ? "w-full" : ""
             }`}
           >
-            <span className="whitespace-nowrap font-['Poppins:Medium',sans-serif] text-[16px] uppercase tracking-wider text-white">
+            <span className="whitespace-nowrap font-['Poppins:Medium',sans-serif] text-[17px] uppercase tracking-wider text-white">
               {state === "busy" ? "Submitting…" : "SUBMIT"}
             </span>
           </span>

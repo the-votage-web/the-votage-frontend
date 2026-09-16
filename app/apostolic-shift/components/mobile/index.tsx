@@ -32,11 +32,9 @@ function scrollToMobile(id: string, fallback?: () => void) {
 
 function AkarIconsArrowRight() {
   return (
-    <div className="h-4.5 relative shrink-0 w-6.25" data-name="akar-icons:arrow-right">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 25 18" width="25">
-        <g id="akar-icons:arrow-right">
-          <path d={svgPaths.p34482d00} id="Vector" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
+    <div className="relative shrink-0 size-5 flex items-center justify-center" data-name="akar-icons:arrow-right">
+      <svg className="size-4.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
       </svg>
     </div>
   );
@@ -148,7 +146,7 @@ function NavigationBar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-white/10">
+    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/15 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/10 -mb-16">
       <div className="flex h-16 items-center justify-between px-5 py-3 w-full" data-name="Navigation bar">
         <a href="#" className="relative shrink-0 size-10 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center">
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
@@ -171,7 +169,7 @@ function NavigationBar() {
         </button>
       </div>
       {menuOpen && (
-        <div className="bg-black/95 border-b border-white/10 px-6 py-5 flex flex-col gap-4 text-white font-['Poppins:Medium',sans-serif] text-[15px]">
+        <div className="bg-black/85 backdrop-blur-xl border-b border-white/10 px-6 py-5 flex flex-col gap-4 text-white font-['Poppins:Medium',sans-serif] text-[15px]">
           <a
             href="#about"
             onClick={(e) => {
@@ -224,7 +222,7 @@ function NavigationBar() {
 
 function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="min-h-160 overflow-hidden relative shrink-0 w-full bg-black flex flex-col justify-center items-center" data-name="Hero section">
+    <div className="min-h-160 overflow-hidden relative shrink-0 w-full bg-black flex flex-col justify-center items-center pt-16" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute inset-0 size-full object-cover" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
@@ -1110,7 +1108,7 @@ export default function AndroidCompact() {
   };
 
   return (
-    <div className="bg-white content-stretch flex flex-col items-start relative size-full" data-name="Android Compact - 1">
+    <div className="bg-black content-stretch flex flex-col items-start relative size-full" data-name="Android Compact - 1">
       <Banner />
       <NavigationBar />
       <HeroSection onRegisterClick={handleRegisterClick} />
