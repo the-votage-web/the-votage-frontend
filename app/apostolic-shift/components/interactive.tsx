@@ -547,7 +547,7 @@ export function RegistrationForm({ compact = false }: { compact?: boolean }) {
             }`}
           >
             <span className="whitespace-nowrap font-['Poppins:Medium',sans-serif] text-[16px] uppercase tracking-wider text-white">
-              {state === "busy" ? "Applying…" : "APPLY"}
+              {state === "busy" ? "Submitting…" : "SUBMIT"}
             </span>
           </span>
         </button>

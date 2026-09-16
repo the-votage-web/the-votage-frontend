@@ -11,6 +11,25 @@ const imgFrame271 = "/img/apostolic-shift/0e86aa29068604ea20cfd8b71c27c4c9c346d4
 import { CopyRow, VolunteerForm, RegistrationForm } from "../interactive";
 import { RegisterModal } from "../register-modal";
 
+function scrollToMobile(id: string, fallback?: () => void) {
+  if (typeof document === "undefined") return;
+  const mobileContainer = document.querySelector(".md\\:hidden") || document.querySelector("[data-name='Android Compact - 1']");
+  const el = mobileContainer?.querySelector(`#${id}`) as HTMLElement | null;
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+  const elements = document.querySelectorAll(`#${id}`);
+  for (const item of elements) {
+    const htmlEl = item as HTMLElement;
+    if (htmlEl.offsetParent !== null || htmlEl.offsetHeight > 0) {
+      htmlEl.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+  }
+  fallback?.();
+}
+
 function AkarIconsArrowRight() {
   return (
     <div className="h-4.5 relative shrink-0 w-6.25" data-name="akar-icons:arrow-right">
@@ -25,7 +44,14 @@ function AkarIconsArrowRight() {
 
 function Frame23() {
   return (
-    <a href="#register" className="content-stretch flex gap-1.5 items-center justify-center p-1.5 relative shrink-0">
+    <a
+      href="#register"
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToMobile("register");
+      }}
+      className="content-stretch flex gap-1.5 items-center justify-center p-1.5 relative shrink-0 cursor-pointer"
+    >
       <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[12px] text-center text-white">{`Join us for a time of intense Prayer and Worship `}</p>
       <AkarIconsArrowRight />
     </a>
@@ -97,6 +123,11 @@ function Frame17() {
 }
 
 function Frame18({ onRegisterClick }: { onRegisterClick: () => void }) {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    scrollToMobile("register", onRegisterClick);
+  };
+
   return (
     <div className="content-stretch flex flex-col gap-5 items-center w-full max-w-sm z-10">
       <Frame24 />
@@ -104,7 +135,7 @@ function Frame18({ onRegisterClick }: { onRegisterClick: () => void }) {
       <button
         className="bg-[#f80] hover:bg-[#ff9500] cursor-pointer h-13 rounded-[36px] px-9 flex items-center justify-center shadow-lg transition-colors mt-2"
         data-name="CTA"
-        onClick={onRegisterClick}
+        onClick={handleClick}
         type="button"
       >
         <p className="font-['Poppins:Medium',sans-serif] text-[18px] text-white whitespace-nowrap">Register Now</p>
@@ -135,10 +166,50 @@ function NavigationBar() {
       </div>
       {menuOpen && (
         <div className="bg-black/95 border-b border-white/10 px-6 py-5 flex flex-col gap-4 text-white font-['Poppins:Medium',sans-serif] text-[15px]">
-          <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-[#f80] transition-colors py-1">The Experience</a>
-          <a href="#volunteer" onClick={() => setMenuOpen(false)} className="hover:text-[#f80] transition-colors py-1">Volunteer</a>
-          <a href="#give" onClick={() => setMenuOpen(false)} className="hover:text-[#f80] transition-colors py-1">Give</a>
-          <a href="#register" onClick={() => setMenuOpen(false)} className="bg-[#f80] text-center text-white py-2.5 rounded-full font-medium mt-2">Register Now</a>
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              scrollToMobile("about");
+            }}
+            className="hover:text-[#f80] transition-colors py-1 cursor-pointer"
+          >
+            The Experience
+          </a>
+          <a
+            href="#volunteer"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              scrollToMobile("volunteer");
+            }}
+            className="hover:text-[#f80] transition-colors py-1 cursor-pointer"
+          >
+            Volunteer
+          </a>
+          <a
+            href="#give"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              scrollToMobile("give");
+            }}
+            className="hover:text-[#f80] transition-colors py-1 cursor-pointer"
+          >
+            Give
+          </a>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuOpen(false);
+              scrollToMobile("register");
+            }}
+            className="bg-[#f80] text-center text-white py-2.5 rounded-full font-medium mt-2 w-full cursor-pointer hover:bg-[#ff9500] transition-colors"
+          >
+            Register Now
+          </button>
         </div>
       )}
     </div>
@@ -313,7 +384,15 @@ function Text() {
       <Text2 />
       <Text3 />
       <Frame28 />
-      <a href="#volunteer" className="bg-[#f80] cursor-pointer h-13.5 relative rounded-[36px] shrink-0 w-47.5 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
+      <a
+        href="#volunteer"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToMobile("volunteer");
+        }}
+        className="bg-[#f80] cursor-pointer h-13.5 relative rounded-[36px] shrink-0 w-47.5 flex items-center justify-center hover:opacity-90 transition-opacity"
+        data-name="CTA"
+      >
         <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
         <div className="flex flex-row items-center justify-center size-full">
           <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
@@ -595,7 +674,7 @@ function Frame81() {
       <div className="font-['Poppins:Regular',sans-serif] leading-relaxed relative shrink-0 text-[#5c5854] text-[14px] w-full flex flex-col gap-2">
         <p>The Apostolic Shift is a gathering where God is set to break out and shift situations that seem permanent. As we contend for this shift, we are stepping out in faith, believing God for what He is set to do in our midst.</p>
         <p>We want to create room for heaven to move, and you can be part of making that happen.</p>
-        <p className="font-['Poppins:SemiBold',sans-serif] text-black font-semibold">Join us. / Plant / Sow</p>
+        <p className="font-['Poppins:SemiBold',sans-serif] text-black font-semibold">Join us / Plant / Sow</p>
       </div>
     </div>
   );
@@ -867,11 +946,11 @@ function QuickLinl() {
 function Container1() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-3 items-start justify-center leading-normal min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
-      <a href="#about" className="relative shrink-0 hover:underline">About</a>
-      <a href="#register" className="relative shrink-0 hover:underline">Schedule</a>
-      <a href="#register" className="relative shrink-0 hover:underline">Register</a>
-      <a href="#volunteer" className="relative shrink-0 hover:underline">Volunteer</a>
-      <a href="#give" className="relative shrink-0 hover:underline">Give</a>
+      <a href="#about" onClick={(e) => { e.preventDefault(); scrollToMobile("about"); }} className="relative shrink-0 hover:underline cursor-pointer">About</a>
+      <a href="#register" onClick={(e) => { e.preventDefault(); scrollToMobile("register"); }} className="relative shrink-0 hover:underline cursor-pointer">Schedule</a>
+      <a href="#register" onClick={(e) => { e.preventDefault(); scrollToMobile("register"); }} className="relative shrink-0 hover:underline cursor-pointer">Register</a>
+      <a href="#volunteer" onClick={(e) => { e.preventDefault(); scrollToMobile("volunteer"); }} className="relative shrink-0 hover:underline cursor-pointer">Volunteer</a>
+      <a href="#give" onClick={(e) => { e.preventDefault(); scrollToMobile("give"); }} className="relative shrink-0 hover:underline cursor-pointer">Give</a>
     </div>
   );
 }
@@ -1025,12 +1104,7 @@ export default function AndroidCompact() {
   const [registerOpen, setRegisterOpen] = useState(false);
 
   const handleRegisterClick = () => {
-    const el = document.getElementById("register");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      setRegisterOpen(true);
-    }
+    scrollToMobile("register", () => setRegisterOpen(true));
   };
 
   return (

@@ -901,7 +901,7 @@ function Frame98() {
       <div className="font-['Poppins:Regular',sans-serif] leading-0 relative shrink-0 text-[#5c5854] text-[0px] w-full">
         <p className="leading-[normal] mb-0 text-[16px]">The Apostolic Shift is a gathering where God is set to break out and shift situations that seem permanent. As we contend for this shift, we are stepping out in faith, believing God for what He is set to do in our midst.</p>
         <p className="leading-[normal] mb-0 text-[16px]">We want to create room for heaven to move, and you can be part of making that happen.</p>
-        <p className="font-['Poppins:SemiBold',sans-serif] leading-[normal] text-[16px] text-black">Join us./Plant/Sow</p>
+        <p className="font-['Poppins:SemiBold',sans-serif] leading-[normal] text-[16px] text-black">Join us / Plant / Sow</p>
       </div>
     </div>
   );
