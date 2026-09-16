@@ -845,7 +845,7 @@ function WaysToGiveCard() {
 
 function Give() {
   return (
-    <div id="give" className="bg-gradient-to-t content-stretch flex flex-col from-[#fffaf7] gap-10 items-center px-5 py-14 relative z-10 to-[#fff3eb] w-full scroll-mt-20" data-name="Give">
+    <div id="give" className="bg-linear-to-t content-stretch flex flex-col from-[#fffaf7] gap-10 items-center px-5 py-14 relative z-10 to-[#fff3eb] w-full scroll-mt-20" data-name="Give">
       <div className="w-full max-w-97.5">
         <Frame79 />
       </div>
