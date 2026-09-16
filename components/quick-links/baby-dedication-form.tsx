@@ -427,7 +427,7 @@ export function BabyDedicationForm() {
           <label className="block text-xs font-semibold text-gray-800 mb-1.5">
             Father&apos;s Name <span className="text-red-500 font-bold">*</span>
           </label>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"
@@ -466,7 +466,7 @@ export function BabyDedicationForm() {
           <label className="block text-xs font-semibold text-gray-800 mb-1.5">
             Mother&apos;s Name <span className="text-red-500 font-bold">*</span>
           </label>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"
@@ -666,7 +666,7 @@ export function BabyDedicationForm() {
           <label className="block text-xs font-semibold text-gray-800 mb-1.5">
             Connect Leader&apos;s Name
           </label>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"

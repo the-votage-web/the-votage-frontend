@@ -26,12 +26,19 @@ export function DesktopFit({ children }: { children: ReactNode }) {
     if (!outer || !inner) return;
 
     const update = () => {
-      const scale = Math.min(
-        1,
-        document.documentElement.clientWidth / CANVAS_WIDTH
-      );
-      inner.style.transform = scale < 1 ? `scale(${scale})` : "";
-      outer.style.height = `${Math.round(inner.offsetHeight * scale)}px`;
+      const clientW = document.documentElement.clientWidth;
+      if (clientW >= CANVAS_WIDTH) {
+        inner.style.width = "100%";
+        inner.style.transform = "";
+        inner.style.transformOrigin = "";
+        outer.style.height = "";
+      } else {
+        const scale = clientW / CANVAS_WIDTH;
+        inner.style.width = `${CANVAS_WIDTH}px`;
+        inner.style.transformOrigin = "top left";
+        inner.style.transform = `scale(${scale})`;
+        outer.style.height = `${Math.round(inner.offsetHeight * scale)}px`;
+      }
     };
 
     update();
@@ -47,13 +54,12 @@ export function DesktopFit({ children }: { children: ReactNode }) {
   return (
     <div
       ref={outerRef}
-      /* clip (instead of hidden) so there is never a horizontal scrollbar,
-         including in the brief moment before hydration applies the scale. */
+      className="w-full"
       style={{ overflowX: "clip" }}
     >
       <div
         ref={innerRef}
-        style={{ width: CANVAS_WIDTH, transformOrigin: "top left" }}
+        className="w-full"
       >
         {children}
       </div>

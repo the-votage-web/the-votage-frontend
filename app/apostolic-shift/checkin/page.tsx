@@ -1,33 +1,101 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState, useEffect } from "react";
 
 type FormState = "idle" | "busy" | "success" | "error";
 
 export default function ApostolicShiftCheckinPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
+  const [notRegistered, setNotRegistered] = useState(false);
+  const [redirectCountdown, setRedirectCountdown] = useState<number | null>(null);
+
+  // Pre-fill phone if passed in URL search params
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const p = params.get("phone");
+    if (p) setPhone(p);
+  }, []);
+
+  // Countdown timer for automatic redirect when not registered
+  useEffect(() => {
+    if (redirectCountdown === null) return;
+    if (redirectCountdown <= 0) {
+      router.push(`/apostolic-shift?phone=${encodeURIComponent(phone.trim())}#register`);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setRedirectCountdown((prev) => (prev !== null ? prev - 1 : null));
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [redirectCountdown, phone, router]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === "busy") return;
 
+    if (!phone.trim()) {
+      setState("error");
+      setNotRegistered(false);
+      setRedirectCountdown(null);
+      setMessage("Please enter your registered phone number to check in.");
+      return;
+    }
+
     setState("busy");
     setMessage("");
+    setNotRegistered(false);
+    setRedirectCountdown(null);
 
-    // TODO: Replace with actual API endpoint
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      setState("success");
-      setMessage("You have been checked in successfully!");
-      setEmail("");
-      setPhone("");
+      const res = await fetch("/api/apostolic-shift/checkin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone_number: phone.trim(),
+        }),
+      });
+
+      const data = (await res.json().catch(() => null)) as {
+        detail?: string;
+        error?: string;
+        checked_in?: boolean;
+      } | null;
+
+      if (res.status === 200) {
+        setState("success");
+        setNotRegistered(false);
+        setRedirectCountdown(null);
+        setMessage(
+          data?.detail || "Check-in successful! Welcome to Apostolic Shift Conference 2026."
+        );
+        setPhone("");
+        setEmail("");
+      } else if (res.status === 404) {
+        setState("error");
+        setNotRegistered(true);
+        setMessage(
+          `We couldn't find a registration for ${phone.trim()}. Redirecting you to register...`
+        );
+        // Start 3-second countdown then auto-navigate
+        setRedirectCountdown(3);
+      } else {
+        setState("error");
+        setNotRegistered(false);
+        setRedirectCountdown(null);
+        setMessage(data?.detail || "Check-in failed. Please verify your number and try again.");
+      }
     } catch {
       setState("error");
-      setMessage("Check-in failed. Please try again.");
+      setNotRegistered(false);
+      setRedirectCountdown(null);
+      setMessage("Network error. Please check your connection and try again.");
     }
   }
 
@@ -77,17 +145,53 @@ export default function ApostolicShiftCheckinPage() {
             zIndex: 50,
             minWidth: "min(560px, calc(100vw - 24px))",
             maxWidth: "calc(100vw - 24px)",
-            borderRadius: 12,
-            padding: "12px 14px",
+            borderRadius: 14,
+            padding: "16px 20px",
             fontSize: 14,
-            fontWeight: 700,
+            fontWeight: 500,
             color: "#842029",
-            background: "#f8d7da",
+            background: "#fff5f5",
             border: "1px solid #f5c2c7",
-            boxShadow: "0 10px 24px rgba(0, 0, 0, 0.14)",
+            boxShadow: "0 14px 32px rgba(0, 0, 0, 0.14)",
           }}
         >
-          {message}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+            <span style={{ fontSize: 22 }}>{notRegistered ? "📋" : "⚠️"}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4, color: "#842029" }}>
+                {notRegistered ? "Not Registered Yet" : "Check-in Error"}
+              </div>
+              <div style={{ color: "#58151c", lineHeight: 1.45 }}>{message}</div>
+              {notRegistered && (
+                <div style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+                  <Link
+                    href={`/apostolic-shift?phone=${encodeURIComponent(phone.trim())}#register`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: "#f80",
+                      color: "#ffffff",
+                      fontWeight: 700,
+                      padding: "8px 16px",
+                      borderRadius: 24,
+                      textDecoration: "none",
+                      fontSize: 13,
+                      boxShadow: "0 4px 14px rgba(255, 136, 0, 0.3)",
+                    }}
+                  >
+                    <span>Register Now</span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                  {redirectCountdown !== null && (
+                    <span style={{ fontSize: 13, color: "#a02834", fontWeight: 600 }}>
+                      Redirecting in {redirectCountdown}s...
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
@@ -157,11 +261,10 @@ export default function ApostolicShiftCheckinPage() {
                   fontFamily: "var(--font-poppins)",
                 }}
               >
-                Email address
+                Email address (Optional)
               </span>
               <input
                 type="email"
-                required
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);

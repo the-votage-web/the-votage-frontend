@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import svgPaths from "./svg-1uc59bgq44";
-import { CopyRow, VolunteerForm } from "../interactive";
+import { CopyRow, VolunteerForm, RegistrationForm } from "../interactive";
 import { RegisterModal } from "../register-modal";
 
 /* Images live in /public/img/apostolic-shift (copied verbatim from the Figma export). */
@@ -18,6 +18,7 @@ const imgRectangle16 = "/img/apostolic-shift/136ea486872097fdc951b2d7d88efd8a892
 const imgHeroSection = "/img/apostolic-shift/46a110685be4de114d24186039db4eb4af1ded4a.png";
 const imgChatGptImageJan192026065255Pm1 = "/img/apostolic-shift/29fcaaaf990b37e9f81712729c82732ad77fb95a.png";
 const imgFrame271 = "/img/apostolic-shift/0e86aa29068604ea20cfd8b71c27c4c9c346d409.png";
+
 type ComponentProps = {
   className?: string;
   property1?: "open" | "default";
@@ -25,71 +26,75 @@ type ComponentProps = {
 
 function Component({ className, property1 = "open" }: ComponentProps) {
   return (
-    <div className={className || `h-[260px] relative ${property1 === "default" ? "w-[75px]" : "w-[402px]"}`}>
+    <div className={className || `h-65 relative transition-all duration-300 ${property1 === "default" ? "w-18.75" : "w-100.5"}`}>
       <div className="absolute inset-0 rounded-[13px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle8} />
       </div>
     </div>
   );
 }
+
 type Component1Props = {
   className?: string;
   property1?: "Frame 309" | "Frame 310" | "Frame 311" | "Frame 312" | "Frame 313" | "Frame 314" | "Frame 315" | "Frame 316" | "Frame 317" | "Frame 318";
 };
 
 function Component1({ className, property1 = "Frame 309" }: Component1Props) {
-  const isFrame309 = property1 === "Frame 309";
-  const isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or = ["Frame 310", "Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(property1);
+  const [activeFrame, setActiveFrame] = useState(property1);
+  const isFrame309 = activeFrame === "Frame 309";
+  const isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or = ["Frame 310", "Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(activeFrame);
   return (
     <div className={className || "relative"}>
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex gap-[8px] items-center relative size-full">
-          <Component className={`h-[260px] relative shrink-0 ${isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "w-[75px]" : "w-[402px]"}`} property1={isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "default" : undefined} />
+        <div className="content-stretch flex gap-2 items-center relative size-full">
+          <div className="cursor-pointer" onClick={() => setActiveFrame("Frame 309")} onMouseEnter={() => setActiveFrame("Frame 309")}>
+            <Component className={`h-65 relative shrink-0 transition-all duration-300 ${isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "w-18.75" : "w-100.5"}`} property1={isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "default" : undefined} />
+          </div>
           {isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or && (
-            <div className={`h-[260px] relative shrink-0 ${["Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(property1) ? "w-[75px]" : "w-[402px]"}`} data-name="Component 3">
+            <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${["Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(activeFrame) ? "w-18.75" : "w-100.5"}`} data-name="Component 3" onClick={() => setActiveFrame("Frame 310")} onMouseEnter={() => setActiveFrame("Frame 310")}>
               <div className="absolute inset-0 rounded-[13px]">
                 <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle11} />
               </div>
             </div>
           )}
-          <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 311" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 4">
+          <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 311" ? "w-100.5" : "w-18.75"}`} data-name="Component 4" onClick={() => setActiveFrame("Frame 311")} onMouseEnter={() => setActiveFrame("Frame 311")}>
             <div className="absolute inset-0 rounded-[13px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
             </div>
           </div>
-          <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 312" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 5">
+          <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 312" ? "w-100.5" : "w-18.75"}`} data-name="Component 5" onClick={() => setActiveFrame("Frame 312")} onMouseEnter={() => setActiveFrame("Frame 312")}>
             <div className="absolute inset-0 rounded-[13px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle10} />
             </div>
           </div>
           {isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or && (
             <>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 313" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 6">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 313" ? "w-100.5" : "w-18.75"}`} data-name="Component 6" onClick={() => setActiveFrame("Frame 313")} onMouseEnter={() => setActiveFrame("Frame 313")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle12} />
                 </div>
               </div>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 314" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 7">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 314" ? "w-100.5" : "w-18.75"}`} data-name="Component 7" onClick={() => setActiveFrame("Frame 314")} onMouseEnter={() => setActiveFrame("Frame 314")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle13} />
                 </div>
               </div>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 315" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 8">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 315" ? "w-100.5" : "w-18.75"}`} data-name="Component 8" onClick={() => setActiveFrame("Frame 315")} onMouseEnter={() => setActiveFrame("Frame 315")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle14} />
                 </div>
               </div>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 316" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 9">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 316" ? "w-100.5" : "w-18.75"}`} data-name="Component 9" onClick={() => setActiveFrame("Frame 316")} onMouseEnter={() => setActiveFrame("Frame 316")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle15} />
                 </div>
               </div>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 317" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 10">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 317" ? "w-100.5" : "w-18.75"}`} data-name="Component 10" onClick={() => setActiveFrame("Frame 317")} onMouseEnter={() => setActiveFrame("Frame 317")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle16} />
                 </div>
               </div>
-              <div className={`h-[260px] relative shrink-0 ${property1 === "Frame 318" ? "w-[402px]" : "w-[75px]"}`} data-name="Component 11">
+              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 318" ? "w-100.5" : "w-18.75"}`} data-name="Component 11" onClick={() => setActiveFrame("Frame 318")} onMouseEnter={() => setActiveFrame("Frame 318")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
                 </div>
@@ -98,37 +103,37 @@ function Component1({ className, property1 = "Frame 309" }: Component1Props) {
           )}
           {isFrame309 && (
             <>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 3">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 3" onClick={() => setActiveFrame("Frame 309")} onMouseEnter={() => setActiveFrame("Frame 310")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle11} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 6">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 6" onClick={() => setActiveFrame("Frame 313")} onMouseEnter={() => setActiveFrame("Frame 313")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle12} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 7">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 7" onClick={() => setActiveFrame("Frame 314")} onMouseEnter={() => setActiveFrame("Frame 314")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle13} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 8">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 8" onClick={() => setActiveFrame("Frame 315")} onMouseEnter={() => setActiveFrame("Frame 315")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle14} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 9">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 9" onClick={() => setActiveFrame("Frame 316")} onMouseEnter={() => setActiveFrame("Frame 316")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle15} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 10">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 10" onClick={() => setActiveFrame("Frame 317")} onMouseEnter={() => setActiveFrame("Frame 317")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle16} />
                 </div>
               </div>
-              <div className="h-[260px] relative shrink-0 w-[75px]" data-name="Component 11">
+              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 11" onClick={() => setActiveFrame("Frame 318")} onMouseEnter={() => setActiveFrame("Frame 318")}>
                 <div className="absolute inset-0 rounded-[13px]">
                   <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
                 </div>
@@ -143,7 +148,7 @@ function Component1({ className, property1 = "Frame 309" }: Component1Props) {
 
 function AkarIconsArrowRight() {
   return (
-    <div className="h-[18px] relative shrink-0 w-[25px]" data-name="akar-icons:arrow-right">
+    <div className="h-4.5 relative shrink-0 w-6.25" data-name="akar-icons:arrow-right">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 25 18" width="25">
         <g id="akar-icons:arrow-right">
           <path d={svgPaths.p34482d00} id="Vector" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -155,8 +160,10 @@ function AkarIconsArrowRight() {
 
 function Frame24() {
   return (
-    <a href="#volunteer" className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch cursor-pointer flex gap-[4px] items-center justify-center left-1/2 p-[10px] top-1/2 hover:opacity-80 transition-opacity">
-      <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-left text-white whitespace-nowrap">{`Join us for a time of intense Prayer and Worship `}</p>
+    <a href="#register" className="cursor-pointer flex gap-2 items-center justify-center p-2.5 hover:opacity-80 transition-opacity">
+      <p className="font-['Poppins:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">
+        Join us for a time of intense Prayer and Worship
+      </p>
       <AkarIconsArrowRight />
     </a>
   );
@@ -164,7 +171,7 @@ function Frame24() {
 
 function Banner() {
   return (
-    <div className="bg-[#f80] h-[60px] overflow-clip relative shrink-0 w-full max-w-[1440px]" data-name="Banner">
+    <div className="bg-[#f80] h-15 relative shrink-0 w-full z-40 flex items-center justify-center" data-name="Banner">
       <Frame24 />
     </div>
   );
@@ -172,29 +179,29 @@ function Banner() {
 
 function Container() {
   return (
-    <div className="flex gap-[24px] items-center relative shrink-0" data-name="Container">
-      <a href="#about" className="relative rounded-[16px] shrink-0 hover:opacity-80 transition-opacity">
+    <div className="flex gap-8 items-center relative shrink-0" data-name="Container">
+      <a href="#about" className="relative rounded-2xl shrink-0 hover:opacity-80 transition-opacity">
         <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
+          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
+            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
               <p className="leading-[normal]">The Experience</p>
             </div>
           </div>
         </div>
       </a>
-      <a href="#volunteer" className="relative rounded-[16px] shrink-0 hover:opacity-80 transition-opacity">
+      <a href="#volunteer" className="relative rounded-2xl shrink-0 hover:opacity-80 transition-opacity">
         <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex gap-[10px] items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
+          <div className="content-stretch flex gap-2.5 items-center justify-center p-2.5 relative size-full">
+            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
               <p className="leading-[normal]">Volunteer</p>
             </div>
           </div>
         </div>
       </a>
-      <a href="#give" className="relative rounded-[16px] shrink-0 hover:opacity-80 transition-opacity">
+      <a href="#give" className="relative rounded-2xl shrink-0 hover:opacity-80 transition-opacity">
         <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
+          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
+            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[16px] text-center text-white whitespace-nowrap">
               <p className="leading-[normal]">Give</p>
             </div>
           </div>
@@ -204,15 +211,20 @@ function Container() {
   );
 }
 
-function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
+function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="flex-1 flex items-center justify-between relative">
-      <Container />
-      <div className="flex items-center gap-[16px]">
-        <a className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white" href="/apostolic-shift/checkin">
-          Checkin
+    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-md border-b border-white/10">
+      <div className="flex h-22.5 items-center justify-between px-20 py-3 w-full max-w-360 mx-auto" data-name="Navigation bar">
+        <a href="#" className="relative shrink-0 size-14.25 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center" data-name="Logo">
+          <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
-        <button className="flex h-[48px] items-center justify-center rounded-[36px] border border-white/70 border-solid px-[20px] font-['Poppins:Medium',sans-serif] text-[18px] text-white cursor-pointer hover:bg-white/10 transition-colors" data-name="CTA" onClick={onRegisterClick} type="button">
+        <Container />
+        <button
+          className="flex h-12 items-center justify-center rounded-[36px] bg-[#f80] hover:bg-[#ff9500] px-7 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-colors shadow-lg"
+          data-name="CTA"
+          onClick={onRegisterClick}
+          type="button"
+        >
           Register Now
         </button>
       </div>
@@ -220,25 +232,11 @@ function Frame23({ onRegisterClick }: { onRegisterClick: () => void }) {
   );
 }
 
-function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
-  return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none w-full">
-      <div className="bg-[rgba(255,255,255,0.05)] backdrop-blur-md flex h-[90px] items-center overflow-clip pointer-events-auto px-[80px] py-[12px] w-full max-w-[1440px] mx-auto" data-name="Navigation bar">
-        <div className="relative shrink-0 size-[57px]" data-name="ChatGPT Image Jan 19, 2026, 06_52_55 PM 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageJan192026065255Pm1} />
-        </div>
-        <Frame23 onRegisterClick={onRegisterClick} />
-      </div>
-    </div>
-  );
-}
-
 function UiElementLogoaAndText() {
   return (
-    <div className="content-stretch flex gap-[24px] items-center relative shrink-0" data-name="ui_element_logoa and text">
-      <div className="relative shrink-0 size-[45px]" data-name="ChatGPT Image Jan 19, 2026, 06_52_55 PM 1" />
-      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-center text-white tracking-[0.48px] uppercase whitespace-nowrap">
-        <p className="leading-[26px]">tHE VOTAGE CHURCH</p>
+    <div className="flex items-center justify-center relative shrink-0" data-name="ui_element_logoa and text">
+      <div className="flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[20px] text-center text-white tracking-[0.48px] uppercase whitespace-nowrap">
+        <p className="leading-6.5">THE VOTAGE CHURCH</p>
       </div>
     </div>
   );
@@ -246,9 +244,10 @@ function UiElementLogoaAndText() {
 
 function Frame21() {
   return (
-    <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
-      <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-[0] min-w-px not-italic relative text-[#f80] text-[84px] text-center tracking-[1.68px] uppercase">
-        <p className="leading-[95px]">APOSTOLIC SHIFT</p>
+    <div className="content-stretch flex flex-col items-center justify-center relative shrink-0 w-full">
+      <div className="flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative text-[#f80] text-[84px] text-center tracking-[1.68px] uppercase">
+        <p className="leading-22.5 whitespace-nowrap">APOSTOLIC</p>
+        <p className="leading-22.5 whitespace-nowrap">SHIFT</p>
       </div>
     </div>
   );
@@ -256,9 +255,9 @@ function Frame21() {
 
 function Frame22() {
   return (
-    <div className="content-stretch flex items-center justify-center px-[19px] py-[18px] relative shrink-0 w-[307px]">
+    <div className="content-stretch flex items-center justify-center px-6 py-4 relative shrink-0">
       <div aria-hidden className="absolute border border-solid border-white inset-0 pointer-events-none" />
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-center text-white w-[487px]">
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[24px] text-center text-white">
         <p className="leading-[normal]">22ND-23RD SEPTEMBER</p>
       </div>
     </div>
@@ -267,10 +266,10 @@ function Frame22() {
 
 function Frame20() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-center relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-6 items-center relative shrink-0 w-full">
       <Frame21 />
-      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-center text-white tracking-[0.48px] uppercase w-[373px]">
-        <p className="leading-[33px]">A conference like never before seen</p>
+      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[24px] text-center text-white tracking-[0.48px] uppercase w-full">
+        <p className="leading-8.25">A conference like never before seen</p>
       </div>
       <Frame22 />
     </div>
@@ -278,12 +277,12 @@ function Frame20() {
 }
 
 function Frame18() {
-  return <div className="content-stretch flex gap-[24px] h-[54px] items-center justify-center relative shrink-0 w-full" />;
+  return <div className="content-stretch flex gap-6 h-5 items-center justify-center relative shrink-0 w-full" />;
 }
 
 function Frame19() {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute content-stretch flex flex-col gap-[8px] items-center left-[calc(50%+0.5px)] top-[calc(50%+30.5px)] w-[761px]">
+    <div className="content-stretch flex flex-col gap-4 items-center w-full max-w-190.25">
       <UiElementLogoaAndText />
       <Frame20 />
       <Frame18 />
@@ -291,23 +290,17 @@ function Frame19() {
   );
 }
 
-function Margin() {
-  return (
-    <div className="absolute h-[798px] left-0 overflow-clip top-[2px] w-full max-w-[1440px]" data-name="Margin">
-      <Frame19 />
-    </div>
-  );
-}
-
 function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="h-[800px] overflow-clip relative shrink-0 w-full max-w-[1440px]" data-name="Hero section">
+    <div className="min-h-212.5 relative shrink-0 w-full bg-black overflow-hidden flex flex-col justify-between" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-cover size-full" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
       </div>
       <NavigationBar onRegisterClick={onRegisterClick} />
-      <Margin />
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-15 w-full max-w-360 mx-auto px-20">
+        <Frame19 />
+      </div>
     </div>
   );
 }
@@ -315,8 +308,8 @@ function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
 function Frame31() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#f70] text-[14px] text-center tracking-[0.28px] whitespace-nowrap">
-        <p className="leading-[14px]">The experience</p>
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f70] text-[14px] text-center tracking-[0.28px] whitespace-nowrap">
+        <p className="leading-3.5">The experience</p>
       </div>
     </div>
   );
@@ -324,8 +317,8 @@ function Frame31() {
 
 function Frame28() {
   return (
-    <div className="content-stretch flex items-start p-[10px] relative shrink-0 w-full">
-      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] leading-[0] min-w-px not-italic relative text-[#262422] text-[16px]">
+    <div className="content-stretch flex items-start p-2.5 relative shrink-0 w-full">
+      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] leading-0 min-w-px not-italic relative text-[#262422] text-[16px]">
         <p className="leading-[normal] mb-0">There are moments in the spirit when everything changes; not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
         <p className="leading-[normal] mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
         <p className="leading-[normal] mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
@@ -337,7 +330,7 @@ function Frame28() {
 
 function AkarIconsArrowUp() {
   return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:arrow-up">
+    <div className="relative shrink-0 size-4.5" data-name="akar-icons:arrow-up">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
         <g id="akar-icons:arrow-up">
           <path d={svgPaths.pa571f80} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
@@ -349,9 +342,9 @@ function AkarIconsArrowUp() {
 
 function Text1() {
   return (
-    <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsArrowUp />
-      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] h-[79px] leading-[0] min-w-px not-italic relative text-[16px] text-black">
+      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] h-19.75 leading-0 min-w-px not-italic relative text-[16px] text-black">
         <p className="font-['Poppins:Medium',sans-serif] leading-[normal] mb-0">Impartation</p>
         <p className="leading-[normal] mb-0 text-[#262422]">Receiving a fresh measure of grace and authority for kingdom assignments .</p>
         <p className="leading-[normal]">​</p>
@@ -377,7 +370,7 @@ function Group() {
 
 function AkarIconsSun() {
   return (
-    <div className="overflow-clip relative shrink-0 size-[18px]" data-name="akar-icons:sun">
+    <div className="overflow-clip relative shrink-0 size-4.5" data-name="akar-icons:sun">
       <Group />
     </div>
   );
@@ -385,9 +378,9 @@ function AkarIconsSun() {
 
 function Text2() {
   return (
-    <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsSun />
-      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] h-[79px] leading-[0] min-w-px not-italic relative text-[16px] text-black">
+      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] h-19.75 leading-0 min-w-px not-italic relative text-[16px] text-black">
         <p className="font-['Poppins:Medium',sans-serif] leading-[normal] mb-0">Prophetic Direction</p>
         <p className="leading-[normal] mb-0 text-[#262422]">Navigating personal and generational destinies under the guidance of the Spirit.</p>
         <p className="leading-[normal]">​</p>
@@ -398,7 +391,7 @@ function Text2() {
 
 function AkarIconsArrowRight1() {
   return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:arrow-right">
+    <div className="relative shrink-0 size-4.5" data-name="akar-icons:arrow-right">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
         <g id="akar-icons:arrow-right">
           <path d={svgPaths.p3ddb6a80} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -410,9 +403,9 @@ function AkarIconsArrowRight1() {
 
 function Text3() {
   return (
-    <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsArrowRight1 />
-      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Medium',sans-serif] leading-[0] min-w-px not-italic relative text-[16px] text-black">
+      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Medium',sans-serif] leading-0 min-w-px not-italic relative text-[16px] text-black">
         <p className="leading-[normal] mb-0">Action</p>
         <p className="font-['Poppins:Regular',sans-serif] leading-[normal] text-[#262422]">We want you to experience real changes all around your life.</p>
       </div>
@@ -430,17 +423,17 @@ function Frame27() {
 
 function Text() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-start justify-center relative shrink-0 w-full" data-name="Text">
+    <div className="content-stretch flex flex-col gap-6 items-start justify-center relative shrink-0 w-full" data-name="Text">
       <Text1 />
       <Text2 />
       <Text3 />
       <Frame27 />
-      <a href="#volunteer" className="bg-[#f80] cursor-pointer h-[54px] relative rounded-[36px] shrink-0 w-[190px] flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
+      <a href="#volunteer" className="bg-[#f80] cursor-pointer h-13.5 relative rounded-[36px] shrink-0 w-47.5 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
         <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
         <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[20px] text-left text-white whitespace-nowrap">
-              <p className="leading-[24px]">Volunteer</p>
+          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
+            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[20px] text-left text-white whitespace-nowrap">
+              <p className="leading-6">Volunteer</p>
             </div>
           </div>
         </div>
@@ -451,7 +444,7 @@ function Text() {
 
 function Frame29() {
   return (
-    <div className="content-stretch flex flex-col gap-[22px] h-[642px] items-start justify-center relative shrink-0 w-[650px]">
+    <div className="content-stretch flex flex-col gap-5.5 h-160.5 items-start justify-center relative shrink-0 w-162.5">
       <Frame31 />
       <Frame28 />
       <Text />
@@ -485,7 +478,7 @@ function Frame25() {
 
 function Frame() {
   return (
-    <div className="h-[520.506px] overflow-clip relative shrink-0 w-[451px]">
+    <div className="h-[520.506px] overflow-clip relative shrink-0 w-112.75">
       <Frame26 />
       <Frame25 />
     </div>
@@ -495,15 +488,15 @@ function Frame() {
 function Frame30() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-col gap-[3.456px] items-center leading-[normal] not-italic relative shrink-0 w-[295.483px]">
-      <p className="font-['Poppins:SemiBold',sans-serif] relative shrink-0 text-[27.648px] text-black w-full">Apostle Arome Osayi</p>
-      <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#535252] text-[20.736px] text-center w-full">Mininstering</p>
+      <p className="font-['Poppins:SemiBold',sans-serif] relative shrink-0 text-[27.648px] text-black w-full text-center">Apostle Arome Osayi</p>
+      <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#535252] text-[20.736px] text-center w-full">Ministering</p>
     </div>
   );
 }
 
 function Frame55() {
   return (
-    <div className="content-stretch flex flex-col gap-[21.867px] h-[642px] items-center relative shrink-0 w-[574px]">
+    <div className="content-stretch flex flex-col gap-[21.867px] items-center relative shrink-0 w-143.5">
       <Frame />
       <Frame30 />
     </div>
@@ -512,7 +505,7 @@ function Frame55() {
 
 function Frame42() {
   return (
-    <div className="content-stretch flex items-center justify-between p-[80px] relative shrink-0 w-full max-w-[1440px]">
+    <div className="content-stretch flex items-center justify-between px-20 py-20 relative shrink-0 w-full max-w-360 mx-auto">
       <Frame29 />
       <Frame55 />
     </div>
@@ -521,7 +514,7 @@ function Frame42() {
 
 function About() {
   return (
-    <div id="about" className="bg-white content-stretch flex flex-col h-[802px] items-start overflow-clip relative shrink-0 w-full max-w-[1440px] scroll-mt-[90px]" data-name="About">
+    <div id="about" className="bg-white content-stretch flex flex-col items-start relative shrink-0 w-full scroll-mt-22.5" data-name="About">
       <Frame42 />
     </div>
   );
@@ -530,8 +523,8 @@ function About() {
 function Frame32() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
-        <p className="leading-[14px]">Registration</p>
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
+        <p className="leading-3.5">Registration</p>
       </div>
     </div>
   );
@@ -539,7 +532,7 @@ function Frame32() {
 
 function Frame34() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-[10px] items-start justify-center leading-[normal] not-italic relative shrink-0 w-full">
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-2.5 items-start justify-center leading-[normal] not-italic relative shrink-0 w-full">
       <p className="font-['Copperplate:Bold',sans-serif] relative shrink-0 text-[48px] text-black uppercase w-full">Save your seat for Apostolic Shift</p>
       <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#5c5854] text-[16px] w-full">Registration is free and will only take a minute. It helps in planning seat arrangements, prayer teams and follow-up for everyone attending</p>
       <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#5c5854] text-[16px] w-full">{`Can’t decide on a day yet? Register for both `}</p>
@@ -549,170 +542,21 @@ function Frame34() {
 
 function Frame33() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[24px] items-start justify-center min-w-px relative">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-6 items-start justify-center min-w-px relative">
       <Frame32 />
       <Frame34 />
     </div>
   );
 }
 
-function Frame36() {
-  return <div className="bg-white border-[#3e2100] border-[0.5px] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame35() {
-  return (
-    <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#262422] text-[12px] w-full">Full name</p>
-      <Frame36 />
-    </div>
-  );
-}
-
-function Frame38() {
-  return <div className="bg-white border-[#3e2100] border-[0.5px] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame37() {
-  return (
-    <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#262422] text-[12px] w-full">Phone number</p>
-      <Frame38 />
-    </div>
-  );
-}
-
-function Frame43() {
-  return <div className="bg-white border-[#3e2100] border-[0.5px] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame39() {
-  return (
-    <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#262422] text-[12px] w-full">Email Address</p>
-      <Frame43 />
-    </div>
-  );
-}
-
-function Frame46() {
-  return <div className="bg-white border-[#3e2100] border-[0.5px] border-solid flex-[1_0_0] h-[45px] min-w-px relative" />;
-}
-
-function AkarIconsTriangleRightFill() {
-  return (
-    <div className="absolute flex items-center justify-center left-[578px] size-[18px] top-[14px]">
-      <div className="flex-none rotate-90">
-        <div className="relative size-[18px]" data-name="akar-icons:triangle-right-fill">
-          <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-            <g id="akar-icons:triangle-right-fill">
-              <path d={svgPaths.p366e1100} fill="#FF8800" id="Vector" />
-            </g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame45() {
-  return (
-    <div className="content-stretch flex gap-[5px] h-[45px] items-start relative shrink-0 w-full">
-      <Frame46 />
-      <AkarIconsTriangleRightFill />
-    </div>
-  );
-}
-
-function Frame44() {
-  return (
-    <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#262422] text-[12px] w-[min-content]">Day attending</p>
-      <Frame45 />
-      <p className="[word-break:break-word] absolute font-['Poppins:Regular',sans-serif] leading-[normal] left-[16px] not-italic text-[#262422] text-[12px] top-[37px] whitespace-nowrap">Both days</p>
-    </div>
-  );
-}
-
-function Frame48() {
-  return <div className="bg-white border-[#3e2100] border-[0.5px] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame47() {
-  return (
-    <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#262422] text-[12px] w-[min-content]">Number of attending</p>
-      <Frame48 />
-      <p className="[word-break:break-word] absolute font-['Poppins:Regular',sans-serif] leading-[normal] left-[16px] not-italic text-[#262422] text-[12px] top-[37px] w-[356px]">1</p>
-    </div>
-  );
-}
-
-function Frame40() {
-  return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
-      <Frame35 />
-      <Frame37 />
-      <Frame39 />
-      <Frame44 />
-      <Frame47 />
-    </div>
-  );
-}
-
-function AkarIconsArrowRight2() {
-  return (
-    <div className="h-[18px] relative shrink-0 w-[25px]" data-name="akar-icons:arrow-right">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 25 18" width="25">
-        <g id="akar-icons:arrow-right">
-          <path d={svgPaths.p34482d00} id="Vector" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Cta() {
-  return (
-    <div className="bg-[#f80] content-stretch flex flex-col h-[45px] items-center justify-center pl-[14px] pr-[15px] py-[18px] relative rounded-[27px] shrink-0 w-[49px]" data-name="CTA">
-      <AkarIconsArrowRight2 />
-    </div>
-  );
-}
-
-function Frame57() {
-  return (
-    <div className="content-stretch flex items-start relative shrink-0">
-      <Cta />
-      <div className="bg-[#f80] h-[45px] relative rounded-[36px] shrink-0 w-[148px]" data-name="CTA">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
-              <p className="leading-[24px]">Submit</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame41() {
-  return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[48px] items-start min-w-px relative">
-      <Frame40 />
-      <Frame57 />
-    </div>
-  );
-}
-
 function Register() {
   return (
-    <div id="register" className="bg-[#fffaf7] content-stretch flex gap-[48px] items-start overflow-clip px-[80px] py-[40px] relative shrink-0 w-full scroll-mt-[90px]" data-name="Register">
-      <Frame33 />
-      <div className="relative h-[480px] min-w-px w-full flex-[1_0_0] overflow-hidden rounded-[30px]">
-        <img alt="Apostolic Shift conference worship" className="absolute inset-0 size-full object-cover" src={imgHeroSection} />
+    <div id="register" className="bg-[#fffaf7] w-full scroll-mt-22.5" data-name="Register">
+      <div className="content-stretch flex gap-12 items-start px-20 py-20 relative shrink-0 w-full max-w-360 mx-auto">
+        <Frame33 />
+        <div className="flex-[1_0_0] min-w-px w-full">
+          <RegistrationForm />
+        </div>
       </div>
     </div>
   );
@@ -720,9 +564,9 @@ function Register() {
 
 function Frame50() {
   return (
-    <div className="bg-white content-stretch flex items-center justify-center px-[12px] py-[6px] relative rounded-[18px] shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
-        <p className="leading-[14px]">BFC</p>
+    <div className="bg-white content-stretch flex items-center justify-center px-3.5 py-1.5 relative rounded-[18px] shrink-0 border border-[#f70]">
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f70] text-[14px] text-center tracking-[0.32px] whitespace-nowrap">
+        <p className="leading-3.5">BFC</p>
       </div>
     </div>
   );
@@ -730,21 +574,20 @@ function Frame50() {
 
 function Frame51() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-[10px] items-start justify-center not-italic relative shrink-0 w-full">
-      <div className="font-['Copperplate:Bold',sans-serif] leading-[0] relative shrink-0 text-[48px] text-black uppercase w-[633px]">
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-2.5 items-start justify-center not-italic relative shrink-0 w-full">
+      <div className="font-['Copperplate:Bold',sans-serif] leading-[normal] relative shrink-0 text-[48px] text-black uppercase w-full">
         <p className="leading-[normal] mb-0">A look back</p>
         <p className="leading-[normal]">at past confrences</p>
       </div>
-      <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-[min-content]">Benin Fire conference 2022, here’s a look at some of our favourite moments from the road.</p>
-      <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-[min-content]">{`Can’t decide on day yet? Register for both `}</p>
-
+      <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-min">Benin Fire conference 2022, here’s a look at some of our favourite moments from the road.</p>
+      <p className="font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full relative shrink-0 text-[#5c5854] text-[16px] w-min">{`Can’t decide on day yet? Register for both `}</p>
     </div>
   );
 }
 
 function Frame49() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] h-[246px] items-start justify-center relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-5 items-start justify-center relative shrink-0 w-full">
       <Frame50 />
       <Frame51 />
     </div>
@@ -753,7 +596,7 @@ function Frame49() {
 
 function Frame60() {
   return (
-    <div className="bg-[#f80] h-[308px] overflow-clip relative rounded-[30px] shrink-0 w-full">
+    <div className="bg-[#f80] h-77 overflow-clip relative rounded-[30px] shrink-0 w-full">
       <Component1 className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%+0.5px)] top-1/2" />
     </div>
   );
@@ -761,7 +604,7 @@ function Frame60() {
 
 function AkarIconsArrowRight3() {
   return (
-    <div className="h-[18px] relative shrink-0 w-[25px]" data-name="akar-icons:arrow-right">
+    <div className="h-4.5 relative shrink-0 w-6.25" data-name="akar-icons:arrow-right">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 25 18" width="25">
         <g id="akar-icons:arrow-right">
           <path d={svgPaths.p34482d00} id="Vector" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -773,7 +616,7 @@ function AkarIconsArrowRight3() {
 
 function Cta1() {
   return (
-    <div className="bg-[#f80] content-stretch flex flex-col h-[45px] items-center justify-center pl-[14px] pr-[15px] py-[18px] relative rounded-[27px] shrink-0 w-[49px]" data-name="CTA">
+    <div className="bg-[#f80] content-stretch flex flex-col h-11.25 items-center justify-center pl-3.5 pr-3.75 py-4.5 relative rounded-[27px] shrink-0 w-12.25" data-name="CTA">
       <AkarIconsArrowRight3 />
     </div>
   );
@@ -781,26 +624,12 @@ function Cta1() {
 
 function Frame59() {
   return (
-    <div className="content-stretch flex gap-[16px] items-center relative shrink-0">
-      <a href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City" target="_blank" rel="noopener noreferrer" className="bg-[#f80] h-[45px] relative rounded-[36px] shrink-0 w-[148px] flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
+    <div className="content-stretch flex items-center relative shrink-0">
+      <a href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City" target="_blank" rel="noopener noreferrer" className="bg-[#f80] h-11.25 relative rounded-[36px] px-6 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
         <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
-              <p className="leading-[24px]">Visit</p>
-            </div>
-          </div>
-        </div>
-      </a>
-      <a href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City" target="_blank" rel="noopener noreferrer" className="bg-[#f80] h-[45px] relative rounded-[36px] shrink-0 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">
-              <p className="leading-[21px]">The Winlow Center By Ascend School, Airport Road Extension, Benin City</p>
-            </div>
-          </div>
-        </div>
+        <p className="font-['Poppins:Medium',sans-serif] text-[14px] text-white whitespace-nowrap">
+          The Winlow Center By Ascend School, Airport Road Extension, Benin City
+        </p>
       </a>
     </div>
   );
@@ -808,7 +637,7 @@ function Frame59() {
 
 function Frame58() {
   return (
-    <div className="content-stretch flex items-start relative shrink-0">
+    <div className="content-stretch flex items-center gap-4 relative shrink-0">
       <Cta1 />
       <Frame59 />
     </div>
@@ -817,19 +646,21 @@ function Frame58() {
 
 function Frame56() {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[24px] h-[810px] items-start overflow-clip p-[80px] relative shrink-0 w-full">
-      <Frame49 />
-      <Frame60 />
-      <Frame58 />
+    <div className="bg-white w-full py-20" data-name="Past Conferences">
+      <div className="content-stretch flex flex-col gap-8 items-start px-20 relative shrink-0 w-full max-w-360 mx-auto">
+        <Frame49 />
+        <Frame60 />
+        <Frame58 />
+      </div>
     </div>
   );
 }
 
 function Frame53() {
   return (
-    <div className="bg-white content-stretch flex items-center justify-center px-[12px] py-[6px] relative rounded-[18px] shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
-        <p className="leading-[14px]">Serve</p>
+    <div className="bg-white content-stretch flex items-center justify-center px-3 py-1.5 relative rounded-[18px] shrink-0">
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
+        <p className="leading-3.5">Serve</p>
       </div>
     </div>
   );
@@ -837,7 +668,7 @@ function Frame53() {
 
 function Frame54() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-[10px] items-start justify-center leading-[normal] not-italic relative shrink-0 w-full">
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-2.5 items-start justify-center leading-[normal] not-italic relative shrink-0 w-full">
       <p className="font-['Copperplate:Bold',sans-serif] relative shrink-0 text-[48px] text-black uppercase w-full">Be A WORKER FOR APOSTOLIC SHIFT</p>
       <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#5c5854] text-[16px] w-full">{`Someone has to hold the atmosphere while people encounter God. Every volunteer's assignment is the same: create room for God to move, and clear what would hinder it.`}</p>
     </div>
@@ -846,7 +677,7 @@ function Frame54() {
 
 function Frame52() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start justify-center relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start justify-center relative shrink-0 w-full">
       <Frame53 />
       <Frame54 />
     </div>
@@ -855,7 +686,7 @@ function Frame52() {
 
 function Frame66() {
   return (
-    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-[5px] items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
+    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-1.25 items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
       <p className="flex-[1_0_0] min-w-px relative text-[#242221]">{`Ushering & protocol`}</p>
       <p className="relative shrink-0 text-[#f70] whitespace-nowrap">Both days</p>
     </div>
@@ -864,7 +695,7 @@ function Frame66() {
 
 function Frame65() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full">
       <Frame66 />
       <div className="h-0 relative shrink-0 w-full">
         <div className="absolute inset-[-1px_0_0_0]">
@@ -887,7 +718,7 @@ function Frame64() {
 
 function Frame69() {
   return (
-    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-[5px] items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
+    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-1.25 items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
       <p className="flex-[1_0_0] min-w-px relative text-[#242221]">{`Media & live stream`}</p>
       <p className="relative shrink-0 text-[#f70] whitespace-nowrap">Both days</p>
     </div>
@@ -896,7 +727,7 @@ function Frame69() {
 
 function Frame68() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full">
       <Frame69 />
       <div className="h-0 relative shrink-0 w-full">
         <div className="absolute inset-[-1px_0_0_0]">
@@ -919,7 +750,7 @@ function Frame67() {
 
 function Frame72() {
   return (
-    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-[5px] items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
+    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-1.25 items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
       <p className="flex-[1_0_0] min-w-px relative text-[#242221]">Care team</p>
       <p className="relative shrink-0 text-[#f70] whitespace-nowrap">Both days</p>
     </div>
@@ -928,7 +759,7 @@ function Frame72() {
 
 function Frame71() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full">
       <Frame72 />
       <div className="h-0 relative shrink-0 w-full">
         <div className="absolute inset-[-1px_0_0_0]">
@@ -951,7 +782,7 @@ function Frame70() {
 
 function Frame75() {
   return (
-    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-[5px] items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
+    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-1.25 items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
       <p className="flex-[1_0_0] min-w-px relative text-[#242221]">Choir</p>
       <p className="relative shrink-0 text-[#f70] whitespace-nowrap">Both days</p>
     </div>
@@ -960,7 +791,7 @@ function Frame75() {
 
 function Frame74() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full">
       <Frame75 />
       <div className="h-0 relative shrink-0 w-full">
         <div className="absolute inset-[-1px_0_0_0]">
@@ -983,7 +814,7 @@ function Frame73() {
 
 function Frame78() {
   return (
-    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-[5px] items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
+    <div className="[word-break:break-word] content-stretch flex font-['Poppins:Regular',sans-serif] gap-1.25 items-start leading-[normal] not-italic relative shrink-0 text-[14px] w-full">
       <p className="flex-[1_0_0] min-w-px relative text-[#242221]">Follow-up and registration desk</p>
       <p className="relative shrink-0 text-[#f70] whitespace-nowrap">Both days</p>
     </div>
@@ -992,7 +823,7 @@ function Frame78() {
 
 function Frame77() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full">
       <Frame78 />
       <div className="h-0 relative shrink-0 w-full">
         <div className="absolute inset-[-1px_0_0_0]">
@@ -1015,7 +846,7 @@ function Frame76() {
 
 function Frame62() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[16px] items-start min-w-px relative">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-4 items-start min-w-px relative">
       <Frame64 />
       <Frame67 />
       <Frame70 />
@@ -1035,289 +866,29 @@ function Frame61() {
 
 function Frame63() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[64px] items-start min-w-px relative">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-16 items-start min-w-px relative">
       <Frame52 />
       <Frame61 />
     </div>
   );
 }
 
-function Frame83() {
-  return <div className="bg-[#fafafa] border border-[#b3a79b] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame82() {
-  return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px relative">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#242221] text-[12px] w-full">Full name</p>
-      <Frame83 />
-    </div>
-  );
-}
-
-function Frame85() {
-  return <div className="bg-[#fafafa] border border-[#b3a79b] border-solid h-[45px] relative shrink-0 w-full" />;
-}
-
-function Frame84() {
-  return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px relative">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#242221] text-[12px] w-full">Phone number</p>
-      <Frame85 />
-    </div>
-  );
-}
-
-function Frame81() {
-  return (
-    <div className="content-stretch flex gap-[16px] items-start relative shrink-0 w-full">
-      <Frame82 />
-      <Frame84 />
-    </div>
-  );
-}
-
-function AkarIconsBox() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame87() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">{`Ushering & protocol`}</p>
-    </div>
-  );
-}
-
-function AkarIconsSun1() {
-  return (
-    <div className="overflow-clip relative shrink-0 size-[18px]" data-name="akar-icons:sun">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame88() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsSun1 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">{`Media & live stream`}</p>
-    </div>
-  );
-}
-
-function AkarIconsBox1() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame89() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox1 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">Hospitality</p>
-    </div>
-  );
-}
-
-function AkarIconsBox2() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame90() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox2 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">Prayer team</p>
-    </div>
-  );
-}
-
-function AkarIconsBox3() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame91() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox3 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">Choir</p>
-    </div>
-  );
-}
-
-function AkarIconsBox4() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame92() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox4 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">Follow-up team</p>
-    </div>
-  );
-}
-
-function AkarIconsBox5() {
-  return (
-    <div className="relative shrink-0 size-[18px]" data-name="akar-icons:box">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
-        <g id="akar-icons:box">
-          <path d={svgPaths.p3a2bc380} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame93() {
-  return (
-    <div className="border border-[#b3a79b] border-solid content-stretch flex gap-[16px] h-[45px] items-center px-[12px] relative shrink-0 w-full">
-      <AkarIconsBox5 />
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-black whitespace-nowrap">Anywhere needed</p>
-    </div>
-  );
-}
-
-function Frame86() {
-  return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#242221] text-[12px] w-full">Where would you like to serve?</p>
-      <Frame87 />
-      <Frame88 />
-      <Frame89 />
-      <Frame90 />
-      <Frame91 />
-      <Frame92 />
-      <Frame93 />
-    </div>
-  );
-}
-
-function Frame80() {
-  return (
-    <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-full">
-      <Frame81 />
-      <Frame86 />
-    </div>
-  );
-}
-
-function AkarIconsArrowRight4() {
-  return (
-    <div className="h-[18px] relative shrink-0 w-[25px]" data-name="akar-icons:arrow-right">
-      <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 25 18" width="25">
-        <g id="akar-icons:arrow-right">
-          <path d={svgPaths.p34482d00} id="Vector" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Cta2() {
-  return (
-    <div className="bg-[#f80] content-stretch flex flex-col h-[45px] items-center justify-center pl-[14px] pr-[15px] py-[18px] relative rounded-[27px] shrink-0 w-[49px]" data-name="CTA">
-      <AkarIconsArrowRight4 />
-    </div>
-  );
-}
-
-function Frame95() {
-  return (
-    <div className="content-stretch flex items-start relative shrink-0">
-      <Cta2 />
-      <div className="bg-[#f80] h-[45px] relative rounded-[36px] shrink-0 w-[176px]" data-name="CTA">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
-              <p className="leading-[24px]">Sign up to serve</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame94() {
-  return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[#5c5854] text-[12px] w-[min-content]">A team lead will reach out to confirm your role</p>
-      <Frame95 />
-    </div>
-  );
-}
-
-function Frame79() {
-  return (
-    <div className="content-stretch flex flex-col gap-[24px] h-[579px] items-start relative shrink-0 w-[606px]">
-      <Frame80 />
-      <Frame94 />
-    </div>
-  );
-}
-
 function Volunteer() {
   return (
-    <div id="volunteer" className="bg-[#fffaf7] content-stretch flex gap-[48px] h-[801px] items-start overflow-clip p-[80px] relative shrink-0 w-full scroll-mt-[90px]" data-name="Volunteer">
-      <Frame63 />
-      <VolunteerForm />
+    <div id="volunteer" className="bg-white w-full scroll-mt-22.5 py-20" data-name="Volunteer">
+      <div className="content-stretch flex gap-12 items-start justify-between px-20 relative shrink-0 w-full max-w-360 mx-auto">
+        <Frame63 />
+        <VolunteerForm />
+      </div>
     </div>
   );
 }
 
 function Frame97() {
   return (
-    <div className="bg-white content-stretch flex items-center justify-center px-[12px] py-[6px] relative rounded-[18px] shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
-        <p className="leading-[14px]">Give</p>
+    <div className="bg-white content-stretch flex items-center justify-center px-3 py-1.5 relative rounded-[18px] shrink-0">
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f70] text-[16px] text-center tracking-[0.32px] whitespace-nowrap">
+        <p className="leading-3.5">Give</p>
       </div>
     </div>
   );
@@ -1325,9 +896,9 @@ function Frame97() {
 
 function Frame98() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-[10px] items-start justify-center not-italic relative shrink-0 w-full">
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-2.5 items-start justify-center not-italic relative shrink-0 w-full">
       <p className="font-['Copperplate:Bold',sans-serif] leading-[normal] relative shrink-0 text-[48px] text-black uppercase w-full">SUPPORT Apostolic Shift</p>
-      <div className="font-['Poppins:Regular',sans-serif] leading-[0] relative shrink-0 text-[#5c5854] text-[0px] w-full">
+      <div className="font-['Poppins:Regular',sans-serif] leading-0 relative shrink-0 text-[#5c5854] text-[0px] w-full">
         <p className="leading-[normal] mb-0 text-[16px]">The Apostolic Shift is a gathering where God is set to break out and shift situations that seem permanent. As we contend for this shift, we are stepping out in faith, believing God for what He is set to do in our midst.</p>
         <p className="leading-[normal] mb-0 text-[16px]">We want to create room for heaven to move, and you can be part of making that happen.</p>
         <p className="font-['Poppins:SemiBold',sans-serif] leading-[normal] text-[16px] text-black">Join us./Plant/Sow</p>
@@ -1338,268 +909,172 @@ function Frame98() {
 
 function Frame96() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start justify-center relative shrink-0 w-[631px]">
+    <div className="content-stretch flex flex-col gap-4 items-start justify-center relative shrink-0 w-157.75">
       <Frame97 />
       <Frame98 />
     </div>
   );
 }
 
-function Frame100() {
-  return <div className="content-stretch flex flex-col h-[30px] items-start px-[14px] relative shrink-0 w-full" />;
+function DesktopBankIcon({ className = "w-8 h-8 text-black" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 1.5L2 6.5V8.5H22V6.5L12 1.5ZM4 10.5V18.5H6.5V10.5H4ZM8.75 10.5V18.5H11.25V10.5H8.75ZM13.5 10.5V18.5H16V10.5H13.5ZM18.25 10.5V18.5H20.75V10.5H18.25ZM2 20.5V22.5H22V20.5H2Z" />
+    </svg>
+  );
 }
 
-function FaBank() {
+function DesktopCopyIcon({ className = "w-5 h-5 text-[#222]" }: { className?: string }) {
   return (
-    <div className="h-[16.495px] relative shrink-0 w-[17.673px]" data-name="fa:bank">
-      <svg className="absolute block inset-0 size-full" fill="none" height="16.4951" preserveAspectRatio="none" viewBox="0 0 17.6733 16.4951" width="17.6733">
-        <g clipPath="url(#clip0_0_174)" id="fa:bank">
-          <path d={svgPaths.p31108880} fill="black" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_0_174">
-            <rect fill="white" height="16.4951" width="17.6733" />
-          </clipPath>
-        </defs>
-      </svg>
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+function DesktopCheckIcon({ className = "w-5 h-5 text-emerald-600" }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function DesktopPaymentItem({
+  label,
+  value,
+  highlight = false,
+}: {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div
+      onClick={() => copy()}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") copy();
+      }}
+      title={`Click to copy ${value}`}
+      className={`group relative flex items-center justify-between rounded-[18px] px-6 py-4 cursor-pointer transition-all duration-200 select-none ${
+        highlight
+          ? "bg-[#fffee9] shadow-[0_6px_22px_rgba(0,0,0,0.05)] border border-[#fae8b2]/70 hover:shadow-[0_8px_26px_rgba(0,0,0,0.08)]"
+          : "bg-white shadow-[0_6px_22px_rgba(0,0,0,0.05)] border border-black/4 hover:shadow-[0_8px_26px_rgba(0,0,0,0.08)]"
+      }`}
+    >
+      <div className="flex flex-col min-w-0 pr-3">
+        <span className="font-['Poppins:Regular',sans-serif] text-[13px] text-[#6b7280] leading-tight mb-1">
+          {label}
+        </span>
+        <span
+          className={`font-['Poppins:Bold',sans-serif] font-bold text-black truncate tracking-tight ${
+            highlight ? "text-[18px]" : "text-[16px]"
+          }`}
+        >
+          {value}
+        </span>
+      </div>
+
+      <div className="flex items-center">
+        <button
+          type="button"
+          onClick={(e) => copy(e)}
+          aria-label={`Copy ${label}`}
+          className={`relative flex size-9 shrink-0 items-center justify-center rounded-lg transition-all ${
+            copied
+              ? "text-emerald-600 bg-emerald-50"
+              : "text-neutral-700 hover:text-black hover:bg-neutral-100"
+          }`}
+        >
+          {copied ? <DesktopCheckIcon className="size-5 text-emerald-600" /> : <DesktopCopyIcon className="size-5 text-neutral-800" />}
+        </button>
+      </div>
+
+      {copied && (
+        <span className="absolute -top-3.5 right-5 z-20 rounded-md bg-neutral-900 px-3 py-0.5 font-['Poppins:Medium',sans-serif] text-[12px] font-medium text-white shadow-lg pointer-events-none animate-in fade-in zoom-in-95 duration-150">
+          Copied!
+        </span>
+      )}
     </div>
   );
 }
 
-function Frame3() {
+function DesktopWaysToGiveCard() {
   return (
-    <div className="content-stretch flex flex-col gap-[9.426px] items-center justify-center relative shrink-0">
-      <FaBank />
-      <p className="[word-break:break-word] font-['Copperplate_Gothic_Light:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[11.782px] text-black text-center whitespace-nowrap">Bank Transfer</p>
-    </div>
-  );
-}
+    <div className="flex flex-col gap-4 w-146.25 shrink-0">
+      <h3 className="font-['Poppins:SemiBold',sans-serif] text-[26px] font-semibold text-[#1a1a1a] tracking-tight">
+        Ways to give
+      </h3>
 
-function FaBank1() {
-  return (
-    <div className="h-[16.495px] relative shrink-0 w-[17.673px]" data-name="fa:bank">
-      <svg className="absolute block inset-0 size-full" fill="none" height="16.4951" preserveAspectRatio="none" viewBox="0 0 17.6733 16.4951" width="17.6733">
-        <g clipPath="url(#clip0_0_152)" id="fa:bank">
-          <path d={svgPaths.p1e567a00} fill="white" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_0_152">
-            <rect fill="white" height="16.4951" width="17.6733" />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-  );
-}
-
-function Frame4() {
-  return (
-    <div className="flex-[1_0_0] min-w-px relative rounded-[10.604px]">
-      <div className="flex flex-col justify-center size-full">
-        <div className="[word-break:break-word] content-stretch flex flex-col font-['Arial:Regular',sans-serif] gap-[4.713px] items-start justify-center leading-[0] not-italic pr-[4.713px] relative size-full">
-          <div className="flex flex-col justify-center relative shrink-0 text-[14.139px] text-white w-full">
-            <p className="leading-[normal]">Local Payment(Nigerian)</p>
-          </div>
-          <div className="flex flex-col justify-center relative shrink-0 text-[#f6f6f6] text-[9.426px] w-full">
-            <p className="leading-[normal]">Direct bank transfer</p>
-          </div>
+      <div className="bg-white rounded-[26px] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-neutral-100 p-8 flex flex-col gap-5">
+        {/* Centered Bank Icon + BANK TRANSFER */}
+        <div className="flex flex-col items-center justify-center gap-1.5 pt-1 pb-1">
+          <DesktopBankIcon className="w-9 h-9 text-black" />
+          <span className="font-['Copperplate:Regular',sans-serif] text-[14px] tracking-[3px] text-black font-semibold uppercase mt-1">
+            BANK TRANSFER
+          </span>
         </div>
-      </div>
-    </div>
-  );
-}
 
-function Frame5() {
-  return (
-    <div className="bg-[#f80] h-[75.995px] relative rounded-[10.604px] shrink-0 w-full">
-      <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex gap-[9.426px] items-center px-[14px] relative size-full">
-          <FaBank1 />
-          <Frame4 />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame6() {
-  return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[9.426px] items-start leading-[0] min-w-px not-italic relative text-black">
-      <div className="flex flex-col font-['Arial:Regular',sans-serif] justify-center relative shrink-0 text-[9.426px] w-full">
-        <p className="leading-[normal]">Bank Name</p>
-      </div>
-      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[11.782px] w-full">
-        <p className="leading-[normal]">ACCESS BANK PLC</p>
-      </div>
-    </div>
-  );
-}
-
-function SolarCopyBold() {
-  return (
-    <div className="relative shrink-0 size-[9.426px]" data-name="solar:copy-bold">
-      <svg className="absolute block inset-0 size-full" fill="none" height="9.42574" preserveAspectRatio="none" viewBox="0 0 9.42574 9.42574" width="9.42574">
-        <g id="solar:copy-bold">
-          <path d={svgPaths.pa210300} fill="black" id="Vector" />
-          <path d={svgPaths.paab6200} fill="black" id="Vector_2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Payment() {
-  return (
-    <div className="bg-white drop-shadow-[19.441px_22.386px_4.124px_rgba(0,0,0,0),12.371px_14.728px_3.829px_rgba(0,0,0,0.01),7.069px_8.248px_3.24px_rgba(0,0,0,0.05),2.946px_3.535px_2.356px_rgba(0,0,0,0.09),0.589px_1.178px_1.178px_rgba(0,0,0,0.1)] h-[75.995px] relative rounded-[10.604px] shrink-0 w-full" data-name="Payment">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex gap-[5.891px] items-center justify-center px-[14.139px] py-[5.891px] relative size-full">
-          <Frame6 />
-          <SolarCopyBold />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame7() {
-  return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[9.426px] items-start leading-[0] min-w-px not-italic relative text-black">
-      <div className="flex flex-col font-['Arial:Regular',sans-serif] justify-center relative shrink-0 text-[9.426px] w-full">
-        <p className="leading-[normal]">Account Name</p>
-      </div>
-      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[11.782px] w-full">
-        <p className="leading-[normal]">THE VOTAGE CHURCH</p>
-      </div>
-    </div>
-  );
-}
-
-function SolarCopyBold1() {
-  return (
-    <div className="relative shrink-0 size-[9.426px]" data-name="solar:copy-bold">
-      <svg className="absolute block inset-0 size-full" fill="none" height="9.42574" preserveAspectRatio="none" viewBox="0 0 9.42574 9.42574" width="9.42574">
-        <g id="solar:copy-bold">
-          <path d={svgPaths.p1b855700} fill="black" id="Vector" />
-          <path d={svgPaths.pfd380} fill="black" id="Vector_2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Payment1() {
-  return (
-    <div className="bg-white drop-shadow-[0px_27.688px_3.829px_rgba(0,0,0,0),0px_17.673px_3.535px_rgba(0,0,0,0.01),0px_10.015px_2.946px_rgba(0,0,0,0.05),0px_4.124px_2.062px_rgba(0,0,0,0.09),0px_1.178px_1.178px_rgba(0,0,0,0.1)] h-[75.995px] relative rounded-[10.604px] shrink-0 w-full" data-name="Payment">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex gap-[5.891px] items-center justify-center px-[14.139px] py-[5.891px] relative size-full">
-          <Frame7 />
-          <SolarCopyBold1 />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame9() {
-  return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[9.426px] items-start leading-[0] min-w-px not-italic relative text-black">
-      <div className="flex flex-col font-['Arial:Regular',sans-serif] justify-center relative shrink-0 text-[9.426px] w-full">
-        <p className="leading-[normal]">Account Number</p>
-      </div>
-      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[14.139px] w-full">
-        <p className="leading-[normal]">0796105815</p>
-      </div>
-    </div>
-  );
-}
-
-function SolarCopyBold2() {
-  return (
-    <div className="relative shrink-0 size-[9.426px]" data-name="solar:copy-bold">
-      <svg className="absolute block inset-0 size-full" fill="none" height="9.42574" preserveAspectRatio="none" viewBox="0 0 9.42574 9.42574" width="9.42574">
-        <g id="solar:copy-bold">
-          <path d={svgPaths.pbb9ab00} fill="black" id="Vector" />
-          <path d={svgPaths.p35619800} fill="black" id="Vector_2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Payment2() {
-  return (
-    <div className="bg-[#ffffed] drop-shadow-[33.579px_40.649px_7.364px_rgba(234,234,169,0),21.208px_25.921px_6.775px_rgba(234,234,169,0.01),11.782px_14.728px_5.597px_rgba(234,234,169,0.05),5.302px_6.48px_4.124px_rgba(234,234,169,0.09),1.178px_1.767px_2.356px_rgba(234,234,169,0.1)] h-[75.995px] relative rounded-[10.604px] shrink-0 w-full" data-name="Payment">
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex gap-[5.891px] items-center justify-center px-[14.139px] py-[5.891px] relative size-full">
-          <Frame9 />
-          <SolarCopyBold2 />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Frame8() {
-  return (
-    <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full">
-      <CopyRow value="ACCESS BANK PLC">
-        <Payment />
-      </CopyRow>
-      <CopyRow value="THE VOTAGE CHURCH">
-        <Payment1 />
-      </CopyRow>
-      <CopyRow value="0796105815">
-        <Payment2 />
-      </CopyRow>
-    </div>
-  );
-}
-
-function Frame11() {
-  return (
-    <div className="bg-[#fafafa] relative rounded-[4.713px] shrink-0 w-full">
-      <div className="flex flex-row items-center size-full">
-        <div className="[word-break:break-word] content-stretch flex font-['Arial:Regular',sans-serif] items-center justify-between leading-[0] not-italic px-[14.139px] py-[5.891px] relative size-full text-[9.426px] text-black">
-          <div className="flex flex-[1_0_0] flex-col justify-center min-w-px relative">
-            <p className="leading-[normal]">Currency</p>
-          </div>
-          <div className="flex flex-[1_0_0] flex-col justify-center min-w-px relative text-right">
-            <p className="leading-[normal]">NGN (Nigerian Naira)</p>
+        {/* Orange Banner: Local Payment */}
+        <div className="bg-[#ff8000] rounded-[18px] px-6 py-4.5 text-white flex items-center gap-4.5 shadow-sm">
+          <DesktopBankIcon className="w-9 h-9 text-white shrink-0" />
+          <div className="flex flex-col min-w-0">
+            <span className="font-['Arial:Bold',sans-serif] font-bold text-[17px] leading-snug text-white">
+              Local Payment(Nigerian)
+            </span>
+            <span className="font-['Arial:Regular',sans-serif] text-[13px] text-white/90 leading-tight mt-0.5">
+              Direct bank transfer
+            </span>
           </div>
         </div>
+
+        {/* 3 Payment details rows */}
+        <div className="flex flex-col gap-3.5">
+          <DesktopPaymentItem label="Bank Name" value="ACCESS BANK PLC" />
+          <DesktopPaymentItem label="Account Name" value="THE VOTAGE CHURCH" />
+          <DesktopPaymentItem label="Account Number" value="0796105815" highlight />
+        </div>
+
+        {/* Currency row */}
+        <div className="bg-[#f5f5f5] rounded-[14px] px-5 py-3.5 flex items-center justify-between font-['Poppins:Regular',sans-serif] text-[14px] text-neutral-600">
+          <span>Currency</span>
+          <span className="font-medium text-neutral-900">NGN (Nigerian Naira)</span>
+        </div>
       </div>
-    </div>
-  );
-}
-
-function Frame10() {
-  return (
-    <div className="bg-white content-stretch drop-shadow-[14.139px_61.856px_8.837px_rgba(0,0,0,0),8.837px_39.47px_8.248px_rgba(0,0,0,0.01),5.302px_22.386px_6.775px_rgba(0,0,0,0.05),2.356px_10.015px_5.007px_rgba(0,0,0,0.09),0.589px_2.356px_2.651px_rgba(0,0,0,0.1)] flex flex-col gap-[14.139px] items-center justify-center px-[14.139px] py-[23.564px] relative rounded-[5.302px] shrink-0 w-full">
-      <div aria-hidden className="absolute border-[#ffe0be] border-solid border-t inset-0 pointer-events-none rounded-[5.302px]" />
-      <Frame3 />
-      <Frame5 />
-      <Frame8 />
-      <CopyRow value="NGN (Nigerian Naira)">
-        <Frame11 />
-      </CopyRow>
-    </div>
-  );
-}
-
-function Frame99() {
-  return (
-    <div className="bg-white content-stretch flex flex-col gap-[16px] items-center justify-center py-[11px] relative rounded-[10px] shrink-0 w-[585px]">
-      <Frame100 />
-      <Frame10 />
     </div>
   );
 }
 
 function Give() {
   return (
-    <div id="give" className="bg-gradient-to-t content-stretch flex from-[#fffaf7] gap-[48px] items-start overflow-clip p-[80px] relative shrink-0 to-[#fff3eb] w-full scroll-mt-[90px]" data-name="Give">
-      <Frame96 />
-      <Frame99 />
+    <div id="give" className="bg-linear-to-t from-[#fffaf7] to-[#fff3eb] w-full scroll-mt-22.5 py-20" data-name="Give">
+      <div className="content-stretch flex gap-12 items-start justify-between px-20 relative shrink-0 w-full max-w-360 mx-auto">
+        <Frame96 />
+        <DesktopWaysToGiveCard />
+      </div>
     </div>
   );
 }
@@ -1614,8 +1089,8 @@ function SocialPLaceHolder() {
 
 function Frame17() {
   return (
-    <div className="content-stretch flex gap-[16px] items-end relative shrink-0 w-full">
-      <div className="relative shrink-0 size-[45px]" data-name="ChatGPT Image Jan 19, 2026, 06_52_55 PM 1">
+    <div className="content-stretch flex gap-4 items-end relative shrink-0 w-full">
+      <div className="relative shrink-0 size-11.25" data-name="ChatGPT Image Jan 19, 2026, 06_52_55 PM 1">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageJan192026065255Pm1} />
       </div>
       <SocialPLaceHolder />
@@ -1633,7 +1108,7 @@ function SocialPLaceHolder1() {
 
 function RiInstagramFill() {
   return (
-    <a href="https://www.instagram.com/wearethevotage" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-[31px] hover:opacity-80 transition-opacity" data-name="ri:instagram-fill">
+    <a href="https://www.instagram.com/wearethevotage" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-7.75 hover:opacity-80 transition-opacity" data-name="ri:instagram-fill">
       <svg className="absolute block inset-0 size-full" fill="none" height="31" preserveAspectRatio="none" viewBox="0 0 31 31" width="31">
         <g id="ri:instagram-fill">
           <path d={svgPaths.pb01400} fill="white" id="Vector" />
@@ -1645,7 +1120,7 @@ function RiInstagramFill() {
 
 function UilYoutube() {
   return (
-    <a href="https://youtube.com/@thevotage" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-[31px] hover:opacity-80 transition-opacity" data-name="uil:youtube">
+    <a href="https://youtube.com/@thevotage" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-7.75 hover:opacity-80 transition-opacity" data-name="uil:youtube">
       <svg className="absolute block inset-0 size-full" fill="none" height="31" preserveAspectRatio="none" viewBox="0 0 31 31" width="31">
         <g id="uil:youtube">
           <path d={svgPaths.p1cc1a6f0} fill="white" id="Vector" />
@@ -1657,7 +1132,7 @@ function UilYoutube() {
 
 function IcOutlineFacebook() {
   return (
-    <a href="https://www.facebook.com/share/17qGmvUop7/" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-[31px] hover:opacity-80 transition-opacity" data-name="ic:outline-facebook">
+    <a href="https://www.facebook.com/share/17qGmvUop7/" target="_blank" rel="noopener noreferrer" className="relative shrink-0 size-7.75 hover:opacity-80 transition-opacity" data-name="ic:outline-facebook">
       <svg className="absolute block inset-0 size-full" fill="none" height="31" preserveAspectRatio="none" viewBox="0 0 31 31" width="31">
         <g id="ic:outline-facebook">
           <path d={svgPaths.pac21780} fill="white" id="Vector" />
@@ -1669,7 +1144,7 @@ function IcOutlineFacebook() {
 
 function Frame1() {
   return (
-    <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full">
+    <div className="content-stretch flex gap-4 items-center relative shrink-0 w-full">
       <RiInstagramFill />
       <UilYoutube />
       <IcOutlineFacebook />
@@ -1679,7 +1154,7 @@ function Frame1() {
 
 function Frame2() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[17px] items-start min-w-px py-[16px] relative">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-4.25 items-start min-w-px py-4 relative">
       <Frame17 />
       <SocialPLaceHolder1 />
       <Frame1 />
@@ -1689,7 +1164,7 @@ function Frame2() {
 
 function QuickLinl() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[211px]" data-name="Quick Linl">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-52.75" data-name="Quick Linl">
       <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[24px] text-white whitespace-nowrap">Quick links</p>
     </div>
   );
@@ -1697,7 +1172,7 @@ function QuickLinl() {
 
 function Container1() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-[16px] h-[154px] items-start justify-center leading-[normal] min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
+    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-4 h-38.5 items-start justify-center leading-[normal] min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
       <a href="#about" className="relative shrink-0 hover:underline">About</a>
       <a href="#register" className="relative shrink-0 hover:underline">Schedule</a>
       <a href="#register" className="relative shrink-0 hover:underline">Register</a>
@@ -1717,7 +1192,7 @@ function Frame16() {
 
 function Frame13() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[23px] items-start justify-center min-w-px relative">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-5.75 items-start justify-center min-w-px relative">
       <QuickLinl />
       <Frame16 />
     </div>
@@ -1735,13 +1210,13 @@ function Frame14() {
 
 function Container2() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start leading-[0] not-italic relative shrink-0 text-white w-full" data-name="Container">
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-4 items-start leading-0 not-italic relative shrink-0 text-white w-full" data-name="Container">
       <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[24px] w-full">
-        <p className="leading-[36px]">{`Visit `}</p>
+        <p className="leading-9">{`Visit `}</p>
       </div>
       <div className="flex flex-col font-['Poppins:Medium',sans-serif] justify-center relative shrink-0 text-[14px] w-full">
-        <p className="leading-[21px] mb-0">The Winlow Center By Ascend School, Airport Road Extension, Benin City</p>
-        <a href="tel:+2347069701744" className="leading-[21px] text-white hover:underline">0706 970 1744</a>
+        <p className="leading-5.25 mb-0">The Winlow Center By Ascend School, Airport Road Extension, Benin City</p>
+        <a href="tel:+2347069701744" className="leading-5.25 text-white hover:underline">0706 970 1744</a>
       </div>
     </div>
   );
@@ -1749,12 +1224,12 @@ function Container2() {
 
 function Container3() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start leading-[0] min-w-px not-italic relative" data-name="Container">
+    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-2 items-start leading-0 min-w-px not-italic relative" data-name="Container">
       <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[24px] text-white w-full">
-        <p className="leading-[31px]">Stay connected</p>
+        <p className="leading-7.75">Stay connected</p>
       </div>
       <div className="flex flex-col font-['Poppins:Regular',sans-serif] justify-center relative shrink-0 text-[#d9d9d9] text-[14px] w-full">
-        <p className="leading-[19px] whitespace-pre-wrap">{`Subscribe  for updates, devotionals and event announcements`}</p>
+        <p className="leading-4.75 whitespace-pre-wrap">{`Subscribe  for updates, devotionals and event announcements`}</p>
       </div>
     </div>
   );
@@ -1764,7 +1239,7 @@ function Frame12() {
   return (
     <div className="flex flex-[1_0_0] flex-row items-center self-stretch">
       <div className="bg-[rgba(255,255,255,0.1)] flex-[1_0_0] h-full min-w-px relative flex items-center">
-        <div className="content-stretch flex items-center justify-center px-[13px] relative size-full w-full">
+        <div className="content-stretch flex items-center justify-center px-3.25 relative size-full w-full">
           <input
             type="email"
             placeholder="Enter your email"
@@ -1778,14 +1253,14 @@ function Frame12() {
 
 function Box() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] gap-[16px] items-center min-w-px relative" data-name="Box">
+    <div className="content-stretch flex flex-[1_0_0] gap-4 items-center min-w-px relative" data-name="Box">
       <Frame12 />
-      <button className="bg-[#f80] relative rounded-[36px] shrink-0 w-[162px] cursor-pointer hover:opacity-90 transition-opacity" data-name="CTA" type="button">
+      <button className="bg-[#f80] relative rounded-[36px] shrink-0 w-40.5 cursor-pointer hover:opacity-90 transition-opacity" data-name="CTA" type="button">
         <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
         <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-[10px] relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
-              <p className="leading-[24px]">Subscribe</p>
+          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
+            <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
+              <p className="leading-6">Subscribe</p>
             </div>
           </div>
         </div>
@@ -1796,8 +1271,8 @@ function Box() {
 
 function EmailWriteUp() {
   return (
-    <div className="content-stretch flex h-[54px] items-center py-[4px] relative rounded-[8px] shrink-0 w-full" data-name="Email write-up">
-      <div aria-hidden className="absolute border border-[rgba(0,0,0,0.15)] border-solid inset-0 pointer-events-none rounded-[8px]" />
+    <div className="content-stretch flex h-13.5 items-center py-1 relative rounded-lg shrink-0 w-full" data-name="Email write-up">
+      <div aria-hidden className="absolute border border-[rgba(0,0,0,0.15)] border-solid inset-0 pointer-events-none rounded-lg" />
       <Box />
     </div>
   );
@@ -1805,8 +1280,8 @@ function EmailWriteUp() {
 
 function Email() {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-px relative" data-name="Email">
-      <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-white w-full">
+    <div className="content-stretch flex flex-[1_0_0] flex-col gap-2 items-start min-w-px relative" data-name="Email">
+      <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[14px] text-white w-full">
         <p className="leading-[normal]">Email</p>
       </div>
       <EmailWriteUp />
@@ -1816,7 +1291,7 @@ function Email() {
 
 function Frame101() {
   return (
-    <div className="content-stretch flex gap-[16px] items-start relative shrink-0 w-full">
+    <div className="content-stretch flex gap-4 items-start relative shrink-0 w-full">
       <Container3 />
       <Email />
     </div>
@@ -1825,7 +1300,7 @@ function Frame101() {
 
 function Subcription() {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start justify-end relative shrink-0 w-full" data-name="Subcription">
+    <div className="content-stretch flex flex-col gap-4 items-start justify-end relative shrink-0 w-full" data-name="Subcription">
       <Container2 />
       <Frame101 />
     </div>
@@ -1834,7 +1309,7 @@ function Subcription() {
 
 function Frame15() {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-center justify-center relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-6 items-center justify-center relative shrink-0 w-full">
       <Frame14 />
       <Subcription />
     </div>
@@ -1843,9 +1318,9 @@ function Frame15() {
 
 function Frame102() {
   return (
-    <div className="border-[#959595] border-solid border-t content-stretch flex items-center justify-center py-[17px] relative shrink-0 w-full">
-      <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] justify-center leading-[0] min-w-px not-italic relative text-[14px] text-white">
-        <p className="leading-[31px] whitespace-pre-wrap">{`@ 2026 The  VOTAGE. All rights reserved`}</p>
+    <div className="border-[#959595] border-solid border-t content-stretch flex items-center justify-center py-4.25 relative shrink-0 w-full">
+      <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 min-w-px not-italic relative text-[14px] text-white">
+        <p className="leading-7.75 whitespace-pre-wrap">{`@ 2026 The  VOTAGE. All rights reserved`}</p>
       </div>
     </div>
   );
@@ -1853,19 +1328,31 @@ function Frame102() {
 
 function Footer() {
   return (
-    <div className="bg-[#010101] content-stretch flex flex-col gap-[48px] items-start overflow-clip pb-[20px] pt-[80px] px-[80px] relative shrink-0 w-full max-w-[1440px]" data-name="Footer">
-      <Frame15 />
-      <Frame102 />
+    <div className="bg-[#010101] w-full pb-5 pt-20" data-name="Footer">
+      <div className="content-stretch flex flex-col gap-12 items-start px-20 relative shrink-0 w-full max-w-360 mx-auto">
+        <Frame15 />
+        <Frame102 />
+      </div>
     </div>
   );
 }
 
 export default function Background() {
   const [registerOpen, setRegisterOpen] = useState(false);
+
+  const handleRegisterClick = () => {
+    const el = document.getElementById("register");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      setRegisterOpen(true);
+    }
+  };
+
   return (
-    <div className="bg-white content-stretch flex flex-col items-start relative size-full" data-name="Background">
+    <div className="bg-white content-stretch flex flex-col items-start relative w-full" data-name="Background">
       <Banner />
-      <HeroSection onRegisterClick={() => setRegisterOpen(true)} />
+      <HeroSection onRegisterClick={handleRegisterClick} />
       <About />
       <Register />
       <Frame56 />
