@@ -117,12 +117,62 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
     setState("busy");
     setMessage("");
     try {
+      const trimmedName = fullName.trim();
+      const trimmedPhone = phone.trim();
+      const selectedRoles = roles.join(", ");
+      const submissionTime = new Date().toLocaleString("en-US", {
+        dateStyle: "full",
+        timeStyle: "short",
+      });
+
       const formData = new FormData();
       formData.append("access_key", "97fc30f1-cae4-45e2-8325-764faf112caf");
-      formData.append("full_name", fullName.trim());
-      formData.append("phone_number", phone.trim());
-      formData.append("serve_roles", roles.join(", "));
-      formData.append("form_type", "Apostolic Shift Volunteer");
+      formData.append("subject", `🙌 [Apostolic Shift 2026] New Volunteer Sign-Up — ${trimmedName}`);
+      formData.append("from_name", "The VOTAGE Church (Apostolic Shift)");
+
+      // 1. Purpose & Notification Context
+      formData.append(
+        "[ 1. PURPOSE & NOTIFICATION ]",
+        "────────────────────────────────────────"
+      );
+      formData.append("Notification Type", "Apostolic Shift 2026 Volunteer Sign-Up");
+      formData.append(
+        "Why You Received This",
+        "A website visitor submitted the volunteer workforce sign-up form on the Apostolic Shift conference page."
+      );
+      formData.append("Conference / Event", "Apostolic Shift Conference 2026");
+
+      // 2. Volunteer Information
+      formData.append(
+        "[ 2. VOLUNTEER DETAILS ]",
+        "────────────────────────────────────────"
+      );
+      formData.append("Volunteer Full Name", trimmedName);
+      formData.append("Phone / WhatsApp", trimmedPhone);
+      formData.append("Selected Department(s)", selectedRoles);
+
+      // 3. Next Action Required
+      formData.append(
+        "[ 3. ACTION REQUIRED ]",
+        "────────────────────────────────────────"
+      );
+      formData.append(
+        "Next Steps",
+        `Please call or WhatsApp ${trimmedName} at ${trimmedPhone} to confirm unit placement and briefing schedule.`
+      );
+      formData.append("Submitted At", submissionTime);
+
+      // Full readable summary in message body
+      formData.append(
+        "message",
+        `NEW VOLUNTEER REGISTRATION — APOSTOLIC SHIFT 2026\n\n` +
+          `• Why you received this: A website visitor signed up to join the Apostolic Shift volunteer workforce team.\n` +
+          `• Volunteer Name: ${trimmedName}\n` +
+          `• Phone / WhatsApp: ${trimmedPhone}\n` +
+          `• Department(s) to Serve: ${selectedRoles}\n\n` +
+          `NEXT ACTION:\n` +
+          `Please contact ${trimmedName} via phone or WhatsApp (${trimmedPhone}) to confirm their unit placement and briefing details.`
+      );
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
