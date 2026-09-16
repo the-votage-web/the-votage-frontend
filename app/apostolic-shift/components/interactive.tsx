@@ -117,12 +117,33 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
     setState("busy");
     setMessage("");
     try {
+      const trimmedName = fullName.trim();
+      const trimmedPhone = phone.trim();
+      const selectedRoles = roles.join(", ");
+      const submissionTime = new Date().toLocaleString("en-US", {
+        dateStyle: "full",
+        timeStyle: "short",
+      });
+
       const formData = new FormData();
       formData.append("access_key", "97fc30f1-cae4-45e2-8325-764faf112caf");
-      formData.append("full_name", fullName.trim());
-      formData.append("phone_number", phone.trim());
-      formData.append("serve_roles", roles.join(", "));
-      formData.append("form_type", "Apostolic Shift Volunteer");
+      formData.append("subject", `🙌 [Apostolic Shift 2026] New Volunteer Sign-Up — ${trimmedName}`);
+      formData.append("from_name", "The VOTAGE Church (Apostolic Shift)");
+
+      // Clean key-value overview fields for the email summary table
+      formData.append("Event", "Apostolic Shift Conference 2026");
+      formData.append("Volunteer Name", trimmedName);
+      formData.append("Phone / WhatsApp", trimmedPhone);
+      formData.append("Department(s) to Serve", selectedRoles);
+      formData.append(
+        "Why You Received This",
+        "A website visitor submitted the volunteer workforce sign-up form on the Apostolic Shift conference page."
+      );
+      formData.append(
+        "Action Required",
+        `Please call or WhatsApp ${trimmedName} at ${trimmedPhone} to confirm their unit placement and briefing schedule.`
+      );
+      formData.append("Submitted At", submissionTime);
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",

@@ -255,29 +255,17 @@ export function BabyDedicationForm() {
       submitData.append('access_key', accessKey);
       submitData.append(
         'subject',
-        `Baby Dedication Request: ${formData.babyName} (${formData.connect})`
+        `👶 Baby Dedication Request: ${formData.babyName} (${formData.connect})`
       );
-      submitData.append('from_name', 'The Votage Church - Pastoral Care');
+      submitData.append('from_name', 'The VOTAGE Church (Pastoral Care)');
       submitData.append('replyto', formData.parentEmail);
 
       submitData.append('Service Requested', 'Baby Dedication');
-
-      // 1. Baby Details
-      submitData.append(
-        '[ 1. BABY DETAILS ]',
-        '────────────────────────────────'
-      );
       submitData.append("Baby's Full Name", formData.babyName);
       submitData.append("Baby's Gender", formData.babyGender);
       submitData.append(
         "Baby's Date of Birth",
         formatReadableDate(formData.babyDob)
-      );
-
-      // 2. Parents' Details
-      submitData.append(
-        "[ 2. PARENTS' INFORMATION ]",
-        '────────────────────────────────'
       );
       submitData.append(
         "Father's Full Name",
@@ -290,26 +278,22 @@ export function BabyDedicationForm() {
       );
       submitData.append("Mother's Phone Number", formData.motherPhone || 'N/A');
       submitData.append("Parent's Email Address", formData.parentEmail);
-
-      // 3. Connect & Leadership
-      submitData.append(
-        '[ 3. CHURCH CONNECT & LEADERSHIP ]',
-        '────────────────────────────────'
-      );
       submitData.append('Connect Group', formData.connect);
       submitData.append("Connect Leader's Name", leader);
       submitData.append(
         "Connect Leader's Phone Number",
         formData.cellLeaderPhone || 'N/A'
       );
-
-      // 4. Submission Metadata
       submitData.append(
-        '[ 4. SUBMISSION INFO ]',
-        '────────────────────────────────'
+        'Why You Received This',
+        'A member submitted a Baby Dedication request form on The VOTAGE website.'
       );
       submitData.append(
-        'Submission Timestamp',
+        'Action Required',
+        `Please contact the parents (${formData.parentEmail} / ${formData.fatherPhone}) to confirm the dedication service date and preparation.`
+      );
+      submitData.append(
+        'Submitted At',
         new Date().toLocaleString('en-US', {
           dateStyle: 'full',
           timeStyle: 'short',

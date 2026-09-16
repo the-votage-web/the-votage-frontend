@@ -147,51 +147,35 @@ export function NamingCeremonyForm() {
       submitData.append('access_key', accessKey);
       submitData.append(
         'subject',
-        `Naming Ceremony Request: ${formData.parentName} (${formData.connect})`
+        `🍼 Naming Ceremony Request: ${formData.parentName} (${formData.connect})`
       );
-      submitData.append('from_name', 'The Votage Church - Pastoral Care');
+      submitData.append('from_name', 'The VOTAGE Church (Pastoral Care)');
       submitData.append('replyto', formData.email);
 
       submitData.append('Service Requested', 'Naming Ceremony');
-
-      // 1. Ceremony Details
-      submitData.append(
-        '[ 1. CEREMONY DETAILS ]',
-        '────────────────────────────────'
-      );
       submitData.append(
         'Date of Ceremony',
         formatReadableDate(formData.ceremonyDate)
       );
-
-      // 2. Parent Information
-      submitData.append(
-        '[ 2. PARENT INFORMATION ]',
-        '────────────────────────────────'
-      );
       submitData.append("Parent's Full Name", formData.parentName);
       submitData.append("Parent's Phone Number", formData.parentPhone);
       submitData.append('Parent Email Address', formData.email);
-
-      // 3. Connect & Leadership
-      submitData.append(
-        '[ 3. CHURCH CONNECT & LEADERSHIP ]',
-        '────────────────────────────────'
-      );
       submitData.append('Connect Group', formData.connect);
       submitData.append("Connect Leader's Name", leaderName);
       submitData.append(
         "Connect Leader's Phone Number",
         formData.leaderPhone || 'N/A'
       );
-
-      // 4. Submission Metadata
       submitData.append(
-        '[ 4. SUBMISSION INFO ]',
-        '────────────────────────────────'
+        'Why You Received This',
+        'A member submitted a Naming Ceremony booking form on The VOTAGE website.'
       );
       submitData.append(
-        'Submission Timestamp',
+        'Action Required',
+        `Please contact the parent (${formData.email} / ${formData.parentPhone}) to confirm the ceremony schedule and pastoral officiant assignment.`
+      );
+      submitData.append(
+        'Submitted At',
         new Date().toLocaleString('en-US', {
           dateStyle: 'full',
           timeStyle: 'short',
