@@ -130,49 +130,43 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
       formData.append("subject", `🙌 [Apostolic Shift 2026] New Volunteer Sign-Up — ${trimmedName}`);
       formData.append("from_name", "The VOTAGE Church (Apostolic Shift)");
 
-      // 1. Purpose & Notification Context
-      formData.append(
-        "[ 1. PURPOSE & NOTIFICATION ]",
-        "────────────────────────────────────────"
-      );
-      formData.append("Notification Type", "Apostolic Shift 2026 Volunteer Sign-Up");
+      // Clean key-value overview fields for the email summary table
+      formData.append("Event", "Apostolic Shift Conference 2026");
+      formData.append("Volunteer Name", trimmedName);
+      formData.append("Phone / WhatsApp", trimmedPhone);
+      formData.append("Department(s) to Serve", selectedRoles);
       formData.append(
         "Why You Received This",
         "A website visitor submitted the volunteer workforce sign-up form on the Apostolic Shift conference page."
       );
-      formData.append("Conference / Event", "Apostolic Shift Conference 2026");
-
-      // 2. Volunteer Information
       formData.append(
-        "[ 2. VOLUNTEER DETAILS ]",
-        "────────────────────────────────────────"
-      );
-      formData.append("Volunteer Full Name", trimmedName);
-      formData.append("Phone / WhatsApp", trimmedPhone);
-      formData.append("Selected Department(s)", selectedRoles);
-
-      // 3. Next Action Required
-      formData.append(
-        "[ 3. ACTION REQUIRED ]",
-        "────────────────────────────────────────"
-      );
-      formData.append(
-        "Next Steps",
-        `Please call or WhatsApp ${trimmedName} at ${trimmedPhone} to confirm unit placement and briefing schedule.`
+        "Action Required",
+        `Please call or WhatsApp ${trimmedName} at ${trimmedPhone} to confirm their unit placement and briefing schedule.`
       );
       formData.append("Submitted At", submissionTime);
 
-      // Full readable summary in message body
-      formData.append(
-        "message",
-        `NEW VOLUNTEER REGISTRATION — APOSTOLIC SHIFT 2026\n\n` +
-          `• Why you received this: A website visitor signed up to join the Apostolic Shift volunteer workforce team.\n` +
-          `• Volunteer Name: ${trimmedName}\n` +
-          `• Phone / WhatsApp: ${trimmedPhone}\n` +
-          `• Department(s) to Serve: ${selectedRoles}\n\n` +
-          `NEXT ACTION:\n` +
-          `Please contact ${trimmedName} via phone or WhatsApp (${trimmedPhone}) to confirm their unit placement and briefing details.`
-      );
+      // Presentable, well-spaced message body using <br> for email client compatibility
+      const messageBody = [
+        "🙌 NEW VOLUNTEER WORKFORCE APPLICATION",
+        "",
+        "A website visitor has submitted their application to join the Apostolic Shift 2026 Volunteer Workforce team.",
+        "",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "VOLUNTEER DETAILS",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        `• Full Name: ${trimmedName}`,
+        `• Phone / WhatsApp: ${trimmedPhone}`,
+        `• Serving Department(s): ${selectedRoles}`,
+        "",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "NEXT ACTION FOR WORKFORCE LEAD",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        `Please reach out to ${trimmedName} at ${trimmedPhone} via phone call or WhatsApp to confirm their unit placement, workforce orientation, and briefing details.`,
+        "",
+        `Submission Timestamp: ${submissionTime}`,
+      ].join("<br>");
+
+      formData.append("message", messageBody);
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
