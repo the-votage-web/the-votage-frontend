@@ -83,7 +83,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={` ${copperplateBold.variable} ${copperplateMedium.variable} ${copperplateLight.variable} ${copperplateCondensedMedium.variable} ${copperplateCondensedBold.variable} ${copperplateCondensedLight.variable} antialiased`}
+        className={` ${copperplateBold.variable} ${copperplateMedium.variable} ${copperplateLight.variable} ${copperplateCondensedMedium.variable} ${copperplateCondensedBold.variable} ${copperplateCondensedLight.variable} antialiased overflow-x-hidden`}
       >
         <Providers>{children}</Providers>
         <ChatWidget />

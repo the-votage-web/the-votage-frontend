@@ -111,7 +111,7 @@ export const Navbar = ({ darkText = false }: NavbarProps) => {
       `}
     >
       <div className={`
-        max-w-360 mx-auto px-6 lg:px-20 flex items-center justify-between
+        max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-20 flex items-center justify-between
         transition-all duration-300 ease-in-out
         ${isScrolled ? 'h-16' : 'h-20'}
       `}>
