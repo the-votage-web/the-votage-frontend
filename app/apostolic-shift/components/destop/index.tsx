@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import svgPaths from "./svg-1uc59bgq44";
 import { CopyRow, VolunteerForm, RegistrationForm } from "../interactive";
 import { RegisterModal } from "../register-modal";
@@ -19,127 +19,59 @@ const imgHeroSection = "/img/apostolic-shift/46a110685be4de114d24186039db4eb4af1
 const imgChatGptImageJan192026065255Pm1 = "/img/apostolic-shift/29fcaaaf990b37e9f81712729c82732ad77fb95a.png";
 const imgFrame271 = "/img/apostolic-shift/0e86aa29068604ea20cfd8b71c27c4c9c346d409.png";
 
-type ComponentProps = {
-  className?: string;
-  property1?: "open" | "default";
-};
+const GALLERY_SLIDES = [
+  { id: "slide-1", src: imgRectangle8, alt: "Benin Fire Conference 1" },
+  { id: "slide-2", src: imgRectangle11, alt: "Benin Fire Conference 2" },
+  { id: "slide-3", src: imgRectangle9, alt: "Benin Fire Conference 3" },
+  { id: "slide-4", src: imgRectangle10, alt: "Benin Fire Conference 4" },
+  { id: "slide-5", src: imgRectangle12, alt: "Benin Fire Conference 5" },
+  { id: "slide-6", src: imgRectangle13, alt: "Benin Fire Conference 6" },
+  { id: "slide-7", src: imgRectangle14, alt: "Benin Fire Conference 7" },
+  { id: "slide-8", src: imgRectangle15, alt: "Benin Fire Conference 8" },
+  { id: "slide-9", src: imgRectangle16, alt: "Benin Fire Conference 9" },
+  { id: "slide-10", src: imgRectangle9, alt: "Benin Fire Conference 10" },
+];
 
-function Component({ className, property1 = "open" }: ComponentProps) {
+function Component1({ className }: { className?: string; property1?: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-play animation: smoothly cycles through the slides every 3.5s
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % GALLERY_SLIDES.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
   return (
-    <div className={className || `h-65 relative transition-all duration-300 ${property1 === "default" ? "w-18.75" : "w-100.5"}`}>
-      <div className="absolute inset-0 rounded-[13px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle8} />
-      </div>
-    </div>
-  );
-}
-
-type Component1Props = {
-  className?: string;
-  property1?: "Frame 309" | "Frame 310" | "Frame 311" | "Frame 312" | "Frame 313" | "Frame 314" | "Frame 315" | "Frame 316" | "Frame 317" | "Frame 318";
-};
-
-function Component1({ className, property1 = "Frame 309" }: Component1Props) {
-  const [activeFrame, setActiveFrame] = useState(property1);
-  const isFrame309 = activeFrame === "Frame 309";
-  const isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or = ["Frame 310", "Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(activeFrame);
-  return (
-    <div className={className || "relative"}>
+    <div
+      className={className || "relative"}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-2 items-center relative size-full">
-          <div className="cursor-pointer" onClick={() => setActiveFrame("Frame 309")} onMouseEnter={() => setActiveFrame("Frame 309")}>
-            <Component className={`h-65 relative shrink-0 transition-all duration-300 ${isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "w-18.75" : "w-100.5"}`} property1={isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or ? "default" : undefined} />
-          </div>
-          {isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or && (
-            <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${["Frame 311", "Frame 312", "Frame 313", "Frame 314", "Frame 315", "Frame 316", "Frame 317", "Frame 318"].includes(activeFrame) ? "w-18.75" : "w-100.5"}`} data-name="Component 3" onClick={() => setActiveFrame("Frame 310")} onMouseEnter={() => setActiveFrame("Frame 310")}>
-              <div className="absolute inset-0 rounded-[13px]">
-                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle11} />
+          {GALLERY_SLIDES.map((slide, idx) => {
+            const isActive = activeIndex === idx;
+            return (
+              <div
+                key={slide.id}
+                onClick={() => setActiveIndex(idx)}
+                onMouseEnter={() => setActiveIndex(idx)}
+                className={`h-65 relative shrink-0 cursor-pointer overflow-hidden rounded-[13px] transition-all duration-1400 ease-in-out ${
+                  isActive ? "w-100.5 shadow-2xl scale-[1.01]" : "w-18.75 opacity-75 hover:opacity-100"
+                }`}
+              >
+                <img
+                  alt={slide.alt}
+                  className="absolute inset-0 size-full object-cover pointer-events-none rounded-[13px] transition-transform duration-1400 ease-in-out"
+                  src={slide.src}
+                />
               </div>
-            </div>
-          )}
-          <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 311" ? "w-100.5" : "w-18.75"}`} data-name="Component 4" onClick={() => setActiveFrame("Frame 311")} onMouseEnter={() => setActiveFrame("Frame 311")}>
-            <div className="absolute inset-0 rounded-[13px]">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
-            </div>
-          </div>
-          <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 312" ? "w-100.5" : "w-18.75"}`} data-name="Component 5" onClick={() => setActiveFrame("Frame 312")} onMouseEnter={() => setActiveFrame("Frame 312")}>
-            <div className="absolute inset-0 rounded-[13px]">
-              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle10} />
-            </div>
-          </div>
-          {isFrame310OrFrame311OrFrame312OrFrame313OrFrame314OrFrame315Or && (
-            <>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 313" ? "w-100.5" : "w-18.75"}`} data-name="Component 6" onClick={() => setActiveFrame("Frame 313")} onMouseEnter={() => setActiveFrame("Frame 313")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle12} />
-                </div>
-              </div>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 314" ? "w-100.5" : "w-18.75"}`} data-name="Component 7" onClick={() => setActiveFrame("Frame 314")} onMouseEnter={() => setActiveFrame("Frame 314")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle13} />
-                </div>
-              </div>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 315" ? "w-100.5" : "w-18.75"}`} data-name="Component 8" onClick={() => setActiveFrame("Frame 315")} onMouseEnter={() => setActiveFrame("Frame 315")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle14} />
-                </div>
-              </div>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 316" ? "w-100.5" : "w-18.75"}`} data-name="Component 9" onClick={() => setActiveFrame("Frame 316")} onMouseEnter={() => setActiveFrame("Frame 316")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle15} />
-                </div>
-              </div>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 317" ? "w-100.5" : "w-18.75"}`} data-name="Component 10" onClick={() => setActiveFrame("Frame 317")} onMouseEnter={() => setActiveFrame("Frame 317")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle16} />
-                </div>
-              </div>
-              <div className={`h-65 relative shrink-0 cursor-pointer transition-all duration-300 ${activeFrame === "Frame 318" ? "w-100.5" : "w-18.75"}`} data-name="Component 11" onClick={() => setActiveFrame("Frame 318")} onMouseEnter={() => setActiveFrame("Frame 318")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
-                </div>
-              </div>
-            </>
-          )}
-          {isFrame309 && (
-            <>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 3" onClick={() => setActiveFrame("Frame 309")} onMouseEnter={() => setActiveFrame("Frame 310")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle11} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 6" onClick={() => setActiveFrame("Frame 313")} onMouseEnter={() => setActiveFrame("Frame 313")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle12} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 7" onClick={() => setActiveFrame("Frame 314")} onMouseEnter={() => setActiveFrame("Frame 314")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle13} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 8" onClick={() => setActiveFrame("Frame 315")} onMouseEnter={() => setActiveFrame("Frame 315")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle14} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 9" onClick={() => setActiveFrame("Frame 316")} onMouseEnter={() => setActiveFrame("Frame 316")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle15} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 10" onClick={() => setActiveFrame("Frame 317")} onMouseEnter={() => setActiveFrame("Frame 317")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle16} />
-                </div>
-              </div>
-              <div className="h-65 relative shrink-0 w-18.75 cursor-pointer transition-all duration-300" data-name="Component 11" onClick={() => setActiveFrame("Frame 318")} onMouseEnter={() => setActiveFrame("Frame 318")}>
-                <div className="absolute inset-0 rounded-[13px]">
-                  <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[13px] size-full" src={imgRectangle9} />
-                </div>
-              </div>
-            </>
-          )}
+            );
+          })}
         </div>
       </div>
     </div>
@@ -160,11 +92,13 @@ function AkarIconsArrowRight() {
 
 function Frame24() {
   return (
-    <a href="#register" className="cursor-pointer flex gap-2 items-center justify-center p-2.5 hover:opacity-80 transition-opacity">
-      <p className="font-['Poppins:SemiBold',sans-serif] leading-[normal] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap">
+    <a href="#register" className="group cursor-pointer flex gap-3 items-center justify-center py-2 px-4 hover:opacity-90 transition-all">
+      <p className="font-['Poppins:SemiBold',sans-serif] leading-normal not-italic text-[14px] text-white whitespace-nowrap">
         Join us for a time of intense Prayer and Worship
       </p>
-      <AkarIconsArrowRight />
+      <svg className="size-5 shrink-0 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
     </a>
   );
 }
@@ -213,14 +147,14 @@ function Container() {
 
 function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/85 backdrop-blur-md border-b border-white/10 transition-colors">
+    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/15 backdrop-blur-xl border-b border-white/10 transition-all duration-300 shadow-lg shadow-black/10 -mb-20">
       <div className="flex h-20 items-center justify-between px-8 xl:px-16 2xl:px-20 py-3 w-full max-w-420 mx-auto" data-name="Navigation bar">
         <a href="#" className="relative shrink-0 size-14 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center" data-name="Logo">
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
         <Container />
         <button
-          className="flex h-11 items-center justify-center rounded-[36px] bg-[#f80] hover:bg-[#ff9500] px-7 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-colors shadow-lg"
+          className="flex h-12.5 items-center justify-center rounded-full bg-[#f80] hover:bg-[#ff9500] px-8 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-all shadow-lg hover:shadow-orange-500/25 active:scale-95"
           data-name="CTA"
           onClick={onRegisterClick}
           type="button"
@@ -292,7 +226,7 @@ function Frame19() {
 
 function HeroSection() {
   return (
-    <div className="min-h-200 relative shrink-0 w-full bg-black overflow-hidden flex flex-col justify-center items-center" data-name="Hero section">
+    <div className="min-h-200 relative shrink-0 w-full bg-black overflow-hidden flex flex-col justify-center items-center pt-20" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-cover size-full" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
@@ -427,15 +361,12 @@ function Text() {
       <Text2 />
       <Text3 />
       <Frame27 />
-      <a href="#volunteer" className="bg-[#f80] cursor-pointer h-13.5 relative rounded-[36px] shrink-0 w-47.5 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[20px] text-left text-white whitespace-nowrap">
-              <p className="leading-6">Volunteer</p>
-            </div>
-          </div>
-        </div>
+      <a
+        href="#volunteer"
+        className="inline-flex items-center justify-center h-13 px-9 rounded-full bg-[#f80] hover:bg-[#ff9500] font-['Poppins:Medium',sans-serif] text-[18px] text-white shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
+        data-name="CTA"
+      >
+        Volunteer
       </a>
     </div>
   );
@@ -453,9 +384,9 @@ function Frame29() {
 
 function Frame26() {
   return (
-    <div className="-translate-x-1/2 absolute flex h-[499.77px] items-center justify-center left-[calc(50%+0.5px)] top-0 w-[430.264px]">
-      <div className="flex-none rotate-[-3.82deg]">
-        <div className="bg-[rgba(255,136,0,0.75)] h-[474.2px] relative rounded-[29.375px] w-[399.554px]" />
+    <div className="col-1 row-1 flex items-center justify-center relative">
+      <div className="rotate-[-3.82deg]">
+        <div className="bg-[rgba(255,136,0,0.85)] h-118.5 w-100 rounded-[29px] shadow-xl" />
       </div>
     </div>
   );
@@ -463,12 +394,14 @@ function Frame26() {
 
 function Frame25() {
   return (
-    <div className="-translate-x-1/2 absolute flex h-[499.77px] items-center justify-center left-[calc(50%+10.37px)] top-[20.74px] w-[430.264px]">
-      <div className="flex-none rotate-[-3.82deg]">
-        <div className="h-[474.2px] relative rounded-[29.375px] w-[399.554px]">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[29.375px]">
-            <img alt="" className="absolute h-full left-[-18.14%] max-w-none top-[-0.01%] w-[118.68%]" src={imgFrame271} />
-          </div>
+    <div className="col-1 row-1 flex items-center justify-center relative translate-x-5 translate-y-5">
+      <div className="rotate-[-3.82deg]">
+        <div className="h-118.5 w-100 rounded-[29px] shadow-2xl overflow-hidden relative">
+          <img
+            alt="Apostle Arome Osayi"
+            className="absolute h-full left-[-18.14%] max-w-none top-0 w-[118.68%] object-cover pointer-events-none"
+            src={imgFrame271}
+          />
         </div>
       </div>
     </div>
@@ -477,7 +410,7 @@ function Frame25() {
 
 function Frame() {
   return (
-    <div className="h-[520.506px] overflow-clip relative shrink-0 w-112.75">
+    <div className="grid grid-cols-[max-content] grid-rows-[max-content] place-items-start relative shrink-0 pb-6 pr-6">
       <Frame26 />
       <Frame25 />
     </div>
@@ -615,18 +548,32 @@ function AkarIconsArrowRight3() {
 
 function Cta1() {
   return (
-    <div className="bg-[#f80] content-stretch flex flex-col h-11.25 items-center justify-center pl-3.5 pr-3.75 py-4.5 relative rounded-[27px] shrink-0 w-12.25" data-name="CTA">
-      <AkarIconsArrowRight3 />
-    </div>
+    <a
+      href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="View location on Google Maps"
+      className="size-13 rounded-full bg-[#f80] hover:bg-[#ff9500] flex items-center justify-center shadow-lg transition-all hover:scale-105 active:scale-95 shrink-0 cursor-pointer group"
+      data-name="CTA"
+    >
+      <svg className="size-6 text-white transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
   );
 }
 
 function Frame59() {
   return (
     <div className="content-stretch flex items-center relative shrink-0">
-      <a href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City" target="_blank" rel="noopener noreferrer" className="bg-[#f80] h-11.25 relative rounded-[36px] px-6 flex items-center justify-center hover:opacity-90 transition-opacity" data-name="CTA">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <p className="font-['Poppins:Medium',sans-serif] text-[14px] text-white whitespace-nowrap">
+      <a
+        href="https://maps.google.com/?q=The+Winlow+Center+By+Ascend+School+Airport+Road+Extension+Benin+City"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-[#f80] hover:bg-[#ff9500] h-13 relative rounded-full px-8 flex items-center justify-center shadow-lg transition-all hover:scale-[1.02] active:scale-95"
+        data-name="CTA"
+      >
+        <p className="font-['Poppins:Medium',sans-serif] text-[15px] text-white whitespace-nowrap">
           The Winlow Center By Ascend School, Airport Road Extension, Benin City
         </p>
       </a>
@@ -636,7 +583,7 @@ function Frame59() {
 
 function Frame58() {
   return (
-    <div className="content-stretch flex items-center gap-4 relative shrink-0">
+    <div className="content-stretch flex items-center gap-3.5 relative shrink-0">
       <Cta1 />
       <Frame59 />
     </div>
@@ -1254,15 +1201,12 @@ function Box() {
   return (
     <div className="content-stretch flex flex-[1_0_0] gap-4 items-center min-w-px relative" data-name="Box">
       <Frame12 />
-      <button className="bg-[#f80] relative rounded-[36px] shrink-0 w-40.5 cursor-pointer hover:opacity-90 transition-opacity" data-name="CTA" type="button">
-        <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
-        <div className="flex flex-row items-center justify-center size-full">
-          <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">
-              <p className="leading-6">Subscribe</p>
-            </div>
-          </div>
-        </div>
+      <button
+        className="bg-[#f80] hover:bg-[#ff9500] h-12 rounded-full px-8 shrink-0 cursor-pointer shadow-md transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center font-['Poppins:Medium',sans-serif] text-[15px] text-white"
+        data-name="CTA"
+        type="button"
+      >
+        Subscribe
       </button>
     </div>
   );
@@ -1349,7 +1293,7 @@ export default function Background() {
   };
 
   return (
-    <div className="bg-white content-stretch flex flex-col items-start relative w-full" data-name="Background">
+    <div className="bg-black content-stretch flex flex-col items-start relative w-full" data-name="Background">
       <Banner />
       <NavigationBar onRegisterClick={handleRegisterClick} />
       <HeroSection />
