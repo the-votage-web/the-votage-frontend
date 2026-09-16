@@ -214,7 +214,7 @@ function Container() {
 function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
     <div className="sticky top-0 left-0 right-0 z-50 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-md border-b border-white/10">
-      <div className="flex h-22.5 items-center justify-between px-20 py-3 w-full max-w-360 mx-auto" data-name="Navigation bar">
+      <div className="flex h-22.5 items-center justify-between px-8 xl:px-16 2xl:px-20 py-3 w-full max-w-[1680px] mx-auto" data-name="Navigation bar">
         <a href="#" className="relative shrink-0 size-14.25 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center" data-name="Logo">
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
@@ -298,7 +298,7 @@ function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
       </div>
       <NavigationBar onRegisterClick={onRegisterClick} />
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-15 w-full max-w-360 mx-auto px-20">
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-15 w-full max-w-[1680px] mx-auto px-8 xl:px-16 2xl:px-20">
         <Frame19 />
       </div>
     </div>
@@ -318,11 +318,11 @@ function Frame31() {
 function Frame28() {
   return (
     <div className="content-stretch flex items-start p-2.5 relative shrink-0 w-full">
-      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] leading-0 min-w-px not-italic relative text-[#262422] text-[16px]">
-        <p className="leading-[normal] mb-0">There are moments in the spirit when everything changes; not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
-        <p className="leading-[normal] mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
-        <p className="leading-[normal] mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
-        <p className="leading-[normal]">Your breakthrough has a date. Come and encounter the shift.</p>
+      <div className="[word-break:break-word] flex-[1_0_0] font-['Poppins:Regular',sans-serif] leading-relaxed min-w-px not-italic relative text-[#262422] text-[16px] xl:text-[17px] flex flex-col gap-3.5">
+        <p className="leading-relaxed mb-0">There are moments in the spirit when everything changes; not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
+        <p className="leading-relaxed mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
+        <p className="leading-relaxed mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
+        <p className="leading-relaxed mb-0">Your breakthrough has a date. Come and encounter the shift.</p>
       </div>
     </div>
   );
@@ -444,7 +444,7 @@ function Text() {
 
 function Frame29() {
   return (
-    <div className="content-stretch flex flex-col gap-5.5 h-160.5 items-start justify-center relative shrink-0 w-162.5">
+    <div className="content-stretch flex flex-col gap-6 items-start justify-center relative shrink-0 flex-1 max-w-[760px]">
       <Frame31 />
       <Frame28 />
       <Text />
@@ -454,7 +454,7 @@ function Frame29() {
 
 function Frame26() {
   return (
-    <div className="-translate-x-1/2 absolute flex h-[499.77px] items-center justify-center left-[calc(50%-10.37px)] top-0 w-[430.264px]">
+    <div className="-translate-x-1/2 absolute flex h-[499.77px] items-center justify-center left-[calc(50%+0.5px)] top-0 w-[430.264px]">
       <div className="flex-none rotate-[-3.82deg]">
         <div className="bg-[rgba(255,136,0,0.75)] h-[474.2px] relative rounded-[29.375px] w-[399.554px]" />
       </div>
@@ -505,7 +505,7 @@ function Frame55() {
 
 function Frame42() {
   return (
-    <div className="content-stretch flex items-center justify-between px-20 py-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div className="content-stretch flex items-center justify-between gap-12 xl:gap-20 px-8 xl:px-16 2xl:px-20 py-24 relative shrink-0 w-full max-w-[1680px] mx-auto">
       <Frame29 />
       <Frame55 />
     </div>
@@ -551,8 +551,8 @@ function Frame33() {
 
 function Register() {
   return (
-    <div id="register" className="bg-[#fffaf7] w-full scroll-mt-22.5" data-name="Register">
-      <div className="content-stretch flex gap-12 items-start px-20 py-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div id="register" className="bg-[#fffaf7] relative z-10 w-full scroll-mt-22.5" data-name="Register">
+      <div className="content-stretch flex gap-12 xl:gap-20 items-start px-8 xl:px-16 2xl:px-20 py-24 relative shrink-0 w-full max-w-[1680px] mx-auto">
         <Frame33 />
         <div className="flex-[1_0_0] min-w-px w-full">
           <RegistrationForm />
@@ -646,8 +646,8 @@ function Frame58() {
 
 function Frame56() {
   return (
-    <div className="bg-white w-full py-20" data-name="Past Conferences">
-      <div className="content-stretch flex flex-col gap-8 items-start px-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div className="bg-white relative z-10 w-full py-24" data-name="Past Conferences">
+      <div className="content-stretch flex flex-col gap-8 items-start px-8 xl:px-16 2xl:px-20 relative shrink-0 w-full max-w-[1680px] mx-auto">
         <Frame49 />
         <Frame60 />
         <Frame58 />
@@ -875,8 +875,8 @@ function Frame63() {
 
 function Volunteer() {
   return (
-    <div id="volunteer" className="bg-white w-full scroll-mt-22.5 py-20" data-name="Volunteer">
-      <div className="content-stretch flex gap-12 items-start justify-between px-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div id="volunteer" className="bg-white relative z-10 w-full scroll-mt-22.5 py-24" data-name="Volunteer">
+      <div className="content-stretch flex gap-12 xl:gap-20 items-start justify-between px-8 xl:px-16 2xl:px-20 relative shrink-0 w-full max-w-[1680px] mx-auto">
         <Frame63 />
         <VolunteerForm />
       </div>
@@ -909,7 +909,7 @@ function Frame98() {
 
 function Frame96() {
   return (
-    <div className="content-stretch flex flex-col gap-4 items-start justify-center relative shrink-0 w-157.75">
+    <div className="content-stretch flex flex-col gap-4 items-start justify-center relative shrink-0 flex-1 max-w-[760px]">
       <Frame97 />
       <Frame98 />
     </div>
@@ -1070,8 +1070,8 @@ function DesktopWaysToGiveCard() {
 
 function Give() {
   return (
-    <div id="give" className="bg-linear-to-t from-[#fffaf7] to-[#fff3eb] w-full scroll-mt-22.5 py-20" data-name="Give">
-      <div className="content-stretch flex gap-12 items-start justify-between px-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div id="give" className="bg-gradient-to-t from-[#fffaf7] to-[#fff3eb] relative z-10 w-full scroll-mt-22.5 py-24" data-name="Give">
+      <div className="content-stretch flex gap-12 xl:gap-20 items-start justify-between px-8 xl:px-16 2xl:px-20 relative shrink-0 w-full max-w-[1680px] mx-auto">
         <Frame96 />
         <DesktopWaysToGiveCard />
       </div>
@@ -1328,8 +1328,8 @@ function Frame102() {
 
 function Footer() {
   return (
-    <div className="bg-[#010101] w-full pb-5 pt-20" data-name="Footer">
-      <div className="content-stretch flex flex-col gap-12 items-start px-20 relative shrink-0 w-full max-w-360 mx-auto">
+    <div className="bg-[#010101] relative z-10 w-full pb-8 pt-24" data-name="Footer">
+      <div className="content-stretch flex flex-col gap-14 items-start px-8 xl:px-16 2xl:px-20 relative shrink-0 w-full max-w-[1680px] mx-auto">
         <Frame15 />
         <Frame102 />
       </div>

@@ -177,7 +177,7 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
 
   return (
     <form
-      className={`flex flex-col items-start gap-6 ${compact ? "w-full" : "w-151.5 shrink-0"}`}
+      className={`flex flex-col items-start gap-6 ${compact ? "w-full" : "w-full max-w-155 shrink-0"}`}
       noValidate
       onSubmit={onSubmit}
     >

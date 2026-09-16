@@ -26,7 +26,7 @@ function AkarIconsArrowRight() {
 function Frame23() {
   return (
     <a href="#register" className="content-stretch flex gap-1.5 items-center justify-center p-1.5 relative shrink-0">
-      <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">{`Join us for a time of intense Prayer and Worship `}</p>
+      <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[12px] text-center text-white">{`Join us for a time of intense Prayer and Worship `}</p>
       <AkarIconsArrowRight />
     </a>
   );
@@ -43,8 +43,8 @@ function Banner() {
 function Frame24() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[14px] text-center text-white tracking-[0.28px] uppercase whitespace-nowrap">
-        <p className="leading-6.5">THE VOTAGE CHURCH</p>
+      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-normal not-italic relative shrink-0 text-[14px] text-center text-white tracking-[0.28px] uppercase">
+        <p className="leading-snug">THE VOTAGE CHURCH</p>
       </div>
     </div>
   );
@@ -53,7 +53,7 @@ function Frame24() {
 function Frame20() {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0 w-full">
-      <div className="flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[#f80] text-[40px] text-center tracking-[1px] uppercase w-full">
+      <div className="flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-tight not-italic relative shrink-0 text-[#f80] text-[40px] text-center tracking-[1px] uppercase w-full">
         <p className="leading-11.5 whitespace-nowrap">APOSTOLIC</p>
         <p className="leading-11.5 whitespace-nowrap">SHIFT</p>
       </div>
@@ -65,7 +65,7 @@ function Frame21() {
   return (
     <div className="content-stretch flex items-center justify-center px-4.75 py-3.5 relative shrink-0">
       <div aria-hidden className="absolute border border-solid border-white inset-0 pointer-events-none" />
-      <div className="[word-break:break-word] flex flex-col font-['Poppins:SemiBold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[13px] text-center text-white whitespace-nowrap">
+      <div className="[word-break:break-word] flex flex-col font-['Poppins:SemiBold',sans-serif] justify-center leading-normal not-italic relative shrink-0 text-[13px] text-center text-white whitespace-nowrap">
         <p className="leading-normal">22ND-23RD SEPTEMBER</p>
       </div>
     </div>
@@ -75,8 +75,8 @@ function Frame21() {
 function Frame25() {
   return (
     <div className="content-stretch flex flex-col gap-2 items-center relative shrink-0">
-      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[14px] text-center text-white tracking-[0.28px] uppercase w-full max-w-60">
-        <p className="leading-8.25">A conference like never before seen</p>
+      <div className="[word-break:break-word] flex flex-col font-['Copperplate:Bold',sans-serif] justify-center leading-normal not-italic relative shrink-0 text-[14px] text-center text-white tracking-[0.28px] uppercase w-full max-w-72">
+        <p className="leading-snug">A conference like never before seen</p>
       </div>
       <Frame21 />
     </div>
@@ -98,7 +98,7 @@ function Frame17() {
 
 function Frame18({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="content-stretch flex flex-col gap-5 items-center w-full max-w-78.75 z-10">
+    <div className="content-stretch flex flex-col gap-5 items-center w-full max-w-sm z-10">
       <Frame24 />
       <Frame19 />
       <button
@@ -205,11 +205,11 @@ function Frame31() {
 function Frame29() {
   return (
     <div className="content-stretch flex items-center justify-center p-2.5 relative shrink-0 w-full">
-      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-0 not-italic relative shrink-0 text-[#262422] text-[16px] w-full">
-        <p className="leading-normal mb-0">There are moments in the spirit when everything changes, not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
-        <p className="leading-normal mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
-        <p className="leading-normal mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
-        <p className="leading-normal">Your breakthrough has a date. Come and encounter the shift.</p>
+      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-relaxed not-italic relative shrink-0 text-[#262422] text-[15px] sm:text-[16px] w-full flex flex-col gap-3.5">
+        <p className="leading-relaxed mb-0">There are moments in the spirit when everything changes, not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
+        <p className="leading-relaxed mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
+        <p className="leading-relaxed mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
+        <p className="leading-relaxed mb-0">Your breakthrough has a date. Come and encounter the shift.</p>
       </div>
     </div>
   );
@@ -217,7 +217,7 @@ function Frame29() {
 
 function AkarIconsArrowUp() {
   return (
-    <div className="relative shrink-0 size-4.5" data-name="akar-icons:arrow-up">
+    <div className="relative shrink-0 size-5 mt-0.5" data-name="akar-icons:arrow-up">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
         <g id="akar-icons:arrow-up">
           <path d={svgPaths.pa571f80} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
@@ -229,12 +229,11 @@ function AkarIconsArrowUp() {
 
 function Text1() {
   return (
-    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-3 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsArrowUp />
-      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] h-19.75 leading-0 not-italic relative shrink-0 text-[16px] text-black w-full">
-        <p className="font-['Poppins:Medium',sans-serif] leading-normal mb-0">Impartation</p>
-        <p className="leading-normal mb-0 text-[#262422]">Receiving a fresh measure of grace and authority for kingdom assignments .</p>
-        <p className="leading-normal">​</p>
+      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-normal not-italic relative shrink-0 text-[15px] text-black w-full flex-1">
+        <p className="font-['Poppins:SemiBold',sans-serif] font-semibold text-[16px] leading-snug mb-1 text-black">Impartation</p>
+        <p className="leading-relaxed text-[#262422]">Receiving a fresh measure of grace and authority for kingdom assignments.</p>
       </div>
     </div>
   );
@@ -257,7 +256,7 @@ function Group() {
 
 function AkarIconsSun() {
   return (
-    <div className="overflow-clip relative shrink-0 size-4.5" data-name="akar-icons:sun">
+    <div className="overflow-clip relative shrink-0 size-5 mt-0.5" data-name="akar-icons:sun">
       <Group />
     </div>
   );
@@ -265,12 +264,11 @@ function AkarIconsSun() {
 
 function Text2() {
   return (
-    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-3 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsSun />
-      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] h-19.75 leading-0 not-italic relative shrink-0 text-[16px] text-black w-full">
-        <p className="font-['Poppins:Medium',sans-serif] leading-normal mb-0">Prophetic Direction</p>
-        <p className="leading-normal mb-0 text-[#262422]">Navigating personal and generational destinies under the guidance of the Spirit.</p>
-        <p className="leading-normal">​</p>
+      <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-normal not-italic relative shrink-0 text-[15px] text-black w-full flex-1">
+        <p className="font-['Poppins:SemiBold',sans-serif] font-semibold text-[16px] leading-snug mb-1 text-black">Prophetic Direction</p>
+        <p className="leading-relaxed text-[#262422]">Navigating personal and generational destinies under the guidance of the Spirit.</p>
       </div>
     </div>
   );
@@ -278,7 +276,7 @@ function Text2() {
 
 function AkarIconsArrowRight1() {
   return (
-    <div className="relative shrink-0 size-4.5" data-name="akar-icons:arrow-right">
+    <div className="relative shrink-0 size-5 mt-0.5" data-name="akar-icons:arrow-right">
       <svg className="absolute block inset-0 size-full" fill="none" height="18" preserveAspectRatio="none" viewBox="0 0 18 18" width="18">
         <g id="akar-icons:arrow-right">
           <path d={svgPaths.p3ddb6a80} id="Vector" stroke="#FF8800" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -290,11 +288,11 @@ function AkarIconsArrowRight1() {
 
 function Text3() {
   return (
-    <div className="content-stretch flex gap-2 items-start relative shrink-0 w-full" data-name="text">
+    <div className="content-stretch flex gap-3 items-start relative shrink-0 w-full" data-name="text">
       <AkarIconsArrowRight1 />
-      <div className="[word-break:break-word] font-['Poppins:Medium',sans-serif] leading-0 not-italic relative shrink-0 text-[16px] text-black w-full">
-        <p className="leading-normal mb-0">Action</p>
-        <p className="font-['Poppins:Regular',sans-serif] leading-normal text-[#262422]">We want you to experience real changes all around your life.</p>
+      <div className="[word-break:break-word] font-['Poppins:Medium',sans-serif] leading-normal not-italic relative shrink-0 text-[15px] text-black w-full flex-1">
+        <p className="font-['Poppins:SemiBold',sans-serif] font-semibold text-[16px] leading-snug mb-1 text-black">Action</p>
+        <p className="font-['Poppins:Regular',sans-serif] leading-relaxed text-[#262422]">We want you to experience real changes all around your life.</p>
       </div>
     </div>
   );
@@ -303,7 +301,7 @@ function Text3() {
 function Frame28() {
   return (
     <div className="content-stretch flex items-center justify-center p-2.5 relative shrink-0 w-full">
-      <p className="[word-break:break-word] font-['Poppins:Medium',sans-serif] leading-normal not-italic relative shrink-0 text-[16px] text-black w-full whitespace-pre-wrap">{`Join us and if you are interested in volunteering  let us know by clicking the button below`}</p>
+      <p className="[word-break:break-word] font-['Poppins:Medium',sans-serif] leading-relaxed not-italic relative shrink-0 text-[15px] sm:text-[16px] text-black w-full text-center sm:text-left">{`Join us and if you are interested in volunteering let us know by clicking the button below`}</p>
     </div>
   );
 }
@@ -319,7 +317,7 @@ function Text() {
         <div aria-hidden className="absolute border border-[#f70] border-solid inset-0 pointer-events-none rounded-[36px]" />
         <div className="flex flex-row items-center justify-center size-full">
           <div className="content-stretch flex items-center justify-center p-2.5 relative size-full">
-            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[20px] text-left text-white whitespace-nowrap">
+            <div className="[word-break:break-word] flex flex-col font-['Poppins:Medium',sans-serif] justify-center leading-normal not-italic relative shrink-0 text-[18px] text-center text-white whitespace-nowrap">
               <p className="leading-6">Volunteer</p>
             </div>
           </div>
@@ -331,7 +329,7 @@ function Text() {
 
 function Frame30() {
   return (
-    <div className="content-stretch flex flex-col gap-5.5 items-center relative shrink-0 w-full">
+    <div className="content-stretch flex flex-col gap-6 items-center relative shrink-0 w-full">
       <Frame29 />
       <Text />
     </div>
@@ -340,7 +338,7 @@ function Frame30() {
 
 function Frame43() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-4 items-center left-5 top-10 w-[90%] max-w-93">
+    <div className="content-stretch flex flex-col gap-8 items-center w-full max-w-lg mx-auto">
       <Group1 />
       <Frame31 />
       <Frame30 />
@@ -350,7 +348,7 @@ function Frame43() {
 
 function About() {
   return (
-    <div id="about" className="bg-white min-h-284.75 overflow-clip relative shrink-0 w-full scroll-mt-20" data-name="About">
+    <div id="about" className="bg-white relative z-10 shrink-0 w-full px-5 py-14 scroll-mt-20" data-name="About">
       <Frame43 />
     </div>
   );
@@ -386,7 +384,7 @@ function Frame34() {
 
 function Register() {
   return (
-    <div id="register" className="bg-[#fffaf7] content-stretch flex flex-col gap-8 items-start overflow-clip px-5 py-10 relative shrink-0 w-full scroll-mt-20" data-name="Register">
+    <div id="register" className="bg-[#fffaf7] content-stretch flex flex-col gap-8 items-start px-5 py-14 relative z-10 shrink-0 w-full scroll-mt-20" data-name="Register">
       <Frame34 />
       <div className="w-full">
         <RegistrationForm compact />
@@ -409,7 +407,7 @@ function Frame51() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-col gap-2.5 items-start justify-center leading-normal not-italic relative shrink-0 w-full">
       <p className="font-['Copperplate:Bold',sans-serif] relative shrink-0 text-[28px] text-black uppercase w-full">Be A WORKER FOR APOSTOLIC SHIFT</p>
-      <p className="font-['Poppins:Regular',sans-serif] min-w-full relative shrink-0 text-[#5c5854] text-[14px] w-min">{`Someone has to hold the atmosphere while people encounter God. Every volunteer's assignment is the same: create room for God to move, and clear what would hinder it.`}</p>
+      <p className="font-['Poppins:Regular',sans-serif] relative shrink-0 text-[#5c5854] text-[14px] leading-relaxed w-full">{`Someone has to hold the atmosphere while people encounter God. Every volunteer's assignment is the same: create room for God to move, and clear what would hinder it.`}</p>
     </div>
   );
 }
@@ -573,7 +571,7 @@ function Frame52() {
 
 function Volunteer() {
   return (
-    <div id="volunteer" className="bg-white content-stretch flex flex-col gap-16 items-start overflow-clip px-5 py-10 relative shrink-0 w-full scroll-mt-20" data-name="Volunteer">
+    <div id="volunteer" className="bg-white content-stretch flex flex-col gap-16 items-start px-5 py-14 relative z-10 shrink-0 w-full scroll-mt-20" data-name="Volunteer">
       <Frame49 />
       <Frame52 />
     </div>
@@ -766,7 +764,7 @@ function WaysToGiveCard() {
 
 function Give() {
   return (
-    <div id="give" className="bg-linear-to-t content-stretch flex flex-col from-[#fffaf7] gap-10 items-center overflow-clip px-5 py-12 relative shrink-0 to-[#fff3eb] w-full scroll-mt-20" data-name="Give">
+    <div id="give" className="bg-gradient-to-t content-stretch flex flex-col from-[#fffaf7] gap-10 items-center px-5 py-14 relative z-10 to-[#fff3eb] w-full scroll-mt-20" data-name="Give">
       <div className="w-full max-w-97.5">
         <Frame79 />
       </div>
@@ -868,7 +866,7 @@ function QuickLinl() {
 
 function Container1() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-4 h-38.5 items-start justify-center leading-normal min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
+    <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-3 items-start justify-center leading-normal min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
       <a href="#about" className="relative shrink-0 hover:underline">About</a>
       <a href="#register" className="relative shrink-0 hover:underline">Schedule</a>
       <a href="#register" className="relative shrink-0 hover:underline">Register</a>
@@ -906,13 +904,13 @@ function Frame13() {
 
 function Container2() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-4 items-start leading-0 not-italic relative shrink-0 text-white w-full" data-name="Container">
-      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[24px] w-full">
-        <p className="leading-9">{`Visit `}</p>
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-3 items-start leading-normal not-italic relative shrink-0 text-white w-full" data-name="Container">
+      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[22px] w-full">
+        <p className="leading-tight">Visit</p>
       </div>
       <div className="flex flex-col font-['Poppins:Medium',sans-serif] justify-center relative shrink-0 text-[14px] w-full">
-        <p className="leading-5.25 mb-0">The Winlow Center By Ascend School, Airport Road Extension, Benin City</p>
-        <a href="tel:+2347069701744" className="leading-5.25 text-white hover:underline">0706 970 1744</a>
+        <p className="leading-relaxed mb-1">The Winlow Center By Ascend School, Airport Road Extension, Benin City</p>
+        <a href="tel:+2347069701744" className="leading-relaxed text-white hover:underline">0706 970 1744</a>
       </div>
     </div>
   );
@@ -920,12 +918,12 @@ function Container2() {
 
 function Container3() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col gap-2 items-start leading-0 not-italic relative shrink-0 text-white w-full" data-name="Container">
-      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[24px] text-white w-full">
-        <p className="leading-7.75">Stay connected</p>
+    <div className="[word-break:break-word] content-stretch flex flex-col gap-2 items-start leading-normal not-italic relative shrink-0 text-white w-full" data-name="Container">
+      <div className="flex flex-col font-['Arial:Bold',sans-serif] justify-center relative shrink-0 text-[22px] text-white w-full">
+        <p className="leading-tight">Stay connected</p>
       </div>
       <div className="flex flex-col font-['Poppins:Regular',sans-serif] justify-center relative shrink-0 text-[#d9d9d9] text-[14px] w-full">
-        <p className="leading-4.75 whitespace-pre-wrap">{`Subscribe  for updates, devotionals and event announcements`}</p>
+        <p className="leading-relaxed whitespace-pre-wrap">Subscribe for updates, devotionals and event announcements</p>
       </div>
     </div>
   );
@@ -977,7 +975,7 @@ function EmailWriteUp() {
 function Email() {
   return (
     <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="Email">
-      <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 not-italic relative shrink-0 text-[14px] text-white w-full">
+      <div className="[word-break:break-word] flex flex-col font-['Arial:Regular',sans-serif] justify-center leading-normal not-italic relative shrink-0 text-[14px] text-white w-full">
         <p className="leading-normal">Email</p>
       </div>
       <EmailWriteUp />
@@ -987,7 +985,7 @@ function Email() {
 
 function Subcription() {
   return (
-    <div className="content-stretch flex flex-col gap-4 items-start justify-end relative shrink-0 w-full" data-name="Subcription">
+    <div className="content-stretch flex flex-col gap-5 items-start justify-end relative shrink-0 w-full" data-name="Subcription">
       <Container2 />
       <Container3 />
       <Email />
@@ -997,10 +995,9 @@ function Subcription() {
 
 function Frame84() {
   return (
-    <div className="content-stretch flex items-center justify-center py-4.25 relative shrink-0 w-full">
-      <div aria-hidden className="absolute border-[#959595] border-solid border-t inset-0 pointer-events-none" />
-      <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] justify-center leading-0 min-w-px not-italic relative text-[14px] text-white">
-        <p className="leading-7.75 whitespace-pre-wrap">{`@ 2026 The  VOTAGE. All rights reserved`}</p>
+    <div className="border-[#959595]/30 border-solid border-t content-stretch flex items-center justify-center py-4.25 relative shrink-0 w-full">
+      <div className="[word-break:break-word] flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] justify-center leading-normal min-w-px not-italic relative text-[13px] text-neutral-400">
+        <p className="leading-normal">{`@ 2026 The VOTAGE. All rights reserved`}</p>
       </div>
     </div>
   );
@@ -1008,7 +1005,7 @@ function Frame84() {
 
 function Frame14() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-10 items-center justify-center left-5 top-10 w-[90%] max-w-93">
+    <div className="content-stretch flex flex-col gap-10 items-start justify-center w-full max-w-lg mx-auto">
       <Frame13 />
       <Subcription />
       <Frame84 />
@@ -1018,7 +1015,7 @@ function Frame14() {
 
 function Footer() {
   return (
-    <div className="bg-[#010101] min-h-222.75 overflow-clip relative shrink-0 w-full" data-name="Footer">
+    <div className="bg-[#010101] relative z-10 shrink-0 w-full px-5 pt-14 pb-8" data-name="Footer">
       <Frame14 />
     </div>
   );
