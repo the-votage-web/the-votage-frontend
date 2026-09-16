@@ -148,8 +148,8 @@ function NavigationBar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-md border-b border-white/10">
-      <div className="flex h-16.25 items-center justify-between px-5 py-3 w-full" data-name="Navigation bar">
+    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-white/10">
+      <div className="flex h-16 items-center justify-between px-5 py-3 w-full" data-name="Navigation bar">
         <a href="#" className="relative shrink-0 size-10 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center">
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
@@ -159,9 +159,15 @@ function NavigationBar() {
           onClick={() => setMenuOpen(!menuOpen)}
           className="cursor-pointer p-2 text-white hover:opacity-80 transition-opacity"
         >
-          <svg className="size-6" fill="none" height="14" viewBox="0 0 20 14" width="20">
-            <path d="M1 1H19M9 7H19M4 13H19" stroke="white" strokeLinecap="round" strokeWidth="2" />
-          </svg>
+          {menuOpen ? (
+            <svg className="size-6" fill="none" height="24" viewBox="0 0 24 24" width="24" stroke="currentColor">
+              <path d="M6 18L18 6M6 6l12 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ) : (
+            <svg className="size-6" fill="none" height="14" viewBox="0 0 20 14" width="20">
+              <path d="M1 1H19M9 7H19M4 13H19" stroke="white" strokeLinecap="round" strokeWidth="2" />
+            </svg>
+          )}
         </button>
       </div>
       {menuOpen && (
@@ -218,13 +224,12 @@ function NavigationBar() {
 
 function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="min-h-175 overflow-hidden relative shrink-0 w-full bg-black flex flex-col justify-between" data-name="Hero section">
+    <div className="min-h-160 overflow-hidden relative shrink-0 w-full bg-black flex flex-col justify-center items-center" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute inset-0 size-full object-cover" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
       </div>
-      <NavigationBar />
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-15 px-5">
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-14 px-5 w-full">
         <Frame18 onRegisterClick={onRegisterClick} />
       </div>
     </div>
@@ -278,7 +283,7 @@ function Frame29() {
     <div className="content-stretch flex items-center justify-center p-2.5 relative shrink-0 w-full">
       <div className="[word-break:break-word] font-['Poppins:Regular',sans-serif] leading-relaxed not-italic relative shrink-0 text-[#262422] text-[15px] sm:text-[16px] w-full flex flex-col gap-3.5">
         <p className="leading-relaxed mb-0">There are moments in the spirit when everything changes, not gradually, but suddenly. Apostolic Shift is one of those moments.</p>
-        <p className="leading-relaxed mb-0">{`A days power packed conference Where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
+        <p className="leading-relaxed mb-0">{`A days power packed conference where we gather to pray until the atmosphere yields, until stagnant situations move and heaven's agenda for this season takes root in the City of Benin and on earth. This is apostolic authority in operation: prayer that doesn't just ask, but commands change.`}</p>
         <p className="leading-relaxed mb-0">Join Apostle Arome Osayi, hosted by Rev Ohis and Pastor Anwinli Ojeikere as we contend for a fresh move of God in Benin city.</p>
         <p className="leading-relaxed mb-0">Your breakthrough has a date. Come and encounter the shift.</p>
       </div>
@@ -752,20 +757,18 @@ function PaymentItem({
         if (e.key === "Enter" || e.key === " ") copy();
       }}
       title={`Click to copy ${value}`}
-      className={`group relative flex items-center justify-between rounded-2xl px-5 py-3.5 cursor-pointer transition-all duration-200 select-none ${
-        highlight
+      className={`group relative flex items-center justify-between rounded-2xl px-5 py-3.5 cursor-pointer transition-all duration-200 select-none ${highlight
           ? "bg-[#fffee9] shadow-[0_6px_20px_rgba(0,0,0,0.05)] border border-[#fae8b2]/60 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
           : "bg-white shadow-[0_6px_20px_rgba(0,0,0,0.05)] border border-black/4 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
-      }`}
+        }`}
     >
       <div className="flex flex-col min-w-0 pr-2">
         <span className="font-['Poppins:Regular',sans-serif] text-[12px] text-[#6b7280] leading-tight mb-1">
           {label}
         </span>
         <span
-          className={`font-['Poppins:Bold',sans-serif] font-bold text-black truncate tracking-tight ${
-            highlight ? "text-[16px] sm:text-[17px]" : "text-[15px] sm:text-[16px]"
-          }`}
+          className={`font-['Poppins:Bold',sans-serif] font-bold text-black truncate tracking-tight ${highlight ? "text-[16px] sm:text-[17px]" : "text-[15px] sm:text-[16px]"
+            }`}
         >
           {value}
         </span>
@@ -776,11 +779,10 @@ function PaymentItem({
           type="button"
           onClick={(e) => copy(e)}
           aria-label={`Copy ${label}`}
-          className={`relative flex size-8 shrink-0 items-center justify-center rounded-lg transition-all ${
-            copied
+          className={`relative flex size-8 shrink-0 items-center justify-center rounded-lg transition-all ${copied
               ? "text-emerald-600 bg-emerald-50"
               : "text-neutral-700 hover:text-black hover:bg-neutral-100"
-          }`}
+            }`}
         >
           {copied ? <CheckIcon className="size-4.5 text-emerald-600" /> : <CopyIcon className="size-4.5 text-neutral-800" />}
         </button>
@@ -1110,6 +1112,7 @@ export default function AndroidCompact() {
   return (
     <div className="bg-white content-stretch flex flex-col items-start relative size-full" data-name="Android Compact - 1">
       <Banner />
+      <NavigationBar />
       <HeroSection onRegisterClick={handleRegisterClick} />
       <About />
       <Register />

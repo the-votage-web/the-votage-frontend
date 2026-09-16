@@ -37,12 +37,12 @@ export function ChatWidget() {
           iframe.src = "https://votage-ai-assistant.vercel.app/";
           iframe.style.position = "fixed";
           iframe.style.bottom = "80px";
-          iframe.style.right = "5px";
-          iframe.style.width = "320px";
-          iframe.style.height = "550px";
+          iframe.style.right = "20px";
+          iframe.style.width = "min(360px, calc(100vw - 40px))";
+          iframe.style.height = "min(550px, calc(100vh - 120px))";
           iframe.style.border = "none";
           iframe.style.display = "none";
-          iframe.style.borderRadius = "12px";
+          iframe.style.borderRadius = "16px";
           iframe.style.boxShadow = "0 15px 40px rgba(0,0,0,0.3)";
           iframe.style.zIndex = "9999";
 

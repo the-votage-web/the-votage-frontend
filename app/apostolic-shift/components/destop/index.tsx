@@ -213,14 +213,14 @@ function Container() {
 
 function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
   return (
-    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-[rgba(0,0,0,0.5)] backdrop-blur-md border-b border-white/10">
-      <div className="flex h-22.5 items-center justify-between px-8 xl:px-16 2xl:px-20 py-3 w-full max-w-[1680px] mx-auto" data-name="Navigation bar">
-        <a href="#" className="relative shrink-0 size-14.25 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center" data-name="Logo">
+    <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/85 backdrop-blur-md border-b border-white/10 transition-colors">
+      <div className="flex h-20 items-center justify-between px-8 xl:px-16 2xl:px-20 py-3 w-full max-w-[1680px] mx-auto" data-name="Navigation bar">
+        <a href="#" className="relative shrink-0 size-14 rounded-full overflow-hidden bg-white p-1 flex items-center justify-center" data-name="Logo">
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
         <Container />
         <button
-          className="flex h-12 items-center justify-center rounded-[36px] bg-[#f80] hover:bg-[#ff9500] px-7 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-colors shadow-lg"
+          className="flex h-11 items-center justify-center rounded-[36px] bg-[#f80] hover:bg-[#ff9500] px-7 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-colors shadow-lg"
           data-name="CTA"
           onClick={onRegisterClick}
           type="button"
@@ -290,15 +290,14 @@ function Frame19() {
   );
 }
 
-function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
+function HeroSection() {
   return (
-    <div className="min-h-212.5 relative shrink-0 w-full bg-black overflow-hidden flex flex-col justify-between" data-name="Hero section">
+    <div className="min-h-200 relative shrink-0 w-full bg-black overflow-hidden flex flex-col justify-center items-center" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <img alt="" className="absolute max-w-none object-cover size-full" src={imgHeroSection} />
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
       </div>
-      <NavigationBar onRegisterClick={onRegisterClick} />
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-15 w-full max-w-[1680px] mx-auto px-8 xl:px-16 2xl:px-20">
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-20 w-full max-w-[1680px] mx-auto px-8 xl:px-16 2xl:px-20">
         <Frame19 />
       </div>
     </div>
@@ -1352,7 +1351,8 @@ export default function Background() {
   return (
     <div className="bg-white content-stretch flex flex-col items-start relative w-full" data-name="Background">
       <Banner />
-      <HeroSection onRegisterClick={handleRegisterClick} />
+      <NavigationBar onRegisterClick={handleRegisterClick} />
+      <HeroSection />
       <About />
       <Register />
       <Frame56 />
