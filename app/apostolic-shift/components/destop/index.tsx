@@ -514,7 +514,7 @@ function Frame42() {
 
 function About() {
   return (
-    <div id="about" className="bg-white content-stretch flex flex-col items-start relative shrink-0 w-full scroll-mt-22.5" data-name="About">
+    <div id="about" className="bg-white content-stretch flex flex-col items-start relative z-10 shrink-0 w-full scroll-mt-22.5" data-name="About">
       <Frame42 />
     </div>
   );
