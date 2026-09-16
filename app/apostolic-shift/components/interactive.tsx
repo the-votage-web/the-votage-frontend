@@ -145,29 +145,6 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
       );
       formData.append("Submitted At", submissionTime);
 
-      // Presentable, well-spaced message body using <br> for email client compatibility
-      const messageBody = [
-        "🙌 NEW VOLUNTEER WORKFORCE APPLICATION",
-        "",
-        "A website visitor has submitted their application to join the Apostolic Shift 2026 Volunteer Workforce team.",
-        "",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "VOLUNTEER DETAILS",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        `• Full Name: ${trimmedName}`,
-        `• Phone / WhatsApp: ${trimmedPhone}`,
-        `• Serving Department(s): ${selectedRoles}`,
-        "",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "NEXT ACTION FOR WORKFORCE LEAD",
-        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        `Please reach out to ${trimmedName} at ${trimmedPhone} via phone call or WhatsApp to confirm their unit placement, workforce orientation, and briefing details.`,
-        "",
-        `Submission Timestamp: ${submissionTime}`,
-      ].join("<br>");
-
-      formData.append("message", messageBody);
-
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
