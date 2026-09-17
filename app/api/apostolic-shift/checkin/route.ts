@@ -88,7 +88,9 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ reply: detailMsg });
       } else if (status === 404) {
         return NextResponse.json({
-          reply: `👋 We couldn't find a registration for ${phoneNumber}.\n\nPlease register here first to save your seat: [Register for Apostolic Shift](/apostolic-shift/checkin?tab=registration)`,
+          reply:
+            data?.detail ||
+            `We couldn't find a registration with phone number ${phoneNumber}. Please register for the event first.`,
         });
       } else {
         const errMsg =
