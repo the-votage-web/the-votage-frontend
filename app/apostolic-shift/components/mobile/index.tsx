@@ -8,8 +8,8 @@ const imgHeroSection = "/img/apostolic-shift/46a110685be4de114d24186039db4eb4af1
 const imgChatGptImageJan192026065255Pm1 = "/img/apostolic-shift/29fcaaaf990b37e9f81712729c82732ad77fb95a.png";
 const imgFrame271 = "/img/apostolic-shift/0e86aa29068604ea20cfd8b71c27c4c9c346d409.png";
 
-import { CopyRow, VolunteerForm, RegistrationForm } from "../interactive";
-import { RegisterModal } from "../register-modal";
+import Link from "next/link";
+import { CopyRow, VolunteerForm } from "../interactive";
 
 function scrollToMobile(id: string, fallback?: () => void) {
   if (typeof document === "undefined") return;
@@ -42,17 +42,13 @@ function AkarIconsArrowRight() {
 
 function Frame23() {
   return (
-    <a
-      href="#register"
-      onClick={(e) => {
-        e.preventDefault();
-        scrollToMobile("register");
-      }}
+    <Link
+      href="/apostolic-shift/checkin?tab=registration"
       className="content-stretch flex gap-1.5 items-center justify-center p-1.5 relative shrink-0 cursor-pointer"
     >
       <p className="[word-break:break-word] font-['Poppins:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[12px] text-center text-white">{`Join us for a time of intense Prayer and Worship `}</p>
       <AkarIconsArrowRight />
-    </a>
+    </Link>
   );
 }
 
@@ -120,24 +116,18 @@ function Frame17() {
   return <div className="content-stretch flex gap-6 h-5 items-center justify-center relative shrink-0 w-full" />;
 }
 
-function Frame18({ onRegisterClick }: { onRegisterClick: () => void }) {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    scrollToMobile("register", onRegisterClick);
-  };
-
+function Frame18() {
   return (
     <div className="content-stretch flex flex-col gap-5 items-center w-full max-w-sm z-10">
       <Frame24 />
       <Frame19 />
-      <button
+      <Link
+        href="/apostolic-shift/checkin?tab=registration"
         className="bg-[#f80] hover:bg-[#ff9500] cursor-pointer h-13 rounded-[36px] px-9 flex items-center justify-center shadow-lg transition-colors mt-2"
         data-name="CTA"
-        onClick={handleClick}
-        type="button"
       >
         <p className="font-['Poppins:Medium',sans-serif] text-[18px] text-white whitespace-nowrap">Register Now</p>
-      </button>
+      </Link>
     </div>
   );
 }
@@ -203,24 +193,20 @@ function NavigationBar() {
           >
             Give
           </a>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              setMenuOpen(false);
-              scrollToMobile("register");
-            }}
-            className="bg-[#f80] text-center text-white py-2.5 rounded-full font-medium mt-2 w-full cursor-pointer hover:bg-[#ff9500] transition-colors"
+          <Link
+            href="/apostolic-shift/checkin?tab=registration"
+            onClick={() => setMenuOpen(false)}
+            className="bg-[#f80] text-center text-white py-2.5 rounded-full font-medium mt-2 w-full cursor-pointer hover:bg-[#ff9500] transition-colors block"
           >
             Register Now
-          </button>
+          </Link>
         </div>
       )}
     </div>
   );
 }
 
-function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
+function HeroSection() {
   return (
     <div className="min-h-160 overflow-hidden relative shrink-0 w-full bg-black flex flex-col justify-center items-center pt-16" data-name="Hero section">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -228,7 +214,7 @@ function HeroSection({ onRegisterClick }: { onRegisterClick: () => void }) {
         <div className="absolute bg-[rgba(0,0,0,0.75)] inset-0" />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center flex-1 py-14 px-5 w-full">
-        <Frame18 onRegisterClick={onRegisterClick} />
+        <Frame18 />
       </div>
     </div>
   );
@@ -466,10 +452,21 @@ function Frame34() {
 
 function Register() {
   return (
-    <div id="register" className="bg-[#fffaf7] content-stretch flex flex-col gap-8 items-start px-5 py-14 relative z-10 shrink-0 w-full scroll-mt-20" data-name="Register">
+    <div id="register" className="bg-[#fffaf7] content-stretch flex flex-col gap-6 items-start px-5 py-14 relative z-10 shrink-0 w-full scroll-mt-20" data-name="Register">
       <Frame34 />
-      <div className="w-full">
-        <RegistrationForm compact />
+      <div className="flex flex-col gap-3.5 w-full">
+        <Link
+          href="/apostolic-shift/checkin?tab=registration"
+          className="flex h-13 items-center justify-center rounded-full bg-[#f80] hover:bg-[#ff9500] px-8 shadow-md transition-all text-white font-['Poppins:Medium',sans-serif] text-[16px] uppercase tracking-wider text-center"
+        >
+          <span>Register Now &rarr;</span>
+        </Link>
+        <Link
+          href="/apostolic-shift/checkin"
+          className="font-['Poppins:Regular',sans-serif] text-[13px] text-[#5c5854] text-center hover:text-[#f80] transition-colors"
+        >
+          Already registered? <strong>Check in here &rarr;</strong>
+        </Link>
       </div>
     </div>
   );
@@ -947,8 +944,8 @@ function Container1() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-3 items-start justify-center leading-normal min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
       <a href="#about" onClick={(e) => { e.preventDefault(); scrollToMobile("about"); }} className="relative shrink-0 hover:underline cursor-pointer">About</a>
-      <a href="#register" onClick={(e) => { e.preventDefault(); scrollToMobile("register"); }} className="relative shrink-0 hover:underline cursor-pointer">Schedule</a>
-      <a href="#register" onClick={(e) => { e.preventDefault(); scrollToMobile("register"); }} className="relative shrink-0 hover:underline cursor-pointer">Register</a>
+      <Link href="/apostolic-shift/checkin?tab=registration" className="relative shrink-0 hover:underline cursor-pointer">Register</Link>
+      <Link href="/apostolic-shift/checkin" className="relative shrink-0 hover:underline cursor-pointer">Check-in</Link>
       <a href="#volunteer" onClick={(e) => { e.preventDefault(); scrollToMobile("volunteer"); }} className="relative shrink-0 hover:underline cursor-pointer">Volunteer</a>
       <a href="#give" onClick={(e) => { e.preventDefault(); scrollToMobile("give"); }} className="relative shrink-0 hover:underline cursor-pointer">Give</a>
     </div>
@@ -1101,23 +1098,16 @@ function Footer() {
 }
 
 export default function AndroidCompact() {
-  const [registerOpen, setRegisterOpen] = useState(false);
-
-  const handleRegisterClick = () => {
-    scrollToMobile("register", () => setRegisterOpen(true));
-  };
-
   return (
     <div className="bg-black content-stretch flex flex-col items-start relative size-full" data-name="Android Compact - 1">
       <Banner />
       <NavigationBar />
-      <HeroSection onRegisterClick={handleRegisterClick} />
+      <HeroSection />
       <About />
       <Register />
       <Volunteer />
       <Give />
       <Footer />
-      <RegisterModal open={registerOpen} onClose={() => setRegisterOpen(false)} />
     </div>
   );
 }

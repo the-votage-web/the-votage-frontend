@@ -258,10 +258,12 @@ export default function ChatWidget({
   apiUrl = "/api/chat",
   welcomeMessage = DEFAULT_WELCOME_MESSAGE,
   containerStyle = {},
+  title = "Votage Assistant",
 }: {
   apiUrl?: string;
   welcomeMessage?: string;
   containerStyle?: React.CSSProperties;
+  title?: string;
 }) {
   const router = useRouter();
   const sessionId = useMemo(() => crypto.randomUUID(), []);
@@ -386,7 +388,7 @@ export default function ChatWidget({
               gap: 10,
             }}
           >
-            <div style={{ fontWeight: 700 }}>Votage Assistant</div>
+            <div style={{ fontWeight: 700 }}>{title}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <button
                 onClick={onEndSession}
