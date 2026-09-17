@@ -603,28 +603,87 @@ export function CheckinRegisterPortal({
                 />
               </label>
 
-              <button
-                type="submit"
-                disabled={regState === "busy"}
-                style={{
-                  marginTop: 6,
-                  border: 0,
-                  borderRadius: 12,
-                  padding: "13px 20px",
-                  background: "#f80",
-                  color: "#ffffff",
-                  fontWeight: 700,
-                  fontSize: "0.98rem",
-                  letterSpacing: "0.01em",
-                  fontFamily: "var(--font-poppins)",
-                  cursor: regState === "busy" ? "not-allowed" : "pointer",
-                  transition: "transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease",
-                  boxShadow: "0 12px 26px rgba(255, 136, 0, 0.32)",
-                  opacity: regState === "busy" ? 0.75 : 1,
-                }}
-              >
-                {regState === "busy" ? "Registering..." : "Register for Apostolic Shift"}
-              </button>
+              {/* Submit Button (Apostolic Shift circle arrow + SUBMIT pill design) */}
+              <div style={{ paddingTop: 8 }}>
+                <button
+                  type="submit"
+                  disabled={regState === "busy"}
+                  className="group"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 12,
+                    border: 0,
+                    background: "transparent",
+                    padding: 0,
+                    cursor: regState === "busy" ? "not-allowed" : "pointer",
+                    opacity: regState === "busy" ? 0.65 : 1,
+                    transition: "transform 120ms ease",
+                  }}
+                  onMouseDown={(e) => {
+                    if (regState !== "busy") e.currentTarget.style.transform = "scale(0.98)";
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      width: 52,
+                      height: 52,
+                      borderRadius: "50%",
+                      background: "#f80",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 4px 14px rgba(255, 136, 0, 0.3)",
+                      transition: "background 150ms ease",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <svg
+                      style={{ width: 22, height: 22, color: "#ffffff" }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.5"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    style={{
+                      display: "flex",
+                      height: 52,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 9999,
+                      background: "#f80",
+                      padding: "0 36px",
+                      boxShadow: "0 4px 14px rgba(255, 136, 0, 0.3)",
+                      transition: "background 150ms ease",
+                    }}
+                  >
+                    <span
+                      style={{
+                        whiteSpace: "nowrap",
+                        fontFamily: "var(--font-poppins)",
+                        fontWeight: 600,
+                        fontSize: 16,
+                        letterSpacing: "0.06em",
+                        textTransform: "uppercase",
+                        color: "#ffffff",
+                      }}
+                    >
+                      {regState === "busy" ? "Submitting…" : "SUBMIT"}
+                    </span>
+                  </span>
+                </button>
+              </div>
             </form>
           )}
         </div>
