@@ -343,7 +343,7 @@ export default function ChatWidget({
       style={{
         width: "100%",
         height: "100%",
-        minHeight: "100vh",
+        minHeight: "100dvh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -503,8 +503,8 @@ export default function ChatWidget({
           </div>
 
           {/* Input */}
-          <div style={{ padding: "14px 20px", borderTop: "1px solid #eee" }}>
-            <div style={{ display: "flex", gap: 8 }}>
+          <div style={{ padding: "14px 16px", borderTop: "1px solid #eee", background: "#fff" }}>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -513,22 +513,26 @@ export default function ChatWidget({
                 placeholder={busy ? "Thinking…" : "Type a message…"}
                 style={{
                   flex: 1,
+                  minWidth: 0,
                   padding: "10px 14px",
                   borderRadius: 12,
                   border: "1px solid #ddd",
                   background: busy ? "#f3f4f6" : "#fff",
                   outline: "none",
+                  fontSize: 16,
                 }}
               />
               <button
                 onClick={onSend}
                 disabled={busy}
                 style={{
-                  padding: "10px 16px",
+                  flexShrink: 0,
+                  padding: "10px 18px",
                   borderRadius: 12,
                   border: "1px solid #111827",
                   background: busy ? "#374151" : "#1f2937",
                   color: "#fff",
+                  fontWeight: 600,
                   cursor: busy ? "not-allowed" : "pointer",
                 }}
               >

@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function ApostolicShiftCheckinPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: "100vh", background: "#fffaf7" }} />}>
+    <Suspense fallback={<div style={{ minHeight: "100dvh", background: "#fffaf7" }} />}>
       <CheckinRegisterPortal initialTab="checkin" />
     </Suspense>
   );
