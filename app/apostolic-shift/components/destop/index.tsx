@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import svgPaths from "./svg-1uc59bgq44";
-import { CopyRow, VolunteerForm, RegistrationForm } from "../interactive";
-import { RegisterModal } from "../register-modal";
+import { CopyRow, VolunteerForm } from "../interactive";
 
 /* Images live in /public/img/apostolic-shift (copied verbatim from the Figma export). */
 const imgRectangle8 = "/img/apostolic-shift/4e616f1ec5ea9d74dda656a557100e3216e512e3.png";
@@ -92,14 +92,14 @@ function AkarIconsArrowRight() {
 
 function Frame24() {
   return (
-    <a href="#register" className="group cursor-pointer flex gap-3 items-center justify-center py-2 px-4 hover:opacity-90 transition-all">
+    <Link href="/apostolic-shift/checkin?tab=registration" className="group cursor-pointer flex gap-3 items-center justify-center py-2 px-4 hover:opacity-90 transition-all">
       <p className="font-['Poppins:SemiBold',sans-serif] leading-normal not-italic text-[14px] text-white whitespace-nowrap">
         Join us for a time of intense Prayer and Worship
       </p>
       <svg className="size-5 shrink-0 text-white transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
       </svg>
-    </a>
+    </Link>
   );
 }
 
@@ -145,7 +145,7 @@ function Container() {
   );
 }
 
-function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
+function NavigationBar() {
   return (
     <div className="sticky top-0 left-0 right-0 z-50 w-full bg-black/15 backdrop-blur-xl border-b border-white/10 transition-all duration-300 shadow-lg shadow-black/10 -mb-20">
       <div className="flex h-20 items-center justify-between px-8 xl:px-16 2xl:px-20 py-3 w-full max-w-420 mx-auto" data-name="Navigation bar">
@@ -153,14 +153,13 @@ function NavigationBar({ onRegisterClick }: { onRegisterClick: () => void }) {
           <img alt="The Votage Church" className="size-full object-contain" src={imgChatGptImageJan192026065255Pm1} />
         </a>
         <Container />
-        <button
+        <Link
+          href="/apostolic-shift/checkin?tab=registration"
           className="flex h-12.5 items-center justify-center rounded-full bg-[#f80] hover:bg-[#ff9500] px-8 font-['Poppins:Medium',sans-serif] text-[16px] text-white cursor-pointer transition-all shadow-lg hover:shadow-orange-500/25 active:scale-95"
           data-name="CTA"
-          onClick={onRegisterClick}
-          type="button"
         >
           Register Now
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -484,10 +483,22 @@ function Frame33() {
 function Register() {
   return (
     <div id="register" className="bg-[#fffaf7] relative z-10 w-full scroll-mt-22.5" data-name="Register">
-      <div className="content-stretch flex gap-12 xl:gap-20 items-start px-8 xl:px-16 2xl:px-20 py-24 relative shrink-0 w-full max-w-420 mx-auto">
+      <div className="content-stretch flex flex-col md:flex-row gap-12 xl:gap-20 items-center justify-between px-8 xl:px-16 2xl:px-20 py-24 relative shrink-0 w-full max-w-420 mx-auto">
         <Frame33 />
-        <div className="flex-[1_0_0] min-w-px w-full">
-          <RegistrationForm />
+        <div className="flex flex-col gap-4 items-start sm:items-center md:items-start shrink-0">
+          <Link
+            href="/apostolic-shift/checkin?tab=registration"
+            className="inline-flex items-center justify-center gap-3 rounded-full bg-[#f80] hover:bg-[#ff9500] px-10 py-4 font-['Poppins:Medium',sans-serif] text-[17px] uppercase tracking-wider text-white shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <span>Register Now</span>
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link
+            href="/apostolic-shift/checkin"
+            className="font-['Poppins:Regular',sans-serif] text-[14px] text-[#5c5854] hover:text-[#f80] transition-colors"
+          >
+            Already registered? <strong>Check in here &rarr;</strong>
+          </Link>
         </div>
       </div>
     </div>
@@ -1120,8 +1131,8 @@ function Container1() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col font-['Arial:Regular',sans-serif] gap-4 h-38.5 items-start justify-center leading-[normal] min-w-px not-italic relative text-[16px] text-white whitespace-nowrap" data-name="Container">
       <a href="#about" className="relative shrink-0 hover:underline">About</a>
-      <a href="#register" className="relative shrink-0 hover:underline">Schedule</a>
-      <a href="#register" className="relative shrink-0 hover:underline">Register</a>
+      <Link href="/apostolic-shift/checkin?tab=registration" className="relative shrink-0 hover:underline">Register</Link>
+      <Link href="/apostolic-shift/checkin" className="relative shrink-0 hover:underline">Check-in</Link>
       <a href="#volunteer" className="relative shrink-0 hover:underline">Volunteer</a>
       <a href="#give" className="relative shrink-0 hover:underline">Give</a>
     </div>
@@ -1281,21 +1292,10 @@ function Footer() {
 }
 
 export default function Background() {
-  const [registerOpen, setRegisterOpen] = useState(false);
-
-  const handleRegisterClick = () => {
-    const el = document.getElementById("register");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      setRegisterOpen(true);
-    }
-  };
-
   return (
     <div className="bg-black content-stretch flex flex-col items-start relative w-full" data-name="Background">
       <Banner />
-      <NavigationBar onRegisterClick={handleRegisterClick} />
+      <NavigationBar />
       <HeroSection />
       <About />
       <Register />
@@ -1303,7 +1303,6 @@ export default function Background() {
       <Volunteer />
       <Give />
       <Footer />
-      <RegisterModal open={registerOpen} onClose={() => setRegisterOpen(false)} />
     </div>
   );
 }
