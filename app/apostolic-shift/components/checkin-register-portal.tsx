@@ -148,7 +148,7 @@ export function CheckinRegisterPortal({
   return (
     <main
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         padding: "36px 14px 48px",
         position: "relative",
         overflow: "hidden",
@@ -360,7 +360,12 @@ export function CheckinRegisterPortal({
               apiUrl="/api/apostolic-shift/checkin"
               title="Apostolic Shift Check-in Assistant"
               welcomeMessage={`Hi! 👋 I'm here to help you check in for Apostolic Shift Conference 2026.\n\nPlease type your registered phone number to get started (e.g. 08012345678).\n\n`}
-              containerStyle={{ minHeight: "560px", height: "560px", padding: 0, background: "transparent" }}
+              containerStyle={{
+                minHeight: "clamp(480px, 68dvh, 620px)",
+                height: "clamp(480px, 68dvh, 620px)",
+                padding: 0,
+                background: "transparent",
+              }}
             />
           ) : (
             /* =================== REGISTRATION TAB =================== */
