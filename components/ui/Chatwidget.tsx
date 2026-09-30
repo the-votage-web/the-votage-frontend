@@ -217,10 +217,12 @@ function ActionChips({
   actions,
   busy,
   onSelect,
+  isDark = false,
 }: {
   actions: QuickAction[];
   busy: boolean;
   onSelect: (message: string) => void;
+  isDark?: boolean;
 }) {
   return (
     <div
@@ -240,8 +242,9 @@ function ActionChips({
           style={{
             padding: "8px 10px",
             borderRadius: 999,
-            border: "1px solid #d1d5db",
-            background: busy ? "#f3f4f6" : "#fff",
+            border: isDark ? "1px solid #3f3f46" : "1px solid #d1d5db",
+            background: isDark ? (busy ? "#27272a" : "#18181b") : (busy ? "#f3f4f6" : "#fff"),
+            color: isDark ? "#f4f4f5" : "#000",
             fontSize: 12,
             cursor: busy ? "not-allowed" : "pointer",
           }}
@@ -259,12 +262,15 @@ export default function ChatWidget({
   welcomeMessage = DEFAULT_WELCOME_MESSAGE,
   containerStyle = {},
   title = "Votage Assistant",
+  theme = "light",
 }: {
   apiUrl?: string;
   welcomeMessage?: string;
   containerStyle?: React.CSSProperties;
   title?: string;
+  theme?: "light" | "dark";
 }) {
+  const isDark = theme === "dark";
   const router = useRouter();
   const sessionId = useMemo(() => crypto.randomUUID(), []);
   const [busy, setBusy] = useState(false);
@@ -296,14 +302,36 @@ export default function ChatWidget({
     setBusy(true);
     try {
       const base = process.env.NEXT_PUBLIC_API_BASE || "";
-      const url = base ? `${base}${apiUrl}` : apiUrl;
+      const url =
+        apiUrl.startsWith("http") || apiUrl.startsWith("/api/")
+          ? apiUrl
+          : base
+          ? `${base}${apiUrl}`
+          : apiUrl;
+
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ session_id: sessionId, message: text }),
       });
-      if (!res.ok) throw new Error("Request failed");
-      const { reply } = (await res.json()) as { reply: string };
+
+      const data = (await res.json().catch(() => null)) as {
+        reply?: string;
+        detail?: string;
+        message?: string;
+      } | null;
+
+      if (!res.ok) {
+        const errMsg =
+          data?.reply ||
+          data?.detail ||
+          data?.message ||
+          "Sorry — I couldn’t reach the server. Please try again.";
+        setMsgs((m) => [...m, { role: "ai", text: errMsg }]);
+        return;
+      }
+
+      const reply = data?.reply || "Done.";
       const normalizedReply =
         apiUrl.includes("checkin") ? normalizeMissingMemberReply(reply) : reply;
       setMsgs((m) => [...m, { role: "ai", text: normalizedReply }]);
@@ -327,7 +355,13 @@ export default function ChatWidget({
     setMsgs([{ role: "ai", text: welcomeMessage }]);
     try {
       const base = process.env.NEXT_PUBLIC_API_BASE || "";
-      const url = base ? `${base}${apiUrl}` : apiUrl;
+      const url =
+        apiUrl.startsWith("http") || apiUrl.startsWith("/api/")
+          ? apiUrl
+          : base
+          ? `${base}${apiUrl}`
+          : apiUrl;
+
       await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -347,7 +381,9 @@ export default function ChatWidget({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%)",
+        background: isDark
+          ? "transparent"
+          : "linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%)",
         padding: 10,
         boxSizing: "border-box",
         ...containerStyle,
@@ -366,13 +402,13 @@ export default function ChatWidget({
           height: "min(820px, 100%)",
           maxHeight: "100%",
           borderRadius: 16,
-          border: "1px solid #e2e8f0",
-          background: "#fff",
-          boxShadow: "0 22px 60px rgba(15,23,42,0.12)",
+          border: isDark ? "1px solid #27272a" : "1px solid #e2e8f0",
+          background: isDark ? "#09090b" : "#fff",
+          boxShadow: isDark ? "0 22px 60px rgba(0,0,0,0.6)" : "0 22px 60px rgba(15,23,42,0.12)",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
-          color:"#000"
+          color: isDark ? "#f4f4f5" : "#000",
         }}
         role="main"
         aria-label="Church assistant"
@@ -381,21 +417,22 @@ export default function ChatWidget({
           <div
             style={{
               padding: "14px 20px",
-              borderBottom: "1px solid #eee",
+              borderBottom: isDark ? "1px solid #27272a" : "1px solid #eee",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               gap: 10,
             }}
           >
-            <div style={{ fontWeight: 700 }}>{title}</div>
+            <div style={{ fontWeight: 700, color: isDark ? "#ffffff" : "#000" }}>{title}</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <button
                 onClick={onEndSession}
                 disabled={busy}
                 style={{
-                  border: "1px solid #d1d5db",
-                  background: busy ? "#f3f4f6" : "#fff",
+                  border: isDark ? "1px solid #3f3f46" : "1px solid #d1d5db",
+                  background: isDark ? "#18181b" : (busy ? "#f3f4f6" : "#fff"),
+                  color: isDark ? "#d4d4d8" : "#000",
                   borderRadius: 10,
                   padding: "6px 12px",
                   cursor: busy ? "not-allowed" : "pointer",
@@ -408,7 +445,7 @@ export default function ChatWidget({
           </div>
 
           {/* Messages */}
-          <div style={{ padding: 20, overflowY: "auto", flex: 1 }}>
+          <div style={{ padding: 20, overflowY: "auto", flex: 1, background: isDark ? "#09090b" : "transparent" }}>
             {msgs.map((m, i) => (
               <div key={i}>
                 <div
@@ -422,7 +459,9 @@ export default function ChatWidget({
                     style={{
                       padding: "14px 18px",
                       borderRadius: 16,
-                      background: m.role === "user" ? "#E9F5FF" : "#F4F4F4",
+                      background: m.role === "user" ? (isDark ? "#27272a" : "#E9F5FF") : (isDark ? "#18181b" : "#F4F4F4"),
+                      color: m.role === "user" ? (isDark ? "#ffffff" : "#000") : (isDark ? "#f4f4f5" : "#000"),
+                      border: isDark ? (m.role === "user" ? "1px solid #3f3f46" : "1px solid #27272a") : "none",
                       maxWidth: "88%",
                       whiteSpace: "pre-wrap",
                       lineHeight: 1.5,
@@ -434,31 +473,31 @@ export default function ChatWidget({
                 </div>
 
                 {m.role === "ai" && isWelcomePrompt(m.text) && (
-                  <ActionChips actions={QUICK_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={QUICK_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isServiceTypePrompt(m.text) && (
-                  <ActionChips actions={SERVICE_TYPE_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={SERVICE_TYPE_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isWorkerPrompt(m.text) && (
-                  <ActionChips actions={WORKER_STATUS_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={WORKER_STATUS_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isDepartmentPrompt(m.text) && (
-                  <ActionChips actions={DEPARTMENT_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={DEPARTMENT_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isGenderPrompt(m.text) && (
-                  <ActionChips actions={GENDER_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={GENDER_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isMaritalStatusPrompt(m.text) && (
-                  <ActionChips actions={MARITAL_STATUS_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={MARITAL_STATUS_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
 
                 {m.role === "ai" && isConnectTypePrompt(m.text) && (
-                  <ActionChips actions={CONNECT_TYPE_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                  <ActionChips actions={CONNECT_TYPE_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} isDark={isDark} />
                 )}
               </div>
             ))}
@@ -476,7 +515,8 @@ export default function ChatWidget({
                   style={{
                     padding: "14px 18px",
                     borderRadius: 16,
-                    background: "#F4F4F4",
+                    background: isDark ? "#18181b" : "#F4F4F4",
+                    border: isDark ? "1px solid #27272a" : "none",
                     display: "flex",
                     gap: 6,
                     alignItems: "center",
@@ -489,7 +529,7 @@ export default function ChatWidget({
                         width: 7,
                         height: 7,
                         borderRadius: "50%",
-                        background: "#8f8f8f",
+                        background: isDark ? "#71717a" : "#8f8f8f",
                         display: "inline-block",
                         animation: "typing-bounce 1.2s infinite ease-in-out",
                         animationDelay: `${dot * 0.15}s`,
@@ -503,7 +543,7 @@ export default function ChatWidget({
           </div>
 
           {/* Input */}
-          <div style={{ padding: "14px 16px", borderTop: "1px solid #eee", background: "#fff" }}>
+          <div style={{ padding: "14px 16px", borderTop: isDark ? "1px solid #27272a" : "1px solid #eee", background: isDark ? "#09090b" : "#fff" }}>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <input
                 value={input}
@@ -516,8 +556,9 @@ export default function ChatWidget({
                   minWidth: 0,
                   padding: "10px 14px",
                   borderRadius: 12,
-                  border: "1px solid #ddd",
-                  background: busy ? "#f3f4f6" : "#fff",
+                  border: isDark ? "1px solid #3f3f46" : "1px solid #ddd",
+                  background: isDark ? "#18181b" : (busy ? "#f3f4f6" : "#fff"),
+                  color: isDark ? "#ffffff" : "#000",
                   outline: "none",
                   fontSize: 16,
                 }}
@@ -529,9 +570,9 @@ export default function ChatWidget({
                   flexShrink: 0,
                   padding: "10px 18px",
                   borderRadius: 12,
-                  border: "1px solid #111827",
-                  background: busy ? "#374151" : "#1f2937",
-                  color: "#fff",
+                  border: isDark ? "1px solid #ffffff" : "1px solid #111827",
+                  background: isDark ? (busy ? "#71717a" : "#ffffff") : (busy ? "#374151" : "#1f2937"),
+                  color: isDark ? "#000000" : "#fff",
                   fontWeight: 600,
                   cursor: busy ? "not-allowed" : "pointer",
                 }}

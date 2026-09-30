@@ -292,6 +292,9 @@ export function EnrollmentForm() {
             },
             body: JSON.stringify({
               access_key: web3formAccessKey,
+              subject: `🎓 [Growth Track Enrollment] New Student Sign-Up — ${payload.FullName}`,
+              from_name: `${payload.FullName} (Growth Track)`,
+              replyto: payload.Email,
               ...payload,
             }),
           },

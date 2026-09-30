@@ -126,7 +126,10 @@ export function VolunteerForm({ compact = false }: { compact?: boolean }) {
       });
 
       const formData = new FormData();
-      formData.append("access_key", "97fc30f1-cae4-45e2-8325-764faf112caf");
+      formData.append(
+        "access_key",
+        process.env.NEXT_PUBLIC_APOSTOLIC_WEB3FORMS_KEY || ""
+      );
       formData.append("subject", `🙌 [Apostolic Shift 2026] New Volunteer Sign-Up — ${trimmedName}`);
       formData.append("from_name", "The VOTAGE Church (Apostolic Shift)");
 

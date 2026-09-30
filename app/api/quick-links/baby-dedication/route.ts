@@ -4,13 +4,9 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    const recipientEmail =
-      process.env.BABY_DEDICATION_EMAIL || 'admin@thevotagechurch.org';
-
     // Log the submission payload for auditing and debugging
     console.log('----------------------------------------------------');
     console.log('👶 NEW BABY DEDICATION SUBMISSION');
-    console.log('Target Notification Email:', recipientEmail);
     console.log('Timestamp:', new Date().toISOString());
     console.log('Baby Name:', data.babyName);
     console.log('Gender:', data.babyGender);
@@ -33,7 +29,6 @@ export async function POST(request: Request) {
     return NextResponse.json({
       status: 'success',
       message: 'Baby dedication request logged successfully',
-      recipient: recipientEmail,
     });
   } catch (error: any) {
     console.error('Baby dedication API route error:', error);
