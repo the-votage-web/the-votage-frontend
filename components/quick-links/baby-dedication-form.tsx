@@ -219,8 +219,7 @@ export function BabyDedicationForm() {
 
     try {
       const accessKey =
-        process.env.NEXT_PUBLIC_BABY_DEDICATION_WEB3FORMS_KEY ||
-        '7e42e5f4-a722-4986-bd49-f7c1e576145b';
+        process.env.NEXT_PUBLIC_APOSTOLIC_WEB3FORMS_KEY || '';
 
       // Format readable date
       const formatReadableDate = (dateStr: string) => {

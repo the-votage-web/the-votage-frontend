@@ -14,7 +14,8 @@ export function ChatWidget() {
   const isAdmin = pathname?.startsWith('/admin')
   const isRegister = pathname?.startsWith('/register')
   const isApostolicShift = pathname?.startsWith('/apostolic-shift')
-  const shouldShowWidget = !isAdmin && !isRegister && !isApostolicShift
+  const isMrc = pathname?.startsWith('/mrc')
+  const shouldShowWidget = !isAdmin && !isRegister && !isApostolicShift && !isMrc
 
   useEffect(() => {
     const BUTTON_ID = 'votage-floating-chat-button'
