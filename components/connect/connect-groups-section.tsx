@@ -5,7 +5,13 @@ import { MapPin, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function ConnectGroupsSection() {
+import { defaultConnectGroups, type ConnectGroupItem } from "@/lib/contentful";
+
+interface ConnectGroupsSectionProps {
+  initialGroups?: ConnectGroupItem[];
+}
+
+export default function ConnectGroupsSection({ initialGroups = defaultConnectGroups }: ConnectGroupsSectionProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -14,86 +20,7 @@ export default function ConnectGroupsSection() {
   const [copied, setCopied] = useState(false);
 
   const formatWhatsAppNumber = (number: string) => number.replace(/[^0-9]/g, "");
-  const groups = [
-    {
-      id: 1,
-      name: "KABOD CONNECT",
-      day: "Tuesdays",
-      location: "144 Airport Road, After ADP Junction",
-      time: "5:00pm",
-      image: "/img/connect-images.png",
-      leader: "Pst Tobi Tijani",
-      whatsapp: "+234 904 535 4864",
-      message: "Welcome to KABOD CONNECT! Experience the glory of God's presence in our Tuesday gatherings. We're committed to building a community where faith, fellowship, and growth intersect. Join us as we explore God's word and grow together in Christ.",
-    },
-    {
-      id: 2,
-      name: "NEWNESS CONNECT",
-      day: "Wednesdays",
-      location: "144 Airport Road, After ADP Junction",
-      time: "5:00pm",
-      image: "/img/connect-6.jpg",
-      leader: "Pst Happysteve Agbonghale",
-      whatsapp: "+234 809 417 0863",
-      message: "NEWNESS CONNECT welcomes you! Every Wednesday, we gather to experience the transformative power of Christ's love. Whether you're new to our community or looking to deepen your faith, you'll find acceptance, encouragement, and purposeful connections here.",
-    },
-    {
-      id: 3,
-      name: "GATEKEEPERS CONNECT",
-      day: "Thursdays",
-      location: "144 Airport Road, After ADP Junction",
-      time: "5:00pm",
-      image: "/img/connect-4.jpg",
-      leader: "Pst Blessing Ochade",
-      whatsapp: "+234 706 699 5249",
-      message: "Welcome to GATEKEEPERS CONNECT! As gatekeepers of God's kingdom, we gather to pray, intercede, and stand in faith for our community. Join our Wednesday meetings to be part of something powerful and transformative.",
-    },
-
-    {
-      id: 4,
-      name: "FLORISH CONNECT",
-      day: "Fridays",
-      location: "144 Airport Road, After ADP Junctionn",
-      time: "5:00pm",
-      image: "/img/connect-3.jpg",
-      leader: "Pst Osaretin Osarumwense ",
-      whatsapp: "+234 805 928 1336",
-      message: "FLORISH CONNECT invites you to Thursday nights filled with God's presence and community love. We believe in flourishing together—spiritually, emotionally, and relationally. Experience a connect group where your growth matters and your voice is heard.",
-    },
-    {
-      id: 5,
-      name: "UGBOWO CONNECT",
-      day: "Fridays",
-      location: "The Orchard Garden",
-      time: "5:00pm",
-      image: "/img/connect-1.jpg",
-      leader: "Min Petry Ebhonu  ",
-      whatsapp: "+234 813 613 2716",
-      message: "Join UGBOWO CONNECT for meaningful Friday evening gatherings! Led by our passionate team, we create an atmosphere of authentic worship, biblical teaching, and genuine community. Come as you are and discover your purpose in God's kingdom.",
-    },
-    {
-      id: 6,
-      name: "KOINONIA CONNECT",
-      day: "Saturdays",
-      location: "144 Airport Road, After ADP Junction",
-      time: "5:00pm",
-      image: "/img/connect-9.jpg",
-      leader: "Pst Obianuju Okpala ",
-      whatsapp: "+234 814 547 7860",
-      message: "KOINONIA—true fellowship awaits you on Saturday! Our connect group is built on the foundation of genuine Christian community, where we share our lives, support one another, and grow in grace together. Experience authentic koinonia with us.",
-    },
-    {
-      id: 7,
-      name: "EKEHUAN CONNECT",
-      day: "Saturdays",
-      location: "Education Field",
-      time: "5:00pm",
-      image: "/img/connect-11.jpg",
-      leader: "Min Petry Ebhonu",
-      whatsapp: "+234 813 613 2716",
-      message: "EKEHUAN CONNECT brings you Friday gatherings saturated with God's word and fervent prayer. Led by passionate believers, we're dedicated to creating a space where faith is strengthened, lives are changed, and God's kingdom advances.",
-    },
-  ];
+  const groups = initialGroups && initialGroups.length > 0 ? initialGroups : defaultConnectGroups;
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {

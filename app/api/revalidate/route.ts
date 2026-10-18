@@ -35,10 +35,13 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Hero and events both live on the home page, so there's a single path to
-  // rebuild. Revalidate '/' too since it renders the same content.
-  revalidatePath('/home')
+  // Revalidate all pages that consume Contentful CMS data
   revalidatePath('/')
+  revalidatePath('/home')
+  revalidatePath('/about')
+  revalidatePath('/connect')
+  revalidatePath('/sermons')
+  revalidatePath('/growth-track')
 
   return NextResponse.json({ revalidated: true, at: Date.now() })
 }

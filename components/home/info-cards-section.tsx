@@ -3,40 +3,31 @@
 import React from 'react';
 import { Clock, MapPin, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { defaultInfoCards, type InfoCardItem } from '@/lib/contentful';
 
-const infoCards = [
-  {
-    id: 1,
-    title: 'Service Time',
-    icon: <Clock className="w-6 h-6 text-white" />,
-    contentTitle: 'Sunday Service',
-    contentDetails: ['8:00 am'],
-    isTime: true,
-  },
-  {
-    id: 2,
-    title: 'Location',
-    icon: <MapPin className="w-6 h-6 text-white" />,
-    contentTitle: 'Benin City',
-    contentDetails: ['The Winlos/Votage center, by ascend school, airport road extension, Benin city'],
-    isTime: false,
-  },
-  {
-    id: 3,
-    title: 'Join A Connect',
-    icon: <Users className="w-6 h-6 text-white" />,
-    contentTitle: 'Tuesdays - Saturdays',
-    contentDetails: ['5:00 pm'],
-    isTime: false,
-  },
-];
+function getIcon(iconType: 'clock' | 'mapPin' | 'users') {
+  switch (iconType) {
+    case 'mapPin':
+      return <MapPin className="w-6 h-6 text-white" />;
+    case 'users':
+      return <Users className="w-6 h-6 text-white" />;
+    default:
+      return <Clock className="w-6 h-6 text-white" />;
+  }
+}
 
-export const InfoCardsSection = () => {
+interface InfoCardsSectionProps {
+  cards?: InfoCardItem[];
+}
+
+export const InfoCardsSection = ({ cards = defaultInfoCards }: InfoCardsSectionProps) => {
+  const displayCards = cards && cards.length > 0 ? cards : defaultInfoCards;
+
   return (
     <section className="bg-white py-12 lg:py-16 relative z-20 -mt-4 lg:-mt-8">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {infoCards.map((card, index) => (
+          {displayCards.map((card, index) => (
             <motion.div
               key={card.id}
               initial={{ opacity: 0, y: 50 }}
@@ -58,7 +49,7 @@ export const InfoCardsSection = () => {
               <div className="bg-[#F5F5F5] rounded-xl p-4 flex items-center gap-4 relative z-10">
                 {/* Icon */}
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  {card.icon}
+                  {getIcon(card.iconType)}
                 </div>
 
                 {/* Text Content */}

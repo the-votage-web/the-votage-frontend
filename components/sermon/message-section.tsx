@@ -20,9 +20,15 @@ function SkeletonCard() {
   );
 }
 
-export default function MessageSection() {
-  const [sermons, setSermons] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(true);
+interface MessageSectionProps {
+  initialSermons?: Message[];
+}
+
+export default function MessageSection({ initialSermons }: MessageSectionProps) {
+  const [sermons, setSermons] = useState<Message[]>(
+    initialSermons && initialSermons.length > 0 ? initialSermons : messages
+  );
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState(false);
 

@@ -5,7 +5,7 @@ import { InfoCardsSection } from '@/components/home/info-cards-section';
 import { BelongSection } from '@/components/home/belong-section';
 import MediaSermons from '@/components/home/media-section';
 import { getMediaItems } from '@/lib/media';
-import { getHero, getEvents } from '@/lib/contentful';
+import { getHero, getEvents, getInfoCards } from '@/lib/contentful';
 import { EventsSection } from '@/components/home/events-section';
 import { WatchLiveSection } from '@/components/home/watch-live-section';
 import { TrustSection } from '@/components/home/trust-section';
@@ -13,10 +13,11 @@ import { QuickLinksSection } from '@/components/home/quick-links-section';
 import { Footer } from '@/components/layout/footer';
 
 export default async function Home() {
-  const [mediaItems, hero, events] = await Promise.all([
+  const [mediaItems, hero, events, infoCards] = await Promise.all([
     getMediaItems(),
     getHero(),
     getEvents(),
+    getInfoCards(),
   ]);
 
   return (
@@ -24,7 +25,7 @@ export default async function Home() {
       <Navbar />
       <main>
         <HeroSection hero={hero} />
-        <InfoCardsSection />
+        <InfoCardsSection cards={infoCards} />
         <BelongSection />
         <MediaSermons items={mediaItems} />
         <EventsSection events={events} />

@@ -4,8 +4,11 @@ import HeroSection from "@/components/growth-track/hero";
 import CohortSection from "@/components/growth-track/cohort-section";
 import MakeUpClassesSection from "@/components/growth-track/makeup-classes-section";
 import CompletedClassesSection from "@/components/growth-track/completed-classes-section";
+import { getGrowthTrackCohort } from "@/lib/contentful";
 
-export default function GrowthTrackPage() {
+export default async function GrowthTrackPage() {
+  const cohort = await getGrowthTrackCohort();
+
   return (
     <>
       <div className="relative   w-full overflow-hidden">
@@ -14,7 +17,7 @@ export default function GrowthTrackPage() {
         <main className="">
           <HeroSection />
           <div id="next-section">
-            <CohortSection />
+            <CohortSection cohort={cohort} />
           </div>
           <MakeUpClassesSection />
           <CompletedClassesSection />

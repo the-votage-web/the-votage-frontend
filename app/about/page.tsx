@@ -7,8 +7,11 @@ import { Beliefs } from "@/components/about/beliefs";
 import { CoreValues } from "@/components/about/core-values";
 import { LeadPastors } from "@/components/about/lead-pastors";
 import { CallToAction } from "@/components/about/call-to-action";
+import { getPastors } from "@/lib/contentful";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const pastors = await getPastors();
+
   return (
     <>
       <div className="relative bg-white w-full overflow-hidden">
@@ -23,7 +26,7 @@ export default function AboutPage() {
           <AfterHero />
           <Beliefs />
           <CoreValues />
-          <LeadPastors />
+          <LeadPastors pastors={pastors} />
           <CallToAction />
         </main>
 

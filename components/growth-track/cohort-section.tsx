@@ -2,9 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { defaultCohort, type GrowthTrackCohort } from '@/lib/contentful';
 
-export default function CohortSection() {
+interface CohortSectionProps {
+  cohort?: GrowthTrackCohort;
+}
+
+export default function CohortSection({ cohort = defaultCohort }: CohortSectionProps) {
   const router = useRouter();
+  const c = cohort || defaultCohort;
 
   return (
     <section className="bg-white py-16 md:py-20 lg:py-24 px-6 md:px-8 lg:px-20">
@@ -28,31 +34,31 @@ export default function CohortSection() {
               >
                 {/* Small heading */}
                 <div className="font-copperplate text-sm md:text-base text-black text-center uppercase tracking-[0.02em]">
-                  growth Track academy
+                  {c.smallHeading}
                 </div>
 
                 {/* Main heading */}
                 <div className="font-copperplate text-sub-heading text-black text-center uppercase tracking-[0.02em]">
-                  join a cohort
+                  {c.mainHeading}
                 </div>
 
                 {/* Description */}
                 <div className="font-body text-body-text text-[#5e5d5d] text-center mt-2">
-                  <p className="mb-0">The next cohort begins soon.</p>
-                  <p>Sign Up</p>
+                  <p className="mb-0">{c.description}</p>
+                  {c.subDescription && <p>{c.subDescription}</p>}
                 </div>
 
                 {/* CTA Button */}
                 <motion.button
-                  className="bg-white text-black font-body text-body-text px-10 py-4 rounded-[36px] border border-black border-solid shadow-[1px_2px_4px_0px_rgba(0,0,0,0.1),5px_6px_8px_0px_rgba(0,0,0,0.09),12px_14px_11px_0px_rgba(0,0,0,0.05),21px_25px_13px_0px_rgba(0,0,0,0.01),33px_38px_14px_0px_rgba(0,0,0,0)] mt-4 hover:shadow-2xl transition-all duration-300"
+                  className="bg-white text-black font-body text-body-text px-10 py-4 rounded-[36px] border border-black border-solid shadow-[1px_2px_4px_0px_rgba(0,0,0,0.1),5px_6px_8px_0px_rgba(0,0,0,0.09),12px_14px_11px_0px_rgba(0,0,0,0.05),21px_25px_13px_0px_rgba(0,0,0,0.01),33px_38px_14px_0px_rgba(0,0,0,0)] mt-4 hover:shadow-2xl transition-all duration-300 cursor-pointer"
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)"
                   }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => router.push('/growth-track/enroll')}
+                  onClick={() => router.push(c.buttonLink || '/growth-track/enroll')}
                 >
-                  Enroll
+                  {c.buttonText || 'Enroll'}
                 </motion.button>
               </motion.div>
             </div>

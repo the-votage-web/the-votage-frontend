@@ -10,7 +10,15 @@ function BlurPlaceholder({ children }: { children?: React.ReactNode }) {
   );
 }
 
-export function LeadPastors() {
+import { defaultPastors, type PastorProfile } from "@/lib/contentful";
+
+interface LeadPastorsProps {
+  pastors?: PastorProfile[];
+}
+
+export function LeadPastors({ pastors = defaultPastors }: LeadPastorsProps) {
+  const displayPastors = pastors && pastors.length > 0 ? pastors : defaultPastors;
+
   return (
     <section
       className="py-20 px-6 text-black md:px-[80px]"
@@ -30,76 +38,52 @@ export function LeadPastors() {
 
         {/* Pastor Profiles */}
         <div className="space-y-16">
-          {/* Rev. Ohis Ojeikere - Image Left, Text Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <BlurPlaceholder />
-              <Image
-                src="/img/rev-pics.jpg"
-                alt="Rev. Ohis Ojeikere preaching"
-                fill
-                style={{ objectPosition: "center 5%" }}
-                className="w-full h-auto rounded-3xl object-cover relative z-10"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBEQCEAxEPwAB//9k=" // Tiny gray blur placeholder
-              />
-            </div>
-            <div className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold">
-                Rev. Ohis Ojeikere
-              </h3>
-              <p className="text-body-text lg:text-body-text-lg leading-relaxed">
-                Rev. Ohis Ojeikere is a seasoned teacher and visionary with an
-                apostolic mandate to reach this generation. From leading
-                children's ministry at age 13 to serving as an RCCG Youth
-                Pastor, his life has been defined by a deep commitment to the
-                Great Commission. In 2013, he co-founded The Winlos, a global
-                media ministry impacting millions.
-              </p>
-              <p className="text-body-text lg:text-body-text-lg leading-relaxed">
-                Following a divine instruction in 2018, he founded The Votage
-                Church to bridge digital reach with spiritual depth. He is
-                dedicated to the business of fervent prayer and presenting every
-                man mature in Christ.
-              </p>
-            </div>
-          </div>
+          {displayPastors.map((pastor, index) => {
+            const isEven = index % 2 === 0;
 
-          {/* Pastor Anwinli Ojeikere - Text Left, Image Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:order-1">
-              <h3 className="text-2xl md:text-3xl font-bold">
-                Pastor Anwinli Ojeikere
-              </h3>
-              <p className="text-base md:text-lg leading-relaxed">
-                Pastor Anwinli Ojeikere is a gifted minister and prayer catalyst
-                dedicated to helping believers fulfill their divine purpose. As
-                a pillar of The Votage and co-visionary of The Winlos, she
-                leverages creative mediums to broadcast the Gospel globally.
-              </p>
-              <p className="text-base md:text-lg leading-relaxed">
-                She is the convener of the Refresh Miracle Service and Refresh
-                Morning Prayers, hosting a daily global altar at 5:00 AM. Her
-                ministry emphasizes New Creation realities and spiritual growth.
-                Standing as a spiritual mother, she is committed to fostering an
-                environment where the supernatural is a daily experience.
-              </p>
-            </div>
-            <div className="relative aspect-[4/3] lg:order-2 overflow-hidden rounded-3xl">
-              <BlurPlaceholder />
-              <Image
-                src="/img/Fl.jpg"
-                style={{ objectPosition: "center 20%" }}
-                alt="Pastor Anwinli Ojeikere speaking"
-                fill
-                className="w-full h-auto rounded-3xl object-cover relative z-10"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBEQCEAxEPwAB//9k="
-              />
-            </div>
-          </div>
+            return (
+              <div
+                key={pastor.id || pastor.name}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                {/* Image block */}
+                <div
+                  className={`relative aspect-[4/3] overflow-hidden rounded-3xl ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
+                >
+                  <BlurPlaceholder />
+                  <Image
+                    src={pastor.image}
+                    alt={pastor.name}
+                    fill
+                    style={{ objectPosition: isEven ? "center 5%" : "center 20%" }}
+                    className="w-full h-auto rounded-3xl object-cover relative z-10"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+
+                {/* Text block */}
+                <div
+                  className={`space-y-6 ${
+                    isEven ? "lg:order-2" : "lg:order-1"
+                  }`}
+                >
+                  <h3 className="text-2xl md:text-3xl font-bold">
+                    {pastor.name}
+                  </h3>
+                  <p className="text-body-text lg:text-body-text-lg leading-relaxed">
+                    {pastor.bio}
+                  </p>
+                  {pastor.secondaryBio && (
+                    <p className="text-body-text lg:text-body-text-lg leading-relaxed">
+                      {pastor.secondaryBio}
+                    </p>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
