@@ -9,14 +9,14 @@ export default function HeroSection() {
 
       {/* Background Image */}
       <Image
-        src="/img/gta/hero-bg.png"
+        src="/img/gta/hero.jpeg"
         alt="Growth Track Hero"
         fill
         className="object-cover"
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/70 " />
+      <div className="absolute inset-0 bg-black/85 " />
 
       {/* Content Container */}
       <div className="relative h-full flex items-center z-10">
