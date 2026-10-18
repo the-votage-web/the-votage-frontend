@@ -291,13 +291,9 @@ function MakeUpFormModal({
       const apiData = await apiResponse.json();
       console.log("Makeup API response:", apiData);
 
-      // Also send to Web3Form
+      // Also send to Web3Form (strictly Growth Track key)
       const web3formAccessKey =
-        process.env.NEXT_PUBLIC_GROWTH_TRACK_WEB3FORMS_KEY ||
-        process.env.NEXT_PUBLIC_MAKEUP_WEB3FORMS_ACCESS_KEY ||
-        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
-        process.env.NEXT_PUBLIC_MAIN_WEB3FORMS_KEY ||
-        "";
+        process.env.NEXT_PUBLIC_GROWTH_TRACK_WEB3FORMS_KEY || "";
       let web3Success = false;
       if (web3formAccessKey) {
         try {
