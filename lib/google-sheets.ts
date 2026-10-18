@@ -8,14 +8,16 @@ export async function submitToGoogleSheets(
   data: Record<string, unknown>,
   formType?: string
 ): Promise<GoogleSheetsResult> {
-  const scriptUrl = formType
-    ? process.env.GOOGLE_GTA_SCRIPT_URL
-    : process.env.GOOGLE_SCRIPT_URL
+  const scriptUrl =
+    (formType ? process.env.GOOGLE_GTA_SCRIPT_URL : undefined) ||
+    process.env.GOOGLE_SCRIPT_URL ||
+    process.env.GOOGLE_SHEETS_SCRIPT_URL
 
   if (!scriptUrl?.trim()) {
     return {
       status: 'error',
       message: 'Server configuration error: Missing GOOGLE_SCRIPT_URL',
+      details: 'Neither GOOGLE_GTA_SCRIPT_URL nor GOOGLE_SCRIPT_URL is configured in environment variables.',
     }
   }
 
@@ -36,13 +38,18 @@ export async function submitToGoogleSheets(
     }
   }
 
+  // Attempt to parse JSON response if provided by Apps Script
+  try {
+    const json = JSON.parse(responseText)
+    if (json.status === 'success' || json.result === 'success' || json.ok === true) {
+      return { status: 'success', message: 'Submitted successfully', details: responseText }
+    }
+  } catch {}
+
   const lower = responseText.toLowerCase()
-  if (
-    lower.includes('success') ||
-    lower.includes('ok') ||
-    lower.includes('thank') ||
-    !lower.includes('error')
-  ) {
+  const isHtml = lower.includes('<!doctype') || lower.includes('<html')
+
+  if (!isHtml && (lower.includes('success') || lower.includes('ok') || lower.includes('thank'))) {
     return { status: 'success', message: 'Submitted successfully', details: responseText }
   }
 

@@ -12,11 +12,13 @@ export default function HeroSection() {
         src="/img/gta/hero.jpeg"
         alt="Growth Track Hero"
         fill
+        sizes="100vw"
+        priority
         className="object-cover"
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/85 " />
+      <div className="absolute inset-0 bg-black/85" />
 
       {/* Content Container */}
       <div className="relative h-full flex items-center z-10">
@@ -38,7 +40,7 @@ export default function HeroSection() {
                 ease: "easeOut",
               }}
             >
-              <h1 className="font-copperplate text-white uppercase tracking-[0.02em] leading-[1.125] text-xl sm:text-[50px] lg:text-6xl">
+              <h1 className="font-copperplate text-white uppercase tracking-[0.02em] leading-[1.125] text-3xl sm:text-5xl lg:text-6xl">
                 GROWTH TRACK
               </h1>
             </motion.div>
@@ -54,7 +56,7 @@ export default function HeroSection() {
                 ease: "easeOut",
               }}
             >
-              <p className="font-copperplate text-white uppercase tracking-[0.02em] leading-[1.125] text-[40px] sm:text-[48px] lg:text-4xl opacity-95">
+              <p className="font-copperplate text-white/90 uppercase tracking-[0.02em] leading-[1.125] text-lg sm:text-2xl lg:text-3xl">
                 Discipling believers and raising leaders.
               </p>
             </motion.div>
@@ -70,7 +72,7 @@ export default function HeroSection() {
               }}
             >
               <motion.button
-                className="bg-white text-black font-['Arial',sans-serif] px-10 py-4 rounded-full text-[20px] leading-[1.2] hover:shadow-2xl transition-all duration-300"
+                className="bg-white text-black font-sans font-semibold px-10 py-4 rounded-full text-base sm:text-lg leading-[1.2] hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)",

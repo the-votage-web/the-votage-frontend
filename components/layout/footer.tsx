@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Logo } from '../ui/logo';
 import { Instagram, Youtube, Facebook } from 'lucide-react';
 import { TikTokIcon } from '../icons/tiktok-icon';
@@ -8,9 +9,6 @@ export const Footer = () => {
     <footer 
       className="bg-[#010101] text-white pt-20 pb-10 overflow-hidden relative bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url(/img/footer-bg.png)' }}>
-      {/* Background Texture Overlay (Optional subtle texture from design) */}
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none" />
-
       <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           
@@ -45,22 +43,22 @@ export const Footer = () => {
           <div>
             <h3 className="font-copperplate font-bold text-2xl mb-8">Quick links</h3>
             <ul className="space-y-3 font-body text-base text-white/80">
-              <li><a href="/quick-links/baby-naming" className="hover:text-brand-blue transition-colors">Naming Ceremony</a></li>
-              <li><a href="/quick-links/baby-dedication" className="hover:text-brand-blue transition-colors">Baby Dedication</a></li>
-              <li><a href="/give" className="hover:text-brand-blue transition-colors">Partner with us</a></li>
-              <li><a href="/connect" className="hover:text-brand-blue transition-colors">Connect</a></li>
-              <li><a href="/join" className="hover:text-brand-blue transition-colors">Join Us</a></li>
+              <li><Link href="/quick-links/baby-naming" className="hover:text-brand-blue transition-colors">Naming Ceremony</Link></li>
+              <li><Link href="/quick-links/baby-dedication" className="hover:text-brand-blue transition-colors">Baby Dedication</Link></li>
+              <li><Link href="/give" className="hover:text-brand-blue transition-colors">Partner with us</Link></li>
+              <li><Link href="/connect" className="hover:text-brand-blue transition-colors">Connect</Link></li>
+              <li><Link href="/join" className="hover:text-brand-blue transition-colors">Join Us</Link></li>
             </ul>
           </div>
 
           {/* Column 3: Navigation */}
           <div className="pt-0 lg:pt-16">
             <ul className="space-y-4 font-body text-base text-white/80">
-              <li><a href="/" className="hover:text-brand-blue transition-colors">Home</a></li>
-              <li><a href="/about" className="hover:text-brand-blue transition-colors">About Us</a></li>
-              <li><a href="/sermons" className="hover:text-brand-blue transition-colors">Sermons</a></li>
-              <li><a href="/growth-track" className="hover:text-brand-blue transition-colors">Growth Track</a></li>
-              <li><a href="/plan-your-visit" className="hover:text-brand-blue transition-colors">Plan Your Visit</a></li>
+              <li><Link href="/" className="hover:text-brand-blue transition-colors">Home</Link></li>
+              <li><Link href="/about" className="hover:text-brand-blue transition-colors">About Us</Link></li>
+              <li><Link href="/sermons" className="hover:text-brand-blue transition-colors">Sermons</Link></li>
+              <li><Link href="/growth-track" className="hover:text-brand-blue transition-colors">Growth Track</Link></li>
+              <li><Link href="/plan-your-visit" className="hover:text-brand-blue transition-colors">Plan Your Visit</Link></li>
             </ul>
           </div>
 
