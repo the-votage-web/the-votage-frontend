@@ -280,6 +280,7 @@ export function EnrollmentForm() {
 
       // Also send to Web3Form
       const web3formAccessKey =
+        process.env.NEXT_PUBLIC_GROWTH_TRACK_WEB3FORMS_KEY ||
         process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
         process.env.NEXT_PUBLIC_MAIN_WEB3FORMS_KEY ||
         "";
