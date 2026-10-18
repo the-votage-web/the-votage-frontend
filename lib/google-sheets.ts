@@ -8,14 +8,16 @@ export async function submitToGoogleSheets(
   data: Record<string, unknown>,
   formType?: string
 ): Promise<GoogleSheetsResult> {
-  const scriptUrl = formType
-    ? process.env.GOOGLE_GTA_SCRIPT_URL
-    : process.env.GOOGLE_SCRIPT_URL
+  const scriptUrl =
+    (formType ? process.env.GOOGLE_GTA_SCRIPT_URL : undefined) ||
+    process.env.GOOGLE_SCRIPT_URL ||
+    process.env.GOOGLE_SHEETS_SCRIPT_URL
 
   if (!scriptUrl?.trim()) {
     return {
       status: 'error',
       message: 'Server configuration error: Missing GOOGLE_SCRIPT_URL',
+      details: 'Neither GOOGLE_GTA_SCRIPT_URL nor GOOGLE_SCRIPT_URL is configured in environment variables.',
     }
   }
 

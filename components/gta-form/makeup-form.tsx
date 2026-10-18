@@ -293,34 +293,42 @@ function MakeUpFormModal({
 
       // Also send to Web3Form
       const web3formAccessKey =
-        process.env.NEXT_PUBLIC_MAKEUP_WEB3FORMS_ACCESS_KEY || "";
-      const web3formResponse = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: web3formAccessKey,
-          ...payload,
-        }),
-      });
+        process.env.NEXT_PUBLIC_MAKEUP_WEB3FORMS_ACCESS_KEY ||
+        process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+        process.env.NEXT_PUBLIC_MAIN_WEB3FORMS_KEY ||
+        "";
+      let web3Success = false;
+      if (web3formAccessKey) {
+        try {
+          const web3formResponse = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              access_key: web3formAccessKey,
+              ...payload,
+            }),
+          });
 
-      const web3formData = await web3formResponse.json();
-      console.log("Web3Form response:", web3formData);
+          const web3formData = await web3formResponse.json();
+          console.log("Web3Form response:", web3formData);
 
-      if (!web3formResponse.ok) {
-        console.warn("Web3Form submission failed:", web3formData);
+          if (web3formResponse.ok && (web3formData.success || web3formData.status === 200)) {
+            web3Success = true;
+          } else {
+            console.warn("Web3Form submission failed:", web3formData);
+          }
+        } catch (wErr) {
+          console.warn("Web3Form error:", wErr);
+        }
       }
 
-      // Check API response for success
-      if (!apiResponse.ok) {
-        throw new Error(
-          apiData.message || `Server error: ${apiResponse.status}`,
-        );
-      }
+      // Check if either server API or Web3Forms notification succeeded
+      const apiSuccess = apiResponse.ok && apiData.status === "success";
 
-      if (apiData.status === "success") {
+      if (apiSuccess || web3Success) {
         setResult(
           "Thank you! Your make-up class request has been submitted successfully.",
         );
