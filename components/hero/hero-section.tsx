@@ -18,6 +18,7 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
         src={hero.backgroundImage}
         alt="Hero Background"
         fill
+        sizes="100vw"
         className="object-cover"
         priority
       />
@@ -55,23 +56,21 @@ export const HeroSection = ({ hero }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center gap-6"
         >
-          <Link href="/plan-your-visit">
-            <Button
-              variant="primary"
-              className="w-44 h-14 text-lg font-bold font-body"
-            >
-              Join us
-            </Button>
-          </Link>
+          <Button
+            asChild
+            variant="primary"
+            className="w-44 h-14 text-lg font-bold font-body"
+          >
+            <Link href="/plan-your-visit">Join us</Link>
+          </Button>
 
-          <Link href="/sermons">
-            <Button
-              variant="outline"
-              className="w-44 h-14 text-lg font-bold font-body"
-            >
-              Get inspired
-            </Button>
-          </Link>
+          <Button
+            asChild
+            variant="outline"
+            className="w-44 h-14 text-lg font-bold font-body"
+          >
+            <Link href="/sermons">Get inspired</Link>
+          </Button>
         </motion.div>
       </div>
     </div>

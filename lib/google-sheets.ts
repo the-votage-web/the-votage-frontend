@@ -36,13 +36,18 @@ export async function submitToGoogleSheets(
     }
   }
 
+  // Attempt to parse JSON response if provided by Apps Script
+  try {
+    const json = JSON.parse(responseText)
+    if (json.status === 'success' || json.result === 'success' || json.ok === true) {
+      return { status: 'success', message: 'Submitted successfully', details: responseText }
+    }
+  } catch {}
+
   const lower = responseText.toLowerCase()
-  if (
-    lower.includes('success') ||
-    lower.includes('ok') ||
-    lower.includes('thank') ||
-    !lower.includes('error')
-  ) {
+  const isHtml = lower.includes('<!doctype') || lower.includes('<html')
+
+  if (!isHtml && (lower.includes('success') || lower.includes('ok') || lower.includes('thank'))) {
     return { status: 'success', message: 'Submitted successfully', details: responseText }
   }
 

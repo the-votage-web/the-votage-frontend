@@ -116,12 +116,12 @@ export const Navbar = ({ darkText = false }: NavbarProps) => {
         ${isScrolled ? 'h-16' : 'h-20'}
       `}>
         {/* Logo */}
-        <div
-          onClick={() => router.push('/')}
-          className="shrink-0 rounded-full overflow-hidden bg-white/10 cursor-pointer h-[3.75rem] w-[3.75rem]"
+        <Link
+          href="/"
+          className="shrink-0 rounded-full overflow-hidden bg-white/10 cursor-pointer h-[3.75rem] w-[3.75rem] flex items-center justify-center"
         >
           <Logo />
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-7">
@@ -201,15 +201,15 @@ export const Navbar = ({ darkText = false }: NavbarProps) => {
         {/* CTA Button */}
         <div className="hidden lg:flex gap-4 items-center">
           <Button 
+            asChild
             variant="nav-cta" 
             className={`font-body text-lg px-8 py-3 rounded-full border-opacity-60 transition-all duration-300 ${
               darkText && !isScrolled 
                 ? 'text-black border-black hover:bg-black hover:text-white' 
                 : 'text-white border-white hover:bg-white hover:text-black'
             }`}
-            onClick={() => router.push('/register')}
           >
-            Register
+            <Link href="/register">Register</Link>
           </Button>
           <Button 
             variant="nav-cta" 

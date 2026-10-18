@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 import { ChatWidget } from "@/components/ChatWidget";
 
-// Poppins font (self-hosted - avoids build-time fetch from Google Fonts)
+// Inter font for primary body typography
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+// Poppins font (self-hosted - avoids render-blocking external Google Fonts link)
 const poppins = localFont({
   src: [
     {
@@ -60,7 +68,7 @@ const copperplateCondensedLight = localFont({
 
 export const metadata: Metadata = {
   title: "Welcome to The Votage",
-  description: " We are the Voice of this age ",
+  description: "We are the Voice of this age",
 };
 
 export default function RootLayout({
@@ -69,21 +77,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body
-        className={` ${copperplateBold.variable} ${copperplateMedium.variable} ${copperplateLight.variable} ${copperplateCondensedMedium.variable} ${copperplateCondensedBold.variable} ${copperplateCondensedLight.variable} antialiased overflow-x-clip`}
+        className={`${inter.variable} ${poppins.variable} ${copperplateBold.variable} ${copperplateMedium.variable} ${copperplateLight.variable} ${copperplateCondensedMedium.variable} ${copperplateCondensedBold.variable} ${copperplateCondensedLight.variable} antialiased overflow-x-clip font-sans`}
       >
         <Providers>{children}</Providers>
         <ChatWidget />

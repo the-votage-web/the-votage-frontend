@@ -15,7 +15,7 @@ export const Logo = ({ className = "w-full h-full object-cover", alt = "Votage L
         className={className}
         width={150}
         height={150}
-        unoptimized
+        priority
       />
     </div>
   );
