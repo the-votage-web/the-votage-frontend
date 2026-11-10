@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import dynamic from 'next/dynamic'
-import Script from 'next/script'
+import { useState, useEffect, useRef } from 'react'
 
 const Agentation = dynamic(
   () => import('agentation').then((m) => m.Agentation),
@@ -13,63 +13,69 @@ export function ChatWidget() {
   const pathname = usePathname()
   const isAdmin = pathname?.startsWith('/admin')
   const isRegister = pathname?.startsWith('/register')
-  const shouldShowWidget = !isAdmin && !isRegister
+  const isApostolicShift = pathname?.startsWith('/apostolic-shift')
+  const isMrc = pathname?.startsWith('/mrc')
+  const shouldShowWidget = !isAdmin && !isRegister && !isApostolicShift && !isMrc
+
+  const [isOpen, setIsOpen] = useState(false)
+  const widgetRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (widgetRef.current && !widgetRef.current.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    return () => {
+      document.removeEventListener('click', handleOutsideClick)
+    }
+  }, [isOpen])
+
+  // Reset open state when navigating away to excluded routes
+  useEffect(() => {
+    if (!shouldShowWidget) {
+      setIsOpen(false)
+    }
+  }, [shouldShowWidget])
 
   return (
     <>
+      {shouldShowWidget && (
+        <div ref={widgetRef} className="fixed bottom-5 right-5 z-[9999] font-sans">
+          {isOpen && (
+            <iframe
+              id="votage-floating-chat-iframe"
+              src="https://votage-ai-assistant.vercel.app/"
+              title="Votage AI Assistant"
+              className="fixed bottom-20 right-5 border-0 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.3)] z-[9999] bg-white"
+              style={{
+                width: 'min(360px, calc(100vw - 40px))',
+                height: 'min(550px, calc(100dvh - 120px))',
+              }}
+            />
+          )}
+
+          <button
+            type="button"
+            id="votage-floating-chat-button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsOpen((prev) => !prev)
+            }}
+            className="flex items-center gap-2 px-4 py-3 bg-black text-white rounded-full border border-white/20 shadow-xl cursor-pointer text-sm font-medium hover:bg-neutral-900 transition-all active:scale-95"
+            aria-label={isOpen ? 'Close chat' : 'Open chat'}
+          >
+            {isOpen ? '✕ Close' : '💬 Chat'}
+          </button>
+        </div>
+      )}
+
       {process.env.NODE_ENV === 'development' && <Agentation />}
-      {shouldShowWidget && <Script id="votage-chat-widget" strategy="afterInteractive">{`
-        (function () {
-          const button = document.createElement("button");
-          button.innerHTML = "\u{1F4AC} Chat";
-          button.style.position = "fixed";
-          button.style.bottom = "20px";
-          button.style.right = "20px";
-          button.style.padding = "12px 18px";
-          button.style.background = "#000";
-          button.style.color = "#fff";
-          button.style.border = "none";
-          button.style.borderRadius = "30px";
-          button.style.cursor = "pointer";
-          button.style.zIndex = "9999";
-
-          const iframe = document.createElement("iframe");
-          iframe.src = "https://votage-ai-assistant.vercel.app/";
-          iframe.style.position = "fixed";
-          iframe.style.bottom = "80px";
-          iframe.style.right = "5px";
-          iframe.style.width = "320px";
-          iframe.style.height = "550px";
-          iframe.style.border = "none";
-          iframe.style.display = "none";
-          iframe.style.borderRadius = "12px";
-          iframe.style.boxShadow = "0 15px 40px rgba(0,0,0,0.3)";
-          iframe.style.zIndex = "9999";
-
-
-          const toggleWidget = (e) => {
-            if (e) e.stopPropagation();
-            if (iframe.style.display === "none") {
-              iframe.style.display = "block";
-              button.innerHTML = "\u2715 Close";
-            } else {
-              iframe.style.display = "none";
-              button.innerHTML = "\u{1F4AC} Chat";
-            }
-          };
-
-          button.onclick = toggleWidget;
-
-          document.addEventListener("click", (e) => {
-            if (iframe.style.display === "block" && !button.contains(e.target)) {
-              toggleWidget();
-            }
-          });
-
-          document.body.appendChild(button);
-          document.body.appendChild(iframe);
-        })();
-      `}</Script>}
     </>
   )
 }
+

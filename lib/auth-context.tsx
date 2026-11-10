@@ -22,6 +22,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   const refetch = useCallback(async () => {
+    // If in browser and no auth_token cookie exists, skip the network roundtrip
+    if (typeof document !== 'undefined' && !document.cookie.includes('auth_token=')) {
+      setUser(null)
+      setIsLoading(false)
+      return null
+    }
+
     try {
       const user = await authApi.me()
       setUser(user)

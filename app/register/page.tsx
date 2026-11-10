@@ -8,6 +8,7 @@ import { FormEvent, Suspense, useEffect, useMemo, useState } from "react";
 import styles from "./register.module.css";
 import ChatWidget from "@/components/ui/Chatwidget";
 import { BIRTH_MONTHS, daysInBirthMonth } from "@/lib/birthday";
+import { GeofenceGuard } from "@/components/geofence/GeofenceGuard";
 
 const DEFAULT_CONNECT_OPTIONS = [
   "KABOD CONNECT",
@@ -389,7 +390,9 @@ function RegisterPageContent() {
 export default function RegisterPage() {
   return (
     <Suspense fallback={null}>
-      <RegisterPageContent />
+      <GeofenceGuard pageTitle="Registration & Check-In">
+        <RegisterPageContent />
+      </GeofenceGuard>
     </Suspense>
   );
 }

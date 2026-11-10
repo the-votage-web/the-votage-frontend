@@ -142,7 +142,7 @@ export const GallerySection: React.FC = () => {
 
       <div
         ref={trackRef}
-        className="flex justify-center items-end gap-4 md:gap-6 px-4 min-w-max md:min-w-0 relative z-10"
+        className="flex justify-center items-end gap-4 md:gap-6 px-4 overflow-x-auto md:overflow-visible md:min-w-0 relative z-10"
       >
         {images.map((img, index) => (
           <div

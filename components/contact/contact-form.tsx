@@ -32,19 +32,34 @@ export function ContactForm() {
     setResult('');
 
     const submitFormData = new FormData();
-    submitFormData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '');
-    submitFormData.append('firstName', data.firstName);
-    submitFormData.append('lastName', data.lastName);
-    submitFormData.append('email', data.email);
-    submitFormData.append('phone', data.phone || '');
-    submitFormData.append('subject', data.subject);
-    submitFormData.append('message', data.message);
-    submitFormData.append('from_name', `${data.firstName} ${data.lastName}`);
+    const accessKey = process.env.NEXT_PUBLIC_APOSTOLIC_WEB3FORMS_KEY || '';
+
+    submitFormData.append('access_key', accessKey);
+    submitFormData.append(
+      'subject',
+      `📩 [Website Contact] ${data.subject} — ${data.firstName} ${data.lastName}`
+    );
+    submitFormData.append('from_name', `${data.firstName} ${data.lastName} (via The VOTAGE Website)`);
+    submitFormData.append('replyto', data.email);
+
+    // Clean fields formatted for the email notification
+    submitFormData.append('Full Name', `${data.firstName} ${data.lastName}`);
+    submitFormData.append('Email Address', data.email);
+    submitFormData.append('Phone Number', data.phone || 'Not provided');
+    submitFormData.append('Subject', data.subject);
+    submitFormData.append('Message', data.message);
+    submitFormData.append(
+      'Submitted At',
+      new Date().toLocaleString('en-US', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      })
+    );
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: submitFormData
+        body: submitFormData,
       });
 
       const responseData = await response.json();
@@ -53,9 +68,9 @@ export function ContactForm() {
         setResult('Thank you! Your message has been sent successfully.');
         reset();
       } else {
-        setResult('Something went wrong. Please try again later.');
+        setResult(responseData.message || 'Something went wrong. Please try again later.');
       }
-    } catch (error) {
+    } catch {
       setResult('An error occurred. Please try again later.');
     }
   };
