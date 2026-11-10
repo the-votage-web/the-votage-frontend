@@ -10,6 +10,8 @@ export interface ApiMember {
   gender: string;
   department_name: string;
   date_joined: string;
+  birth_day?: number | null;
+  birth_month?: number | null;
 }
 
 export interface MembersResponse {

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
+import { BIRTH_MONTHS, daysInBirthMonth, formatBirthday } from "@/lib/birthday";
 
 type Msg = { role: "user" | "ai"; text: string };
 type QuickAction = { label: string; message: string };
@@ -210,6 +211,94 @@ function isMaritalStatusPrompt(text: string) {
     normalized.includes("married") &&
     normalized.includes("divorced") &&
     normalized.includes("widowed")
+  );
+}
+
+// Backend asks for a birthday during check-in only when the member's birthday is blank.
+// Expected prompt wording contains "birthday" plus "day and month" (or "DD/MM").
+function isBirthdayPrompt(text: string) {
+  const normalized = text.toLowerCase();
+  return (
+    normalized.includes("birthday") &&
+    (normalized.includes("day and month") || normalized.includes("dd/mm"))
+  );
+}
+
+function BirthdayPicker({
+  busy,
+  onSubmit,
+}: {
+  busy: boolean;
+  onSubmit: (message: string) => void;
+}) {
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const dayCount = month ? daysInBirthMonth(Number(month)) : 31;
+  const ready = Boolean(day && month);
+
+  const selectStyle: React.CSSProperties = {
+    padding: "8px 10px",
+    borderRadius: 10,
+    border: "1px solid #d1d5db",
+    background: busy ? "#f3f4f6" : "#fff",
+    fontSize: 13,
+    color: "#000",
+  };
+
+  return (
+    <div style={{ marginTop: 6, marginBottom: 2, display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+      <select
+        aria-label="Birthday day"
+        value={day}
+        disabled={busy}
+        onChange={(e) => setDay(e.target.value)}
+        style={selectStyle}
+      >
+        <option value="" disabled>
+          Day
+        </option>
+        {Array.from({ length: dayCount }, (_, i) => i + 1).map((d) => (
+          <option key={d} value={String(d)}>
+            {d}
+          </option>
+        ))}
+      </select>
+      <select
+        aria-label="Birthday month"
+        value={month}
+        disabled={busy}
+        onChange={(e) => {
+          const next = e.target.value;
+          setMonth(next);
+          if (day && Number(day) > daysInBirthMonth(Number(next))) setDay("");
+        }}
+        style={selectStyle}
+      >
+        <option value="" disabled>
+          Month
+        </option>
+        {BIRTH_MONTHS.map((name, i) => (
+          <option key={name} value={String(i + 1)}>
+            {name}
+          </option>
+        ))}
+      </select>
+      <button
+        onClick={() => ready && onSubmit(formatBirthday(Number(day), Number(month)))}
+        disabled={busy || !ready}
+        style={{
+          padding: "8px 12px",
+          borderRadius: 999,
+          border: "1px solid #111827",
+          background: busy || !ready ? "#9ca3af" : "#1f2937",
+          color: "#fff",
+          fontSize: 12,
+          cursor: busy || !ready ? "not-allowed" : "pointer",
+        }}
+      >
+        Save birthday
+      </button>
+    </div>
   );
 }
 
@@ -452,6 +541,10 @@ export default function ChatWidget({
 
                 {m.role === "ai" && isMaritalStatusPrompt(m.text) && (
                   <ActionChips actions={MARITAL_STATUS_ACTIONS} busy={busy} onSelect={(message) => void sendText(message)} />
+                )}
+
+                {m.role === "ai" && i === msgs.length - 1 && isBirthdayPrompt(m.text) && (
+                  <BirthdayPicker busy={busy} onSubmit={(message) => void sendText(message)} />
                 )}
 
                 {m.role === "ai" && isConnectTypePrompt(m.text) && (

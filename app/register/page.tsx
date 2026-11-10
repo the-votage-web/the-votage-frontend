@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useEffect, useMemo, useState } from "react";
 import styles from "./register.module.css";
 import ChatWidget from "@/components/ui/Chatwidget";
+import { BIRTH_MONTHS, daysInBirthMonth } from "@/lib/birthday";
 
 const DEFAULT_CONNECT_OPTIONS = [
   "KABOD CONNECT",
@@ -37,8 +38,19 @@ function RegisterPageContent() {
   const [maritalStatus, setMaritalStatus] = useState("single");
   const [serviceType, setServiceType] = useState("sunday_service");
   const [connectName, setConnectName] = useState(DEFAULT_CONNECT_OPTIONS[0]);
+  const [birthDay, setBirthDay] = useState("");
+  const [birthMonth, setBirthMonth] = useState("");
 
   const showConnect = useMemo(() => serviceType === "connect", [serviceType]);
+  const birthDayCount = birthMonth ? daysInBirthMonth(Number(birthMonth)) : 31;
+
+  function onBirthMonthChange(value: string) {
+    setBirthMonth(value);
+    // Clear the day if it doesn't exist in the newly selected month (e.g. 31 Feb).
+    if (value && birthDay && Number(birthDay) > daysInBirthMonth(Number(value))) {
+      setBirthDay("");
+    }
+  }
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -99,6 +111,8 @@ function RegisterPageContent() {
         marital_status: maritalStatus,
         service_type: serviceType,
         connect_name: showConnect ? connectName : null,
+        birth_day: Number(birthDay),
+        birth_month: Number(birthMonth),
       };
 
       const url = base ? `${base}/api/register` : "/api/register";
@@ -128,6 +142,8 @@ function RegisterPageContent() {
       setMaritalStatus("single");
       setServiceType("sunday_service");
       setConnectName(connectOptions[0] ?? DEFAULT_CONNECT_OPTIONS[0]);
+      setBirthDay("");
+      setBirthMonth("");
       setNotice({
         type: "success",
         text: `${data.message} Redirecting...`,
@@ -283,6 +299,46 @@ function RegisterPageContent() {
                     <option value="married">Married</option>
                     <option value="divorced">Divorced</option>
                     <option value="widowed">Widowed</option>
+                  </select>
+                </label>
+              </div>
+
+              <div className={styles.rowTwo}>
+                <label className={styles.field}>
+                  <span className={styles.label}>Birthday – day</span>
+                  <select
+                    required
+                    value={birthDay}
+                    onChange={(e) => setBirthDay(e.target.value)}
+                    className={styles.control}
+                  >
+                    <option value="" disabled>
+                      Day
+                    </option>
+                    {Array.from({ length: birthDayCount }, (_, i) => i + 1).map((d) => (
+                      <option key={d} value={String(d)}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className={styles.field}>
+                  <span className={styles.label}>Birthday – month</span>
+                  <select
+                    required
+                    value={birthMonth}
+                    onChange={(e) => onBirthMonthChange(e.target.value)}
+                    className={styles.control}
+                  >
+                    <option value="" disabled>
+                      Month
+                    </option>
+                    {BIRTH_MONTHS.map((name, i) => (
+                      <option key={name} value={String(i + 1)}>
+                        {name}
+                      </option>
+                    ))}
                   </select>
                 </label>
               </div>
